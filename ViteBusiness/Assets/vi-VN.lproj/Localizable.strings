@@ -435,7 +435,7 @@
 "quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.title.2" = "Nhận Quota";
-"quota.pow.tip.float.view.message.2" = "We noticed that you have don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.";
+"quota.pow.tip.float.view.message.2" = "We noticed that you don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.";
 "quota.pow.tip.float.view.pledge.2" = "Khoá VITE";
 "quota.pow.tip.float.view.notNow.2" = "Free Quota";
 

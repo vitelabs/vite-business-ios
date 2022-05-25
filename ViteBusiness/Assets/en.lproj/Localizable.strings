@@ -12,7 +12,7 @@
 "cancel.button.title" = "Cancel";
 "alter.title" = "NOTICE";
 
-"discover.page.title"="Discovery";
+"discover.page.title"="Discover";
 "discover.page.game.cell.palyNum"="%@ players are playing";
 "discover.page.activity.page.title1"="Latest Events";
 "discover.page.activity.page.title2"="History";
@@ -20,12 +20,12 @@
 "discover.page.news.cell.time.minute"="Now";
 "discover.page.news.cell.time.hour"="%@h ago";
 "discover.page.news.cell.time.day"="%@d ago";
-"discover.page.headerTitle.activity"="Campaign Center";
+"discover.page.headerTitle.activity"="Ecosystem";
 "discover.page.headerTitle.game"="DApps";
-"discover.page.headerTitle.news"="Vite News";
+"discover.page.headerTitle.news"="News";
 "discover.page.VCWebTitle.activity"="Vite Events";
 "discover.page.VCWebTitle.game"="DApps";
-"discover.page.VCWebTitle.news"="Vite News";
+"discover.page.VCWebTitle.news"="News";
 "discover.page.game.alter.title"="You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 
 //AirDrop
@@ -428,7 +428,7 @@
 "quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.title.2" = "Get Quota";
-"quota.pow.tip.float.view.message.2" = "We noticed that you have don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.";
+"quota.pow.tip.float.view.message.2" = "We noticed that you don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.";
 "quota.pow.tip.float.view.pledge.2" = "Lock VITE";
 "quota.pow.tip.float.view.notNow.2" = "Free Quota";
 

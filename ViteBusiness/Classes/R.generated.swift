@@ -2778,10 +2778,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let viteTransactionDetailPageStateCallSuccess = Rswift.StringResource(key: "vite.transaction.detail.page.state.call.success", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Campaign Center
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let discoverPageHeaderTitleActivity = Rswift.StringResource(key: "discover.page.headerTitle.activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Cancel
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -3401,11 +3397,11 @@ public struct R: Rswift.Validatable {
       /// en translation: Discover
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let tabTitleDiscover = Rswift.StringResource(key: "tab.title.discover", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Discovery
+      public static let discoverPageTitle = Rswift.StringResource(key: "discover.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Discover
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let discoverPageTitle = Rswift.StringResource(key: "discover.page.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      public static let tabTitleDiscover = Rswift.StringResource(key: "tab.title.discover", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Dividend
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -3450,6 +3446,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let ethSendPageEthContactsButtonTitle = Rswift.StringResource(key: "eth.send.page.eth.contacts.button.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Ecosystem
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let discoverPageHeaderTitleActivity = Rswift.StringResource(key: "discover.page.headerTitle.activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Edit Account Name
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4338,6 +4338,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let appSchemeNetworkError = Rswift.StringResource(key: "app.scheme.network.error", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: News
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let discoverPageHeaderTitleNews = Rswift.StringResource(key: "discover.page.headerTitle.news", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: News
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let discoverPageVCWebTitleNews = Rswift.StringResource(key: "discover.page.VCWebTitle.news", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Next
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6258,14 +6266,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let tokenListPageSectionViteHeader = Rswift.StringResource(key: "token.list.page.section.vite.header", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Vite News
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let discoverPageHeaderTitleNews = Rswift.StringResource(key: "discover.page.headerTitle.news", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Vite News
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let discoverPageVCWebTitleNews = Rswift.StringResource(key: "discover.page.VCWebTitle.news", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Vite Wallet
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6402,7 +6402,7 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let manageWalletPageErrorTypeName = Rswift.StringResource(key: "manage.wallet.page.error.type.name", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: We noticed that you have don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.
+      /// en translation: We noticed that you don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let quotaPowTipFloatViewMessage2 = Rswift.StringResource(key: "quota.pow.tip.float.view.message.2", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
@@ -7849,13 +7849,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("vite.transaction.detail.page.state.call.success", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Campaign Center
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func discoverPageHeaderTitleActivity(_: Void = ()) -> String {
-        return NSLocalizedString("discover.page.headerTitle.activity", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Cancel
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -8937,15 +8930,15 @@ public struct R: Rswift.Validatable {
       /// en translation: Discover
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func tabTitleDiscover(_: Void = ()) -> String {
-        return NSLocalizedString("tab.title.discover", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Discovery
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func discoverPageTitle(_: Void = ()) -> String {
         return NSLocalizedString("discover.page.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Discover
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func tabTitleDiscover(_: Void = ()) -> String {
+        return NSLocalizedString("tab.title.discover", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Dividend
@@ -9023,6 +9016,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func ethSendPageEthContactsButtonTitle(_: Void = ()) -> String {
         return NSLocalizedString("eth.send.page.eth.contacts.button.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Ecosystem
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func discoverPageHeaderTitleActivity(_: Void = ()) -> String {
+        return NSLocalizedString("discover.page.headerTitle.activity", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Edit Account Name
@@ -10577,6 +10577,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func appSchemeNetworkError(_: Void = ()) -> String {
         return NSLocalizedString("app.scheme.network.error", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: News
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func discoverPageHeaderTitleNews(_: Void = ()) -> String {
+        return NSLocalizedString("discover.page.headerTitle.news", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: News
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func discoverPageVCWebTitleNews(_: Void = ()) -> String {
+        return NSLocalizedString("discover.page.VCWebTitle.news", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Next
@@ -13939,20 +13953,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("token.list.page.section.vite.header", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Vite News
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func discoverPageHeaderTitleNews(_: Void = ()) -> String {
-        return NSLocalizedString("discover.page.headerTitle.news", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Vite News
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func discoverPageVCWebTitleNews(_: Void = ()) -> String {
-        return NSLocalizedString("discover.page.VCWebTitle.news", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Vite Wallet
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -14191,7 +14191,7 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("manage.wallet.page.error.type.name", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: We noticed that you have don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.
+      /// en translation: We noticed that you don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func quotaPowTipFloatViewMessage2(_ value1: String) -> String {
