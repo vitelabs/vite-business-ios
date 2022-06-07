@@ -237,7 +237,7 @@
 "vite.transaction.detail.page.type.receive" = "Respuesta";
 "vite.transaction.detail.page.hash.title" = "Hash de transacción";
 "vite.transaction.detail.page.height.title" = "Altura del bloque";
-"vite.transaction.detail.page.note.title" = "Nota";
+"vite.transaction.detail.page.note.title" = "Memo";
 "vite.transaction.detail.page.link.button.title" = "Ver más detalles en Vite Explorer";
 
 /* BalanceInfo */
@@ -291,7 +291,7 @@
 "address.manage.alert.placeholder" = "Ingrese un número entre 1 y 100";
 "address.manage.alert.tip" = "Generar en masa un número específico de direcciones";
 "address.manage.tip.alert.ok" = "Entendido";
-"address.manage.default.address.name" = "Sin título";
+"address.manage.default.address.name" = "Sin nombre";
 "address.manage.change.name.alert.title" = "Editar alias de dirección";
 "address.manage.change.name.alert.placeholder" = "Por favor, introduce un nuevo alias";
 
@@ -309,7 +309,7 @@
 "send.page.to.address.title" = "Dirección del destinatario";
 "send.page.amount.title" = "Cantidad";
 "send.page.all.button.title" = "Todo";
-"send.page.remark.title" = "Nota";
+"send.page.remark.title" = "Memo";
 "send.page.send.button.title" = "Enviar";
 "send.page.amount.toolbar.button.title" = "Siguiente";
 "send.page.toast.address.error" = "Dirección incorrecta, por favor compruebe el formato";
@@ -506,7 +506,7 @@
 "eth.error.rpc.error.code.not.enough.fee" = "Comisión insuficiente";
 
 /* Tip String */
-"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">En Vite, los usuarios no compran el gas necesario para una transacción pagando una comisión, sino que adquieren el recurso informático a través de un modelo basado en cuotas. La cuota requerida para realizar una transacción = una cuota básica (solicitud) + cuota (por datos de texto adjuntos). La cuota requerida para aceptar una transacción = una cuota básica (respuesta). Este protocolo de configuración de recursos basado en quota, permite a los usuarios obtenerlos de dos maneras: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a. Bloqueando VITE para obtener cuota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b. Ejecutar PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unidad de Cuotas: UTPS, Unidad de transacciones por segundo.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es el bloqueo?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">En Vite, el usuario puede bloquear VITE para obtener una cierta cantidad de cuotas. El valor mínimo para bloquear es 134 VITE, y no hay límite máximo. Además en Vite también se soporta compartir este beneficio, siendo que una dirección A bloquee una parte VITE y asigne la cuota obtenida a otra dirección B beneficiaría. Cuando los usuarios soliciten un bloqueo, su VITE será enviado a la dirección del contrato inteligente en lugar del otro usuario, y sólo el usuario que solicita el bloqueo tiene acceso a administrar la cantidad a desbloquear.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Prueba de Trabajo (PoW, en sus siglas en inglés), es un protocolo para confirmar que has realizado una cierta cantidad de trabajo. Esta medida es una medida económica para disuadir ataques DDoS y otros tipos de abusos de servicios. Requiere que el solicitador realize una cierta cantidad de cómputo tomando cierto tiempo en el servidor. En Vite, los usuarios pueden obtener una cuota gratuita ejecutando este PoW, y pudiendo enviar transacciones sin tomar ninguna acción usando la cuota obtenida.</p>";
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es la Cuota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">En Vite, los usuarios no compran el gas necesario para una transacción pagando una comisión, sino que adquieren el recurso informático a través de un modelo basado en cuotas. La cuota requerida para realizar una transacción = una cuota básica (solicitud) + cuota (por datos de texto adjuntos). La cuota requerida para aceptar una transacción = una cuota básica (respuesta). Este protocolo de configuración de recursos basado en cuotas, permite a los usuarios obtenerlos de dos maneras: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a. Bloqueando VITE para obtener cuota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b. Ejecutar PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unidad de Cuotas: UTPS, Unidad de transacciones por segundo.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es el bloqueo?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">En Vite, el usuario puede bloquear VITE para obtener una cierta cantidad de cuotas. El valor mínimo para bloquear es 134 VITE, y no hay límite máximo. Además en Vite también es posible compartir este beneficio, siendo que una dirección A bloquee VITE y asigne la cuota obtenida a otra dirección B beneficiaría. Cuando los usuarios soliciten un bloqueo, su VITE será enviado a la dirección del contrato inteligente en lugar del otro usuario, y sólo el usuario que solicita el bloqueo tiene acceso a administrar la cantidad a desbloquear.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Prueba de Trabajo (PoW, en sus siglas en inglés), es un protocolo para confirmar que has realizado una cierta cantidad de trabajo. Esta medida es una medida económica para disuadir ataques DDoS y otros tipos de abusos de servicios. Requiere que el solicitador realize una cierta cantidad de cómputo tomando cierto tiempo en el servidor. En Vite, los usuarios pueden obtener una cuota gratuita ejecutando este PoW, y pudiendo enviar transacciones sin tomar ninguna acción usando la cuota obtenida.</p>";
 "pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Puedes unirte y votar por cualquier SBP, un total de 25 SBPs (Productor de bloques de instantáneas) serán escogidos por cada ronda de votación, cada 75s. Sus votos equivalen al saldo disponible en la dirección que vota. Su voto se mantiene igual en las siguientes rondas a menos que retire su voto o lo cambie para otro nodo. Serán escogidos aleatoriamente 23 SBP de los 25 mejores candidatos, más 2 SBP de los candidatos entre el puesto 26º y 100º. Siendo elegidos como SBPs 25 nodos en total. </p>";
 "pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">El candidato %@ por el que habías votado, ha dejado de hacer campaña por ser un SBP. Puedes votar de nuevo por otro o cancelar tus votos. Si no lo haces, tu voto original se recuperará después de que %@ vuelva a registrarse.</p>";
 "pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Entendiendo la conversión de VITE</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Puede convertir tus VITE ERC20 en VITE nativo de la red principal (mainnet) a través de la conversión de VITE. Durante la conversión, tus VITE ERC20 serán transferidos a la dirección de agujero negro Ethereum: 0x11111111111111111111111111111111111111111111, y recibirás la misma cantidad de VITE en tu dirección de Vite una vez haya finalizado la transacción a la dirección del agujero negro Ethereum. Durante la conversión, la comisión de transacción a la dirección del agujero negro Ethereum proviene de su dirección ETH actual. Después de realizar la conversión, por favor espere al menos 30 confirmaciones en la red Ethereum, puede encontrar el historial de transacciones en el historial de conversiones.</p>";
@@ -535,7 +535,7 @@
 "eth.transaction.detail.gas.limit" = "Límite del gas";
 "eth.transaction.detail.hash" = "Hash de transacción";
 "eth.transaction.detail.block" = "Bloque";
-"eth.transaction.detail.note" = "Nota";
+"eth.transaction.detail.note" = "Memo";
 "eth.transaction.detail.go.button.title" = "Ver más detalles en Etherscan";
 
 //token
