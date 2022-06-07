@@ -929,7 +929,7 @@
 "bifrost.operation.vx.order" = "Colocar orden en ViteX";
 "bifrost.operation.vx.cancel.order" = "Cancelar orden en ViteX";
 
-"bifrost.operation.function.title" = "Invocar contrato";
+"bifrost.operation.function.title" = "Contrato invocado";
 "bifrost.operation.title.contract.address" = "Dirección del contrato";
 "bifrost.operation.title.amount" = "Cantidad";
 "bifrost.operation.title.fee" = "Comisión";
