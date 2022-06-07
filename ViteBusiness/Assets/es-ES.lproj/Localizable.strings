@@ -895,7 +895,7 @@
 "bifrost.home.page.free.auto.sign.title" = "Firmar automáticamente";
 "bifrost.home.page.free.auto.sign.confirm.title" = "Contraseña";
 
-"bifrost.home.page.busy.header" = "Está haciendo cambios en ViteX & billetera Web";
+"bifrost.home.page.busy.header" = "Está haciendo cambios en ViteX y/o billetera web/móvil";
 "bifrost.home.page.busy.content" = "Por favor confirme la información de la transacción abajo";
 "bifrost.toast.operation.success" = "Operación exitosa";
 
