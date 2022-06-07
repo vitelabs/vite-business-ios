@@ -51,7 +51,7 @@
 "Cancel" = "Cancelar";
 "Finish" = "Aceptar";
 "Delete" = "Borrar";
-"Hint" = "Sugerencia";
+"Hint" = "Aviso";
 "Yes" = "Si";
 "No" = "No";
 "Loading" = "Cargando";
@@ -95,7 +95,7 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Copia de seguridad de palabras mnemónicas";
-"mnemonic.backup.page.tip1" = "Recomendamos los dos siguientes métodos de copia de seguridad:";
+"mnemonic.backup.page.tip1" = "Recomendamos los siguientes dos métodos para respaldar con seguridad:";
 "mnemonic.backup.page.tip2" = "Escriba las palabras mnemónicas en un pedazo de papel, luego guárdelas en un lugar seguro.";
 "mnemonic.backup.page.tip3" = "Escanea el código QR de abajo usando la billetera Vite instalada en otro dispositivo.";
 "mnemonic.backup.language.zh" = "Chino";
@@ -149,8 +149,8 @@
 
 /* export mnemonic */
 "export.page.title" = "Exportar frase semilla";
-"export.page.alter.title" = "Por favor, introduzca una contraseña";
-"export.page.alter.tf.placeholder" = "Por favor, introduzca una contraseña";
+"export.page.alter.title" = "Introduce tu contraseña";
+"export.page.alter.tf.placeholder" = "Introduce tu contraseña";
 "export.page.alter.password.error" = "¡Contraseña incorrecta!";
 
 /* login */
@@ -181,7 +181,7 @@
 "manage.wallet.page.changeName.loading" = "Editando";
 "manage.wallet.page.error.type.name" = "El nombre no puede estar vacío";
 
-"my.page.contacts.cell.title" = "Dirección de contacto";
+"my.page.contacts.cell.title" = "Libreta de direcciones";
 "my.page.mnemonic.cell.title" = "Palabras mnemónicas";
 "my.page.system.cell.title" = "Ajustes";
 "my.page.security.cell.title" = "Seguridad";
@@ -195,8 +195,8 @@
 /* change password */
 "change.password.page.title" = "Cambiar contraseña";
 "change.password.page.old.title" = "Introduce tu contraseña anterior";
-"change.password.page.new.1.title" = "Introduzca nueva contraseña";
-"change.password.page.new.2.title" = "Introduzca confirmar la contraseña";
+"change.password.page.new.1.title" = "Nueva contraseña";
+"change.password.page.new.2.title" = "Confirma la contraseña";
 "change.password.page.button.title" = "Enviar";
 "change.password.page.success.toast" = "Modificado correctamente";
 "change.password.page.old.error.toast" = "Su antigua contraseña no es correcta";
@@ -252,7 +252,7 @@
 "balance.info.detail.vote" = "Votar";
 "balance.info.detail.pledge" = "Obtener Cuota";
 "balance.info.detail.exchange.vite" = "Convertir VITE";
-"balance.info.detail.pledge.count.content" = "Cuota disponible/Cuota límite";
+"balance.info.detail.pledge.count.content" = "Cuota libre/Cuota total";
 "balance.info.detail.pledge.none.tip" = "0 Cuota/0 Cuota";
 
 "gateway.info.detail.page.title" = "Detalles del Gateway";
@@ -267,7 +267,7 @@
 "token.info.detail.page.name" = "Nombre del Token";
 "token.info.detail.page.id" = "Token ID";
 "token.info.detail.page.brief" = "Introducción";
-"token.info.detail.page.total" = "Emisión total";
+"token.info.detail.page.total" = "Total emitido";
 "token.info.detail.page.type" = "Tipo de token";
 "market.detail.page.token.info.type.value.native" = "Nativo";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
@@ -286,13 +286,13 @@
 "address.manage.address.generate.button.toast" = "¡Añade hasta un máximo de 100 direcciones!";
 "address.manage.address.generate.button.already.toast" = "La dirección ya existe";
 "address.manage.address.generate.button.error.toast" = "Por favor ingrese un número";
-"address.manage.tip.alert.message" = "Un máximo de 100 direcciones pueden ser creadas; Se requiere la recuperación manual de la dirección #1 en la lista direcciones para recuperar todas las demás";
+"address.manage.tip.alert.message" = "Puedes crear un máximo de 100 direcciones. Se requiere la recuperación manual de la primera dirección #1 en la lista direcciones para recuperar todas las demás.";
 "address.manage.alert.title" = "Generar direcciones nuevas";
 "address.manage.alert.placeholder" = "Ingrese un número entre 1 y 100";
 "address.manage.alert.tip" = "Generar en masa un número específico de direcciones";
 "address.manage.tip.alert.ok" = "Entendido";
 "address.manage.default.address.name" = "Sin nombre";
-"address.manage.change.name.alert.title" = "Editar alias de dirección";
+"address.manage.change.name.alert.title" = "Editar nombre de dirección";
 "address.manage.change.name.alert.placeholder" = "Por favor, introduce un nuevo alias";
 
 /* Send Page */
@@ -301,7 +301,7 @@
 "send.page.my.balance.title" = "Saldo";
 "send.page.wallet.balance.title" = "Balance de Billetera";
 "send.page.my.pledge.title" = "Cantidad bloqueada";
-"send.page.my.quota.title" = "Cuota disponible/Cuota límite";
+"send.page.my.quota.title" = "Cuota libre/Cuota total";
 "send.page.my.max.tx.count.title" = "Cantidad máxima de Tx";
 "send.page.add.my.address.button.title" = "Mías";
 "send.page.vite.contacts.button.title" = "Dirección de contacto VITE";
@@ -359,7 +359,7 @@
 "system.page.cell.login.pwd" = "Bloqueo automático";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "Cerrar sesión/cambiar de billetera";
+"system.page.cell.logout.title" = "Cerrar sesión/Cambiar cuenta";
 "system.page.cell.upload.log.title" = "Subir registro";
 "system.page.cell.upload.log.toast.success" = "Registro subido";
 "system.page.cell.delete.wallet.title" = "Eliminar cuenta actual";
@@ -368,7 +368,7 @@
 /* node settings */
 "node.settings.page.title" = "Ajustes del nodo";
 "node.settings.page.add.button.title" = "Agregar un nodo personalizado";
-"node.settings.page.add.alert.title" = "Por favor, introduzca una dirección válida para el nodo";
+"node.settings.page.add.alert.title" = "Por favor, introduce una dirección válida para el nodo";
 "node.settings.page.add.alert.tip" = "El nodo actual es %@, conectado a la red principal";
 "node.settings.page.node.invalid.error" = "Nodo inválido";
 "node.settings.page.node.exist.error" = "El nodo ya existe";
@@ -397,7 +397,7 @@
 
 /* quota manage */
 "quota.manage.page.title" = "Obtener cuota";
-"quota.manage.page.input.address.title" = "Beneficiario de la cuota";
+"quota.manage.page.input.address.title" = "Beneficiario de cuota";
 "quota.manage.page.quota.money.title" = "Cantidad bloqueada";
 "quota.manage.page.quota.quota.title" = "Cuota";
 "quota.manage.page.quota.money.placeholder" = "Por favor ingrese un monto, mínimo 134 VITE";
@@ -422,7 +422,7 @@
 
 "quota.pow.tip.float.view.title.1" = "Cuota insuficiente";
 "quota.pow.tip.float.view.message.1" = "Solo se pueden realizar %@ transacciones por día y dirección sin bloquear VITE. Tu dirección ha agotado todas las %@ transacciones. Ve a la página de cuotas y bloquea tu VITE para realizar más transacciones.";
-"quota.pow.tip.float.view.pledge.1" = "Obtener cuota ahora";
+"quota.pow.tip.float.view.pledge.1" = "Obten cuota ahora";
 
 "quota.pow.tip.float.view.title.2" = "Obtener cuota";
 "quota.pow.tip.float.view.message.2" = "Notamos que no tienes bloqueado VITE para cuota. Por favor bloquee VITE o si lo prefiere, puede ejecutar el PoW para obtener cuota.";
@@ -437,7 +437,7 @@
 
 /* Peldge History */
 "peldge.message" = "Actualmente la aplicación de Vite sólo soporta comprobar la lista de staking, por favor vaya a la billetera Web si necesita retirar los token en stake que estén con la fecha de vencimiento cumplida.";
-"peldge.deadline" = "Tiempo disponible para desbloquear";
+"peldge.deadline" = "Fecha disponible para desbloqueo";
 "peldge.title" = "Registros de bloqueos";
 "peldge.address.title" = "Beneficiario";
 "peldge.cancel.peldge.button.title" = "Desbloquear";
@@ -547,9 +547,9 @@
 "token.list.page.ignore.lab.title" = "%d nuevo(s) activo(s)";
 "token.list.page.ignore.alter.title" = "Los activos ignorados no serán mostrados de nuevo, ¿estás seguro de ignorar los activos de abajo?";
 // Contacts Home
-"contacts.home.page.title" = "Direcciones de contacto";
+"contacts.home.page.title" = "Libreta de direcciones";
 "contacts.home.page.no.contact.tip" = "Añade tu primera dirección";
-"contacts.home.page.single.no.contact.tip" = "Aún no hay %@ dirección";
+"contacts.home.page.single.no.contact.tip" = "Aún no hay direcciones %@";
 "contacts.home.page.filter.all" = "Todo";
 "contacts.home.page.add.button.title" = "Agregar";
 
@@ -568,7 +568,7 @@
 // Address List
 "address.list.page.my.title" = "Mis direcciones VITE";
 "address.list.page.other.title" = "%@ direcciones de contacto";
-"address.list.page.no.address.tip" = "Aún no hay %@ dirección";
+"address.list.page.no.address.tip" = "Aún no hay direcciones %@";
 
 /* WorkFlow */
 "workflow.confirm.page.biometryAuthFailed.title" = "No se puede identificar";
@@ -816,7 +816,7 @@
 "crosschain.tokenDetail.id" = "Token ID";
 "crosschain.tokenDetail.name" = "Nombre del Token";
 "crosschain.tokenDetail.address" = "Dirección de forja de monedas";
-"crosschain.tokenDetail.amount" = "Emisión total";
+"crosschain.tokenDetail.amount" = "Total emitido";
 "crosschain.tokenDetail.digit" = "Decimales";
 "crosschain.tokenDetail.unit" = "";
 "crosschain.tokenDetail.issuance" = "Abrir nueva emisión";
@@ -919,7 +919,7 @@
 "bifrost.operation.cancel.vote" = "Cancelar voto";
 "bifrost.operation.extract.reward" = "Reclamar recompensas";
 "bifrost.operation.pledge" = "Obtener Cuota";
-"bifrost.operation.cancel.pledge" = "Recuperar bloqueo para cuota";
+"bifrost.operation.cancel.pledge" = "Cancelar bloqueo por cuota";
 "bifrost.operation.coin" = "Emisión de Token";
 "bifrost.operation.cancel.coin" = "Cancelar bloqueo de emisión";
 "bifrost.operation.transfer" = "Enviar";
@@ -1077,7 +1077,7 @@
 "fund.title.toVitex" = "Depositar al Exchange";
 "fund.walletAddress" = "Mi Dirección";
 "fund.walletFound" = "Balance de Billetera";
-"fund.quotaInfo" = "Cuota disponible/Cuota límite";
+"fund.quotaInfo" = "Cuota libre/Cuota total";
 "fund.deposit.amount" = "Transferir monto";
 "fund.deposit.all" = "Todo";
 "fund.quotaSpend" = "Cuota";
@@ -1110,19 +1110,19 @@
 "market.about" = "Primeros pasos con ViteX";
 "market.name" = "Nombre";
 "market.price" = "Último precio";
-"market.percent" = "Cambiar";
+"market.percent" = "Cambio (%)";
 "market.operator" = "Operador";
-"market.switch" = "Cambiar";
+"market.switch" = "Mercados";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "Libros de órdenes";
+"market.detail.page.segment.order.book.title" = "Libro de órdenes";
 "market.detail.page.segment.last.trades.title" = "Últimas transacciones";
 "market.detail.page.segment.token.info.title" = "Token";
 "market.detail.page.segment.operator.into.title" = "Operador";
 
 "market.detail.page.info.high.title" = "Máximo";
 "market.detail.page.info.low.title" = "Mínimo";
-"market.detail.page.info.vol.title" = "24H";
+"market.detail.page.info.vol.title" = "Vol. 24H";
 
 "market.detail.page.kline.type.min1.title" = "1m";
 "market.detail.page.kline.type.min30.title" = "30m";
@@ -1173,8 +1173,8 @@
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Minado";
-"trading.home.page.segment.bonus" = "Dividendo";
+"trading.home.page.segment.mining" = "Minaría";
+"trading.home.page.segment.bonus" = "Dividendos";
 
 // Mining Home
 "mining.page.segment.trading" = "xxxxx";
@@ -1293,7 +1293,7 @@
 "dex.home.page.segment.dex" = "Trading";
 
 "dex.home.page.header.btc.valuation.title" = "Valor (BTC)";
-"dex.home.page.header.button.transfer.title" = "Transferencia";
+"dex.home.page.header.button.transfer.title" = "Transferir";
 "dex.home.page.header.button.deposit.title" = "Depósito";
 "dex.home.page.header.button.withdraw.title" = "Retirar";
 "dex.home.page.header.button.hide.small.title" = "Ocultar saldos pequeños";
@@ -1301,7 +1301,7 @@
 "dex.token.detail.page.title" = "Saldo";
 "dex.token.detail.page.header.total" = "Total";
 "dex.token.detail.page.header.available" = "Disponible";
-"dex.token.detail.page.header.lock.place.order" = "En orden";
+"dex.token.detail.page.header.lock.place.order" = "En órdenes";
 
 "dex.token.detail.page.header.lock.vite.pledge" = "Bloqueado para cuota";
 "dex.token.detail.page.header.lock.vite.sbp" = "Bloqueado para SBP";
@@ -1314,13 +1314,13 @@
 
 "dex.token.detail.page.list.wallet.heater.title" = "Historial";
 "dex.token.detail.page.list.dex.heater.title" = "Historial de transferencias";
-"dex.token.detail.page.cell.in" = "Transferencia-Entrada";
-"dex.token.detail.page.cell.out" = "Transferencia-Salida";
+"dex.token.detail.page.cell.in" = "Transf. recibida";
+"dex.token.detail.page.cell.out" = "Transf. enviada";
 
 "dex.token.detail.page.button.deposit" = "Depositar";
 "dex.token.detail.page.button.withdraw" = "Retirar";
 "dex.token.detail.page.button.transfer" = "Transferir";
 "dex.token.detail.page.button.send" = "Enviar";
-"dex.token.detail.page.button.trading" = "Comercio";
+"dex.token.detail.page.button.trading" = "Comerciar";
 
 "dex.token.market.selector.title" = "Seleccionar par de Trading";
