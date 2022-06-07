@@ -879,12 +879,12 @@
 /* ViteConnect */
 "bifrost.connect.tip.in.wallet.home" = "ViteConnect conectado";
 "bifrost.alert.tip.title" = "Aviso";
-"bifrost.alert.approve.session.message" = "Por favor, confirma el siguiente enlace\n%@";
+"bifrost.alert.approve.session.message" = "Corrobora la conexión al sitio \n%@";
 "bifrost.alert.approve.session.another.address.message" = "La dirección escaneada no es consistente con la de la plataforma web. ¿Continuar con la dirección de la aplicación?\n(%@)";
 "bifrost.alert.approve.session.another.address.ok" = "Confirmar para iniciar sesión";
 "bifrost.alert.approve.session.another.address.cancel" = "Atrás";
 
-"bifrost.alert.switch.address.message" = "ViteConnect está conectado, al cambiar de dirección se desconectará de la red. Asegúrese de cambiar de dirección";
+"bifrost.alert.switch.address.message" = "ViteConnect está conectado, al cambiar de dirección se desconectará de la red. Confirmar el cambio de dirección";
 
 "bifrost.alert.quit.title" = "¿Estas seguro de desconectar ViteConnect?";
 
