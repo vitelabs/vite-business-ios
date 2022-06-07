@@ -279,7 +279,7 @@
 "token.info.detail.page.social" = "Redes Sociales";
 
 /* Address Manage Page */
-"address.manage.page.title" = "Mi dirección %@";
+"address.manage.page.title" = "Mis direcciones %@";
 "address.manage.default.address.cell.title" = "Dirección predeterminada";
 "address.manage.address.header.title" = "Direcciones";
 "address.manage.address.generate.button.title" = "Agregar dirección";
@@ -304,7 +304,7 @@
 "send.page.my.quota.title" = "Cuota libre/Cuota total";
 "send.page.my.max.tx.count.title" = "Cantidad máxima de Tx";
 "send.page.add.my.address.button.title" = "Mías";
-"send.page.vite.contacts.button.title" = "Dirección de contacto VITE";
+"send.page.vite.contacts.button.title" = "Libreta de direcciones VITE";
 "send.page.scan.address.button.title" = "Escanear";
 "send.page.to.address.title" = "Dirección del destinatario";
 "send.page.amount.title" = "Cantidad";
@@ -390,7 +390,7 @@
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
 "aboutUs.page.email.title" = "Comentarios y sugerencias";
-"aboutUs.page.email.content" = "\n\n\n\n\nLa sugerencia proviene de la utilización del siguiente entorno:\n1.Sistema del dispositivo: %@\n2.Versión del sistema:%@\n3.Versión de la aplicación: %@\n4. Idioma:%@";
+"aboutUs.page.email.content" = "\n\n\n\n\nLa sugerencia proviene de la utilización del siguiente entorno:\n1. Sistema del dispositivo: %@\n2. Versión del sistema: %@\n3. Versión de la aplicación: %@\n4. Idioma: %@";
 
 /* toast error */
 "toast.error.login" = "Error de acceso";
@@ -516,7 +516,7 @@
 
 // eth
 "eth.send.page.my.address.title" = "Dirección ETH";
-"eth.send.page.eth.contacts.button.title" = "Dirección de contacto ETH";
+"eth.send.page.eth.contacts.button.title" = "Libreta de direcciones ETH";
 "eth.receive.page.my.address.title" = "Mis direcciones ETH";
 "eth.page.gasFee.title" = "Tarifa de gas";
 "eth.page.gasFee.slow.title" = "Lento";
@@ -567,7 +567,7 @@
 
 // Address List
 "address.list.page.my.title" = "Mis direcciones VITE";
-"address.list.page.other.title" = "%@ direcciones de contacto";
+"address.list.page.other.title" = "Libreta de direcciones %@";
 "address.list.page.no.address.tip" = "Aún no hay direcciones %@";
 
 /* WorkFlow */
@@ -695,7 +695,7 @@
 "grin.finalized.alertDesc" = "Su transacción GRIN ha comenzado a ser transmitida";
 "grin.sent.next" = "Siguiente";
 "grin.sent.suggest.useVite.title" = "Aviso";
-"grin.sent.suggest.useVite.desc" = "Si desea enviar GRIN a un usuario de la billeteraVite, se recomienda enviar a través de la dirección VITE porque es más seguro y barato.";
+"grin.sent.suggest.useVite.desc" = "Si desea enviar GRIN a un usuario de la billetera Vite, se recomienda enviar a través de la dirección VITE porque es más seguro y barato.";
 "grin.sent.switch" = "Dirección VITE";
 "grin.sent.stillUseHttp" = "Dirección HTTP";
 "grin.sent.http.success" = "Has enviado con éxito la solicitud de transferencia de GRIN";
@@ -721,7 +721,7 @@
 "grin.switchAddress" = "Cambiar dirección";
 "grin.http.address" = "Dirección HTTP";
 "grin.vite.address" = "Dirección VITE";
-"grin.sendPageViteContactsButtonTitle" = "Dirección de contacto GRIN";
+"grin.sendPageViteContactsButtonTitle" = "Libreta de direcciones GRIN";
 "grin.canceled" = "Cancelado";
 "grin.makeSureToShare" = "Por favor, asegúrese de compartir el archivo de transacción con el remitente";
 "grin.txbyfile.shareSentFileDesc" = "Por favor, asegúrese de compartir el archivo de transacción con el destinatario y solicitar un archivo de confirmación.";
@@ -1294,7 +1294,7 @@
 
 "dex.home.page.header.btc.valuation.title" = "Valor (BTC)";
 "dex.home.page.header.button.transfer.title" = "Transferir";
-"dex.home.page.header.button.deposit.title" = "Depósito";
+"dex.home.page.header.button.deposit.title" = "Depositar";
 "dex.home.page.header.button.withdraw.title" = "Retirar";
 "dex.home.page.header.button.hide.small.title" = "Ocultar saldos pequeños";
 
@@ -1314,8 +1314,8 @@
 
 "dex.token.detail.page.list.wallet.heater.title" = "Historial";
 "dex.token.detail.page.list.dex.heater.title" = "Historial de transferencias";
-"dex.token.detail.page.cell.in" = "Transf. recibida";
-"dex.token.detail.page.cell.out" = "Transf. enviada";
+"dex.token.detail.page.cell.in" = "Transferencia recibida";
+"dex.token.detail.page.cell.out" = "Transferencia enviada";
 
 "dex.token.detail.page.button.deposit" = "Depositar";
 "dex.token.detail.page.button.withdraw" = "Retirar";
