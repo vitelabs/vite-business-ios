@@ -12,7 +12,7 @@
 "cancel.button.title" = "Abbrechen";
 "alter.title" = "NOTICE";
 
-"discover.page.title" = "Discovery";
+"discover.page.title" = "Discover";
 "discover.page.game.cell.palyNum" = "%@ players are playing";
 "discover.page.activity.page.title1" = "Latest Events";
 "discover.page.activity.page.title2" = "History";
@@ -20,12 +20,12 @@
 "discover.page.news.cell.time.minute" = "Now";
 "discover.page.news.cell.time.hour" = "%@h ago";
 "discover.page.news.cell.time.day" = "%@d ago";
-"discover.page.headerTitle.activity" = "Campaign Center";
-"discover.page.headerTitle.game" = "Vite Games";
-"discover.page.headerTitle.news" = "Vite News";
-"discover.page.VCWebTitle.activity" = "Vite Events";
-"discover.page.VCWebTitle.game" = "Vite Games";
-"discover.page.VCWebTitle.news" = "Vite News";
+"discover.page.headerTitle.activity" = "Ecosystem";
+"discover.page.headerTitle.game" = "DApps";
+"discover.page.headerTitle.news" = "News";
+"discover.page.VCWebTitle.activity" = "Ecosystem";
+"discover.page.VCWebTitle.game" = "DApps";
+"discover.page.VCWebTitle.news" = "News";
 "discover.page.game.alter.title" = "You have visited a page which leaves Vite App, and you will be redirected to a third party dApp. Your use on this dApp will abide by the dApp's Term of User Agreement and Privacy Policy. Vite Labs has no supervision or control over the quality, content, reliability or security of the third party dApp, nor shall Vite Labs be liable for its use.";
 
 //AirDrop
@@ -95,9 +95,9 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Mnemonic Words Backup";
-"mnemonic.backup.page.tip1" = "We recommend the two following backup methods:";
-"mnemonic.backup.page.tip2" = "Write down mnemonic words on a piece of paper, then keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scannen Sie den folgenden QR-Code mit der auf einem anderen Gerät installierten Vite-wallet App.";
+"mnemonic.backup.page.tip1" = "The following backups are recommend for the security of your assets:";
+"mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below with your Vite app installed on another device.";
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
 
@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "Something wrong with your seed phrase, please try again!";
 "import.page.submit.loading" = "Importieren...";
 "import.page.submit.success" = "Importieren erfolgreich";
-"import.page.alert.exist.title" = "The seed phrase you input has already had an account name '%@' on current device, are you sure you would like to overwrite existed account";
+"import.page.alert.exist.title" = "The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?";
 "import.page.alert.exist.ok" = "Bestätigen";
 "import.page.alert.exist.cancel" = "Abbrechen";
 
@@ -188,6 +188,7 @@
 "my.page.invite.cell.title" = "Mining Referrals";
 "my.page.reward.cell.title" = "Rewards Enquiry";
 "my.page.forum.cell.title" = "Offizielles Forum";
+"my.page.tutorial.cell.title" = "Tutorial";
 "my.page.aboutUs.cell.title" = "Über uns";
 "my.page.change.wallet.name.alter.title" = "Edit Account Name";
 "my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
@@ -356,10 +357,11 @@
 "system.page.cell.change.currency" = "Currency";
 "system.page.cell.node.settings" = "Node Settings";
 "system.page.cell.pow.settings" = "PoW Settings";
+"system.page.cell.auto.receive.settings" = "Auto-Receive";
 "system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "Logout/switch wallet";
+"system.page.cell.logout.title" = "Logout";
 "system.page.cell.upload.log.title" = "Upload Log";
 "system.page.cell.upload.log.toast.success" = "Log Uploaded";
 "system.page.cell.delete.wallet.title" = "Delete Current Account";
@@ -421,13 +423,14 @@
 "quota.float.view.tip" = "This Transaction costs %@Quota";
 
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
-"quota.pow.tip.float.view.message.1" = "Only %@ transactions can be made per day per address without locking VITE. Your address has exhausted all %@ transactions. Please go to the quota page and lock your VITE to perform more transactions.";
+"quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Get quota now";
+"quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.title.2" = "Get Quota";
-"quota.pow.tip.float.view.message.2" = "We notice you have no VITE locked for Quota. Please lock VITE or if you prefer, you can run POW to get Quota.";
+"quota.pow.tip.float.view.message.2" = "We noticed that you don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.";
 "quota.pow.tip.float.view.pledge.2" = "Lock VITE";
-"quota.pow.tip.float.view.notNow.2" = "Run POW";
+"quota.pow.tip.float.view.notNow.2" = "Free Quota";
 
 
 "quota.pow.finished.float.view.title" = "Transaction Sent";
@@ -566,7 +569,7 @@
 "contacts.edit.page.delete.alert.title" = "Are you sure to delete this address?";
 
 // Address List
-"address.list.page.my.title" = "My VITE Address";
+"address.list.page.my.title" = "My Vite Address";
 "address.list.page.other.title" = "%@ contact address";
 "address.list.page.no.address.tip" = "No %@ address yet";
 
@@ -781,7 +784,7 @@
 "grin.detail.slateCopied" = "Slate ID Copied.";
 "grin.send.illegalAmmount" = "Illegal transfer amount";
 "grin.detail.gatewayResend" = "Request for Vite gateway to Resend";
-"grin.export.mnemonic" = "Export Seed Phrase";
+"grin.export.mnemonic" = "Export Grin Seed Phrase";
 
 // CrossChain Transfer & Receive
 
@@ -1177,39 +1180,93 @@
 "trading.home.page.segment.bonus" = "Dividend";
 
 // Mining Home
-"mining.page.segment.trading" = "xxxxx";
-"mining.page.segment.staking" = "xxxxx";
-"mining.page.segment.invite" = "xxxxx";
-"mining.page.segment.making" = "xxxxx";
+"mining.page.segment.trading" = "Trading";
+"mining.page.segment.staking" = "Staking";
+"mining.page.segment.invite" = "Referral";
+"mining.page.segment.making" = "Market-Making";
 
-"mining.page.header.total.real.time" = "xxxxx";
-"mining.page.list.title" = "xxxxx";
+"mining.page.header.total.real.time" = "Live Mining Dashboard";
+"mining.page.list.title" = "Mining History";
 
-"mining.trading.page.header.total.earnings" = "xxxxx";
-"mining.trading.page.header.total.earnings.alert.title" = "xxxxx";
-"mining.trading.page.header.total.earnings.alert.message" = "xxxxx";
+"mining.trading.page.header.total.earnings" = "Total Income (VX)";
+"mining.trading.page.header.total.earnings.alert.title" = "Notice";
+"mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
 
+"mining.trading.page.header.fee" = "Trading Fees";
+"mining.trading.page.header.title" = "Mining";
+"mining.trading.page.header.expect" = "24H Expected Mined";
 
-"mining.trading.page.header.fee" = "xxxxx";
-"mining.trading.page.header.title" = "xxxxx";
-"mining.trading.page.header.expect" = "xxxxx";
+"mining.trading.page.cell.fee" = "Fees";
 
-"mining.trading.page.cell.fee" = "xxxxx";
+"mining.staking.page.header.total.earnings" = "Total Income (VX)";
+"mining.staking.page.detail.amount.title" = "Staked Amount";
+"mining.staking.page.detail.unlocking.title" = "Unlocking Amount";
+"mining.staking.page.detail.add.button.title" = "Add";
+"mining.staking.page.detail.list.button.title" = "Staking List";
+"mining.staking.page.cell.amount" = "Stake";
 
-"mining.staking.page.header.total.earnings" = "xxxxx";
-"mining.staking.page.detail.title" = "xxxxx";
-"mining.staking.page.detail.amount.title" = "xxxxx";
-"mining.staking.page.detail.unlocking.title" = "xxxxx";
-"mining.staking.page.detail.add.button.title" = "xxxxx";
-"mining.staking.page.detail.list.button.title" = "xxxxx";
-"mining.staking.page.cell.amount" = "xxxxx";
+"mining.staking.page.withdraw.page.title" = "Withdrawal List";
+"mining.staking.page.withdraw.page.height" = "Lock Expiration Snapshot Height: %@";
+"mining.staking.page.withdraw.page.withdraw.time" = "Lock Expiration Date: %@";
+"mining.staking.page.withdraw.page.lock.time" = "Available Date: %@";
+"mining.staking.page.withdraw.page.button.title" = "Unstake";
+"mining.staking.page.withdraw.page.button.dis.title" = "In process";
 
-"mining.staking.page.confirm.title" = "xxxxx";
-"mining.staking.page.confirm.available.title" = "xxxxx";
-"mining.staking.page.confirm.amount.title" = "xxxxx";
-"mining.staking.page.confirm.amount.placeholder" = "xxxxx";
-"mining.staking.page.confirm.tip" = "xxxxx";
-"mining.staking.page.confirm.button.title" = "xxxxx";
+"mining.staking.page.withdraw.page.alert.title" = "Unstake VITE";
+"mining.staking.page.withdraw.page.alert.message" = "Available Stake Balance：%@ VITE\n It takes 7 days to return unstaked VITE coins to exchange balance";
+"mining.staking.page.withdraw.page.alert.ok" = "Unstake";
+
+"mining.staking.page.confirm.title" = "Stake VITE for Mining";
+"mining.staking.page.confirm.available.title" = "Exchange Available Balance";
+"mining.staking.page.confirm.amount.title" = "Amount";
+"mining.staking.page.confirm.amount.placeholder" = "Please input amount, minimum 134 VITE";
+"mining.staking.page.confirm.tip" = "Staking can be canceled after 3 days. Staked amount will be released after the 7-day waiting period";
+"mining.staking.page.confirm.button.title" = "Confirm to Stake";
+
+"mining.invite.page.header.total.earnings" = "Total Income (VX)";
+"mining.invite.page.detail.count.title" = "Referrals";
+"mining.invite.page.detail.trading.title" = "Referred Trading Proceeds";
+"mining.invite.page.detail.market.making.title" = "Referred Market-Making Proceeds";
+"mining.invite.page.list.trading.title" = "Referred Trading Details";
+"mining.invite.page.cell.fee.amount" = "Trading Fees";
+"mining.invite.page.list.market.making.title" = "Referred Market-Making Details";
+"mining.invite.page.cell.per" = "Ratio";
+
+"mining.order.page.header.total.earnings" = "Total Income (VX)";
+"mining.order.page.header.estimate" = "24H Expected Mined";
+
+"dividends.page.title" = "Dividend";
+"dividends.page.total.title" = "Dividend Pool (BTC)";
+"dividends.page.my.title" = "My Dividend (BTC)";
+"dividends.page.lock.title" = "My Staking";
+"dividends.page.lock.amount" = "Staking Amount";
+"dividends.page.unlocking.amount" = "Unstaking Amount";
+"dividends.page.lock.auto" = "Automatic Staking";
+"dividends.page.lock.detail.button.title" = "Unstaking Status";
+"dividends.page.lock.lock.button.title" = "Stake";
+"dividends.page.lock.unlock.button.title" = "Unstake";
+"dividends.page.lock.header.title" = "Dividend Details";
+"dividends.page.lock.cell.total" = "Total: ≈";
+
+"dividends.page.lock.confirm.title" = "Stake VX";
+"dividends.page.lock.confirm.amount.total" = "Exchange Available Balance";
+"dividends.page.lock.confirm.amount" = "Amount";
+"dividends.page.lock.confirm.placeholder" = "Please input amount, minimum 1 VX";
+"dividends.page.lock.confirm.error" = "Minimum 1 VX";
+"dividends.page.lock.confirm.tip" = "A minimum of 10 VX must be staked to receive dividends. Submission of staking request allows for dividends starting the nearest distribution";
+"dividends.page.lock.confirm.button.title" = "Stake";
+
+"dividends.page.unlock.confirm.title" = "Unstake VX";
+"dividends.page.unlock.confirm.amount.total" = "Available Stake Balance";
+"dividends.page.unlock.confirm.amount" = "Amount";
+"dividends.page.unlock.confirm.placeholder" = "Please input amount, minimum 1 VX";
+"dividends.page.unlock.confirm.error" = "Minimum 1 VX";
+"dividends.page.unlock.confirm.tip" = "It takes about 7 days to unlock";
+"dividends.page.unlock.confirm.tip2" = "Withdrawal is only applicable for staked amount larger than 10 VX.";
+"dividends.page.unlock.confirm.button.title" = "Unstake";
+
+"dividends.page.unlock.list.title" = "Unstaking Status";
+"dividends.page.unlock.list.time" = "Available Date %@";
 
 // Spot
 "spot.page.buy.mining.tip" = "Eligible for mining when price is greater than %@";
@@ -1245,7 +1302,7 @@
 "spot.page.confirm.tip" = "Do not ask again in 24 hours";
 
 "spot.page.alert.title" = "Important reminder";
-"spot.page.alert.message" = "The current trading pair is %@, Cryptocurrency investment is subject to high market risk and price volatility. Please carefully evaluate your capability of handling potential risks and make prudent trading decisions.";
+"spot.page.alert.message" = "Note that the selected trading pair %@ is being managed by an Unknown Operator.\nTrade at your own risk.";
 "spot.page.alert.ok" = "Confirm";
 
 "spot.page.order.empty" = "No order";
