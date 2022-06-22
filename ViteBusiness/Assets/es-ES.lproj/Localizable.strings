@@ -12,7 +12,7 @@
 "cancel.button.title" = "Cancelar";
 "alter.title" = "AVISO";
 
-"discover.page.title" = "Discover";
+"discover.page.title" = "Descubrir";
 "discover.page.game.cell.palyNum" = "%@ jugadores están jugando";
 "discover.page.activity.page.title1" = "Últimos eventos";
 "discover.page.activity.page.title2" = "Histórico";
@@ -20,12 +20,12 @@
 "discover.page.news.cell.time.minute" = "Ahora";
 "discover.page.news.cell.time.hour" = "Hace %@ horas";
 "discover.page.news.cell.time.day" = "Hace %@ días";
-"discover.page.headerTitle.activity" = "Ecosystem";
+"discover.page.headerTitle.activity" = "Ecosistema";
 "discover.page.headerTitle.game" = "DApps";
-"discover.page.headerTitle.news" = "News";
-"discover.page.VCWebTitle.activity" = "Ecosystem";
+"discover.page.headerTitle.news" = "Noticias";
+"discover.page.VCWebTitle.activity" = "Ecosistema";
 "discover.page.VCWebTitle.game" = "DApps";
-"discover.page.VCWebTitle.news" = "News";
+"discover.page.VCWebTitle.news" = "Noticias";
 "discover.page.game.alter.title" = "Has visitado una página que sale de Vite App, y serás redirigido a un dApp de terceros. El uso en esta dApp se ajustará a los términos del acuerdo de usuario y la política de privacidad de aquella dApp. Vite Labs no tiene supervisión ni control sobre la calidad, contenido, la fiabilidad o la seguridad de dApp de terceros, ni será responsable de su uso.";
 
 //AirDrop
