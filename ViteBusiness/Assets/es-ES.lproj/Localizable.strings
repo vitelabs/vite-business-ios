@@ -81,7 +81,7 @@
 "create.page.tf.title" = "Nombre de la cuenta";
 "create.page.pw.title" = "Por favor, introduzca una contraseña";
 "create.page.pw.repeate.title" = "Por favor, introduce tu contraseña de nuevo";
-"create.page.invite.code.title" = "Ingresa el código de invitación o escanee el código QR de invitación para disfrutar de un 10% descuento en comisiones de trading y potenciar las recompensas de minado";
+"create.page.invite.code.title" = "Ingresa el código de invitación o escanee el código QR de invitación para disfrutar de un 10% descuento en comisiones de trading y potenciar las recompensas de minería";
 "create.page.invite.code.placeholder" = "Código de invitación (opcional)";
 "create.page.submit.btn.title" = "Crear";
 "create.page.toast.error.invite.code" = "Código de invitación incorrecto";
@@ -95,9 +95,9 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Copia de seguridad de palabras mnemónicas";
-"mnemonic.backup.page.tip1" = "The following backups are recommend for the security of your assets:";
-"mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scan the QR code below with your Vite app installed on another device.";
+"mnemonic.backup.page.tip1" = "Las siguientes copias de seguridad se recomiendan para la seguridad de sus activos:";
+"mnemonic.backup.page.tip2" = "Escriba las palabras mnemónicas en un pedazo de papel, luego guárdelas en un lugar seguro.";
+"mnemonic.backup.page.tip3" = "Escanea el código QR de abajo usando la billetera Vite instalada en otro dispositivo.";
 "mnemonic.backup.language.zh" = "Chino";
 "mnemonic.backup.language.en" = "Inglés";
 
@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "Algo salió mal con tu frase semilla, ¡por favor inténtalo de nuevo!";
 "import.page.submit.loading" = "Importando...";
 "import.page.submit.success" = "Importación exitosa";
-"import.page.alert.exist.title" = "The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?";
+"import.page.alert.exist.title" = "La frase de semilla que introdujo coincide con una cuenta existente llamada '%@' en este dispositivo. ¿Está seguro que desea sobrescribir esa cuenta?";
 "import.page.alert.exist.ok" = "Confirmar";
 "import.page.alert.exist.cancel" = "Cancelar";
 
@@ -357,11 +357,11 @@
 "system.page.cell.change.currency" = "Tipo de moneda";
 "system.page.cell.node.settings" = "Ajustes del nodo";
 "system.page.cell.pow.settings" = "Configuración de PoW";
-"system.page.cell.auto.receive.settings" = "Auto-Receive";
+"system.page.cell.auto.receive.settings" = "Auto-Recibir";
 "system.page.cell.login.pwd" = "Bloqueo automático";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "Logout";
+"system.page.cell.logout.title" = "Cerrar sesión";
 "system.page.cell.upload.log.title" = "Subir registro";
 "system.page.cell.upload.log.toast.success" = "Registro subido";
 "system.page.cell.delete.wallet.title" = "Eliminar cuenta actual";
@@ -423,14 +423,14 @@
 "quota.float.view.tip" = "Esta transacción cuesta %@Cuota";
 
 "quota.pow.tip.float.view.title.1" = "Cuota insuficiente";
-"quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
+"quota.pow.tip.float.view.message.1" = "Has usado toda tu cuota gratis para hoy. Por favor bloquea VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Obten cuota ahora";
-"quota.pow.tip.float.view.buy.1" = "Buy VITE";
+"quota.pow.tip.float.view.buy.1" = "Comprar VITE";
 
 "quota.pow.tip.float.view.title.2" = "Obtener cuota";
-"quota.pow.tip.float.view.message.2" = "We noticed that you don’t have any VITE locked for Quota. You can get free Quota for %@ more times today or lock VITE now.";
+"quota.pow.tip.float.view.message.2" = "Hemos notado que no tienes ningún VITE bloqueado para cuota. Puedes obtener cuota gratis para %@ veces más hoy o bloquear VITE ahora.";
 "quota.pow.tip.float.view.pledge.2" = "Bloquear VITE";
-"quota.pow.tip.float.view.notNow.2" = "Free Quota";
+"quota.pow.tip.float.view.notNow.2" = "Cuota Gratis";
 
 
 "quota.pow.finished.float.view.title" = "Transacción enviada";
@@ -569,7 +569,7 @@
 "contacts.edit.page.delete.alert.title" = "¿Está seguro que desea eliminar esta dirección?";
 
 // Address List
-"address.list.page.my.title" = "My Vite Address";
+"address.list.page.my.title" = "Mis direcciones VITE";
 "address.list.page.other.title" = "Libreta de direcciones %@";
 "address.list.page.no.address.tip" = "Aún no hay direcciones %@";
 
@@ -784,7 +784,7 @@
 "grin.detail.slateCopied" = "Slate ID copiado.";
 "grin.send.illegalAmmount" = "Monto de transferencia ilegal";
 "grin.detail.gatewayResend" = "Solicitar al gateway Vite para reenviar";
-"grin.export.mnemonic" = "Export Grin Seed Phrase";
+"grin.export.mnemonic" = "Exportar frase semilla GRIN";
 
 // CrossChain Transfer & Receive
 
@@ -1039,11 +1039,11 @@
 "buildin.dex.recover.trading.pair.item0.title" = "Nombre";
 "buildin.dex.recover.trading.pair.item1.title" = "Dirección actual";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking como minado";
+"buildin.dex.staking.as.mining.function.title" = "Staking como minería";
 "buildin.dex.staking.as.mining.item0.title" = "Dirección actual";
 "buildin.dex.staking.as.mining.item1.title" = "Cantidad";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancelar Staking como minado";
+"buildin.dex.cancel.staking.as.mining.function.title" = "Cancelar Staking como minería";
 "buildin.dex.cancel.staking.as.mining.item0.title" = "Dirección actual";
 "buildin.dex.cancel.staking.as.mining.item1.title" = "Cantidad";
 
@@ -1176,24 +1176,24 @@
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Minaría";
+"trading.home.page.segment.mining" = "Minería";
 "trading.home.page.segment.bonus" = "Dividendos";
 
 // Mining Home
 "mining.page.segment.trading" = "Trading";
 "mining.page.segment.staking" = "Staking";
-"mining.page.segment.invite" = "Referral";
-"mining.page.segment.making" = "Market-Making";
+"mining.page.segment.invite" = "Referidos";
+"mining.page.segment.making" = "Creación de mercado";
 
-"mining.page.header.total.real.time" = "Live Mining Dashboard";
-"mining.page.list.title" = "Mining History";
+"mining.page.header.total.real.time" = "Tablero de minería en vivo";
+"mining.page.list.title" = "Historial de minería";
 
-"mining.trading.page.header.total.earnings" = "Total Income (VX)";
-"mining.trading.page.header.total.earnings.alert.title" = "Notice";
-"mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
+"mining.trading.page.header.total.earnings" = "Ingresos totales (VX)";
+"mining.trading.page.header.total.earnings.alert.title" = "Aviso";
+"mining.trading.page.header.total.earnings.alert.message" = "Las comisiones de trading actuales mostradas en esta página contienen sólo el 0.2% de las comisiones base de las transacciones en ViteX, por favor tenga en cuenta que las comisiones del operador se deberán considerar al calcular el coste de la minería";
 
-"mining.trading.page.header.fee" = "Trading Fees";
-"mining.trading.page.header.title" = "Mining";
+"mining.trading.page.header.fee" = "Comisiones de trading";
+"mining.trading.page.header.title" = "Minería";
 "mining.trading.page.header.expect" = "24H Expected Mined";
 
 "mining.trading.page.cell.fee" = "Fees";
