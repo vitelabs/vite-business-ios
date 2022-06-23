@@ -1205,7 +1205,7 @@
 "mining.staking.page.detail.list.button.title" = "Listado de Staking";
 "mining.staking.page.cell.amount" = "Stake";
 
-"mining.staking.page.withdraw.page.title" = "Withdrawal List";
+"mining.staking.page.withdraw.page.title" = "Lista para retiros";
 "mining.staking.page.withdraw.page.height" = "Lock Expiration Snapshot Height: %@";
 "mining.staking.page.withdraw.page.withdraw.time" = "Lock Expiration Date: %@";
 "mining.staking.page.withdraw.page.lock.time" = "Available Date: %@";
