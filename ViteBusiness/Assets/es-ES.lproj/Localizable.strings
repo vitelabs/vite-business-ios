@@ -1199,10 +1199,10 @@
 "mining.trading.page.cell.fee" = "Comisiones";
 
 "mining.staking.page.header.total.earnings" = "Ingresos totales (VX)";
-"mining.staking.page.detail.amount.title" = "Staked Amount";
+"mining.staking.page.detail.amount.title" = "Cantidad en staking";
 "mining.staking.page.detail.unlocking.title" = "Unlocking Amount";
-"mining.staking.page.detail.add.button.title" = "Add";
-"mining.staking.page.detail.list.button.title" = "Staking List";
+"mining.staking.page.detail.add.button.title" = "Agregar";
+"mining.staking.page.detail.list.button.title" = "Listado de Staking";
 "mining.staking.page.cell.amount" = "Stake";
 
 "mining.staking.page.withdraw.page.title" = "Withdrawal List";
