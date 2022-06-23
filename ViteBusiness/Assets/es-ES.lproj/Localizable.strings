@@ -1194,11 +1194,11 @@
 
 "mining.trading.page.header.fee" = "Comisiones de trading";
 "mining.trading.page.header.title" = "Minería";
-"mining.trading.page.header.expect" = "24H Expected Mined";
+"mining.trading.page.header.expect" = "Volumen de minería esperando 24H";
 
-"mining.trading.page.cell.fee" = "Fees";
+"mining.trading.page.cell.fee" = "Comisiones";
 
-"mining.staking.page.header.total.earnings" = "Total Income (VX)";
+"mining.staking.page.header.total.earnings" = "Ingresos totales (VX)";
 "mining.staking.page.detail.amount.title" = "Staked Amount";
 "mining.staking.page.detail.unlocking.title" = "Unlocking Amount";
 "mining.staking.page.detail.add.button.title" = "Add";
