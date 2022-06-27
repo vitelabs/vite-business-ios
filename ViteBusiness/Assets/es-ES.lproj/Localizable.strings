@@ -1216,43 +1216,43 @@
 "mining.staking.page.withdraw.page.alert.message" = "Saldo disponible a recoger：%@ VITE\nTardará 7 días en aparecer los VITE retirados en tu billetera de trading";
 "mining.staking.page.withdraw.page.alert.ok" = "Retirar";
 
-"mining.staking.page.confirm.title" = "Stake VITE for Mining";
-"mining.staking.page.confirm.available.title" = "Exchange Available Balance";
-"mining.staking.page.confirm.amount.title" = "Amount";
-"mining.staking.page.confirm.amount.placeholder" = "Please input amount, minimum 134 VITE";
-"mining.staking.page.confirm.tip" = "Staking can be canceled after 3 days. Staked amount will be released after the 7-day waiting period";
-"mining.staking.page.confirm.button.title" = "Confirm to Stake";
+"mining.staking.page.confirm.title" = "Stake VITE para minería";
+"mining.staking.page.confirm.available.title" = "Saldo disponible en Exchange";
+"mining.staking.page.confirm.amount.title" = "Cantidad";
+"mining.staking.page.confirm.amount.placeholder" = "Por favor ingrese un monto, mínimo 134 VITE";
+"mining.staking.page.confirm.tip" = "El staking puede cancelarse después de 3 días. La cantidad será liberará después de un periodo de espera de 7 días";
+"mining.staking.page.confirm.button.title" = "Confirmar Stake";
 
-"mining.invite.page.header.total.earnings" = "Total Income (VX)";
-"mining.invite.page.detail.count.title" = "Referrals";
-"mining.invite.page.detail.trading.title" = "Referred Trading Proceeds";
-"mining.invite.page.detail.market.making.title" = "Referred Market-Making Proceeds";
-"mining.invite.page.list.trading.title" = "Referred Trading Details";
-"mining.invite.page.cell.fee.amount" = "Trading Fees";
-"mining.invite.page.list.market.making.title" = "Referred Market-Making Details";
+"mining.invite.page.header.total.earnings" = "Ingresos totales (VX)";
+"mining.invite.page.detail.count.title" = "Referidos";
+"mining.invite.page.detail.trading.title" = "Ingresos por trades de referidos";
+"mining.invite.page.detail.market.making.title" = "Ingresos por Market-Making de referidos";
+"mining.invite.page.list.trading.title" = "Detalles trades de referidos";
+"mining.invite.page.cell.fee.amount" = "Comisiones de trading";
+"mining.invite.page.list.market.making.title" = "Detalles Market-Making de referidos";
 "mining.invite.page.cell.per" = "Ratio";
 
-"mining.order.page.header.total.earnings" = "Total Income (VX)";
-"mining.order.page.header.estimate" = "24H Expected Mined";
+"mining.order.page.header.total.earnings" = "Ingresos totales (VX)";
+"mining.order.page.header.estimate" = "Volumen de minería esperando 24H";
 
-"dividends.page.title" = "Dividend";
-"dividends.page.total.title" = "Dividend Pool (BTC)";
-"dividends.page.my.title" = "My Dividend (BTC)";
-"dividends.page.lock.title" = "My Staking";
-"dividends.page.lock.amount" = "Staking Amount";
-"dividends.page.unlocking.amount" = "Unstaking Amount";
-"dividends.page.lock.auto" = "Automatic Staking";
-"dividends.page.lock.detail.button.title" = "Unstaking Status";
+"dividends.page.title" = "Dividendos";
+"dividends.page.total.title" = "Pool de Dividendos (BTC)";
+"dividends.page.my.title" = "Mis Dividendos (BTC)";
+"dividends.page.lock.title" = "Mi Staking";
+"dividends.page.lock.amount" = "Cantidad en staking";
+"dividends.page.unlocking.amount" = "Cantidad a liberar";
+"dividends.page.lock.auto" = "Staking automático";
+"dividends.page.lock.detail.button.title" = "Estados de unstaking";
 "dividends.page.lock.lock.button.title" = "Stake";
 "dividends.page.lock.unlock.button.title" = "Unstake";
-"dividends.page.lock.header.title" = "Dividend Details";
+"dividends.page.lock.header.title" = "Detalles de Dividendos";
 "dividends.page.lock.cell.total" = "Total: ≈";
 
 "dividends.page.lock.confirm.title" = "Stake VX";
-"dividends.page.lock.confirm.amount.total" = "Exchange Available Balance";
-"dividends.page.lock.confirm.amount" = "Amount";
-"dividends.page.lock.confirm.placeholder" = "Please input amount, minimum 1 VX";
-"dividends.page.lock.confirm.error" = "Minimum 1 VX";
+"dividends.page.lock.confirm.amount.total" = "Saldo disponible en Exchange";
+"dividends.page.lock.confirm.amount" = "Cantidad";
+"dividends.page.lock.confirm.placeholder" = "Por favor ingrese un monto, mínimo 1 VX";
+"dividends.page.lock.confirm.error" = "Mínimo 1 VX";
 "dividends.page.lock.confirm.tip" = "A minimum of 10 VX must be staked to receive dividends. Submission of staking request allows for dividends starting the nearest distribution";
 "dividends.page.lock.confirm.button.title" = "Stake";
 
