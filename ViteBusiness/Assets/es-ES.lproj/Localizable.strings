@@ -502,7 +502,7 @@
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Las transacciones han sido enviadas con demasiada frecuencia, por favor inténtalo de nuevo más tarde";
 "vite.error.rpc.error.code.contract.method.not.exist" = "El método no existe en el contrato incorporado, por favor inténtalo de nuevo más tarde (-35006)";
 "vite.error.rpc.error.code.no.transaction.before" = "No puedes hacer transferencias hasta que recibas una transacción primero.";
-"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "La instantánea de altura de bloque es ilegal, por favor inténtalo de nuevo más tarde";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "La altura de bloque de la instantánea es ilegal, por favor inténtalo de nuevo más tarde";
 "vite.error.rpc.error.code.verify.failure" = "Falló la verificación del sistema. Inténtalo de nuevo más tarde (%@)";
 
 "eth.error.rpc.error.code.not.enough.balance" = "Saldo insuficiente";
@@ -1253,20 +1253,20 @@
 "dividends.page.lock.confirm.amount" = "Cantidad";
 "dividends.page.lock.confirm.placeholder" = "Por favor ingrese un monto, mínimo 1 VX";
 "dividends.page.lock.confirm.error" = "Mínimo 1 VX";
-"dividends.page.lock.confirm.tip" = "A minimum of 10 VX must be staked to receive dividends. Submission of staking request allows for dividends starting the nearest distribution";
+"dividends.page.lock.confirm.tip" = "Se debe stakear un mínimo de 10 VX para recibir dividendos. Se empezará a recibir dividendos en el siguiente inicio de distribución más cercano al momento de solicitar el staking";
 "dividends.page.lock.confirm.button.title" = "Stake";
 
 "dividends.page.unlock.confirm.title" = "Unstake VX";
-"dividends.page.unlock.confirm.amount.total" = "Available Stake Balance";
-"dividends.page.unlock.confirm.amount" = "Amount";
-"dividends.page.unlock.confirm.placeholder" = "Please input amount, minimum 1 VX";
-"dividends.page.unlock.confirm.error" = "Minimum 1 VX";
-"dividends.page.unlock.confirm.tip" = "It takes about 7 days to unlock";
-"dividends.page.unlock.confirm.tip2" = "Withdrawal is only applicable for staked amount larger than 10 VX.";
+"dividends.page.unlock.confirm.amount.total" = "Saldo disponible en stake";
+"dividends.page.unlock.confirm.amount" = "Cantidad";
+"dividends.page.unlock.confirm.placeholder" = "Por favor ingrese un monto, mínimo 1 VX";
+"dividends.page.unlock.confirm.error" = "Mínimo 1 VX";
+"dividends.page.unlock.confirm.tip" = "Tarda unos 7 días en desbloquear";
+"dividends.page.unlock.confirm.tip2" = "El retiro sólo es aplicable para una cantidad en staking mayor que 10 VX.";
 "dividends.page.unlock.confirm.button.title" = "Unstake";
 
-"dividends.page.unlock.list.title" = "Unstaking Status";
-"dividends.page.unlock.list.time" = "Available Date %@";
+"dividends.page.unlock.list.title" = "Estados de unstaking";
+"dividends.page.unlock.list.time" = "Fecha disponible: %@";
 
 // Spot
 "spot.page.buy.mining.tip" = "Elegible para minar cuando el precio sea mayor que %@";
@@ -1302,7 +1302,7 @@
 "spot.page.confirm.tip" = "No volver a preguntar en 24 horas";
 
 "spot.page.alert.title" = "Recordatorio importante";
-"spot.page.alert.message" = "Note that the selected trading pair %@ is being managed by an Unknown Operator.\nTrade at your own risk.";
+"spot.page.alert.message" = "Ten en cuenta que el par de trading seleccionado %@ está siendo administrado por un Operador Desconocido.\nTradea bajo tu propio riesgo.";
 "spot.page.alert.ok" = "Confirmar";
 
 "spot.page.order.empty" = "Sin órdenes";
