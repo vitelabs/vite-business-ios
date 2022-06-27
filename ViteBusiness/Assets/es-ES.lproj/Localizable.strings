@@ -1200,21 +1200,21 @@
 
 "mining.staking.page.header.total.earnings" = "Ingresos totales (VX)";
 "mining.staking.page.detail.amount.title" = "Cantidad en staking";
-"mining.staking.page.detail.unlocking.title" = "Unlocking Amount";
+"mining.staking.page.detail.unlocking.title" = "Cantidad a liberar";
 "mining.staking.page.detail.add.button.title" = "Agregar";
 "mining.staking.page.detail.list.button.title" = "Listado de Staking";
 "mining.staking.page.cell.amount" = "Stake";
 
 "mining.staking.page.withdraw.page.title" = "Lista para retiros";
-"mining.staking.page.withdraw.page.height" = "Lock Expiration Snapshot Height: %@";
-"mining.staking.page.withdraw.page.withdraw.time" = "Lock Expiration Date: %@";
-"mining.staking.page.withdraw.page.lock.time" = "Available Date: %@";
+"mining.staking.page.withdraw.page.height" = "Bloque estimado para expiración del bloqueo: %@";
+"mining.staking.page.withdraw.page.withdraw.time" = "Fecha estimada para expiración del bloqueo: %@";
+"mining.staking.page.withdraw.page.lock.time" = "Fecha disponible: %@";
 "mining.staking.page.withdraw.page.button.title" = "Unstake";
-"mining.staking.page.withdraw.page.button.dis.title" = "In process";
+"mining.staking.page.withdraw.page.button.dis.title" = "En proceso";
 
 "mining.staking.page.withdraw.page.alert.title" = "Unstake VITE";
-"mining.staking.page.withdraw.page.alert.message" = "Available Stake Balance：%@ VITE\n It takes 7 days to return unstaked VITE coins to exchange balance";
-"mining.staking.page.withdraw.page.alert.ok" = "Unstake";
+"mining.staking.page.withdraw.page.alert.message" = "Saldo disponible a recoger：%@ VITE\nTardará 7 días en aparecer los VITE retirados en tu billetera de trading";
+"mining.staking.page.withdraw.page.alert.ok" = "Retirar";
 
 "mining.staking.page.confirm.title" = "Stake VITE for Mining";
 "mining.staking.page.confirm.available.title" = "Exchange Available Balance";
