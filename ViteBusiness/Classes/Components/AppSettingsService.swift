@@ -21,7 +21,6 @@ public class AppSettingsService {
     fileprivate var appSettingsBehaviorRelay: BehaviorRelay<AppSettings>!
     var appSettings: AppSettings { return appSettingsBehaviorRelay.value }
 
-
     private init() {
         if let appSettings:AppSettings = readMappable() {
             appSettingsBehaviorRelay = BehaviorRelay(value: appSettings)
@@ -79,6 +78,7 @@ extension AppSettingsService {
     public struct AppSettings: Mappable {
         public var currency: CurrencyCode = .USD
         public var dexHideSmall: Bool = false
+        public var viteNetworkType: ViteNetworkType = .mainnet
         public var chainNodeConfigs: [ChainNodeConfig] = [
             ChainNodeConfig(type: .vite, current: nil),
             ChainNodeConfig(type: .eth, current: nil),
@@ -90,6 +90,7 @@ extension AppSettingsService {
         public mutating func mapping(map: Map) {
             currency <- map["currency"]
             dexHideSmall <- map["dexHideSmall"]
+            viteNetworkType <- map["viteNetworkType"]
             chainNodeConfigs <- map["chainNodeConfigs"]
             powConfig <- map["powConfig"]
             guide <- map["guide"]
@@ -212,6 +213,40 @@ extension AppSettingsService {
         appSettingsBehaviorRelay.accept(appSettings)
         save(mappable: appSettings)
     }
+    
+    public func getViteNetworkType() -> ViteNetworkType {
+        return ViteNetworkType.typeFor(node: getNode(type: .vite))
+    }
+}
+
+extension AppSettingsService {
+    
+    public enum ViteNetworkType: String {
+        case mainnet = "mainnet"
+        case testnet = "testnet"
+        
+        func isTestnet() -> Bool {
+            switch self {
+            case .mainnet:
+                return false
+            case .testnet:
+                return true
+            }
+        }
+        
+        static func isTestnet(node: String?) -> Bool {
+            return node == "https://buidl.vite.net/gvite"
+        }
+        
+        static func typeFor(node: String?) -> ViteNetworkType {
+            if isTestnet(node: node) {
+                return .testnet
+            } else {
+                return .mainnet
+            }
+        }
+    }
+    
 }
 
 extension AppSettingsService: Storageable {

@@ -37,6 +37,12 @@ enum ViteXAPI: TargetType {
     var baseURL: URL {
         switch self {
         case .getOrderlist: return URL(string: "https://vitex.vite.net")!
+        case .getDexTokenInfos:
+            if AppSettingsService.instance.getViteNetworkType().isTestnet() {
+                return URL(string: "https://buidl.vite.net/vitex")!
+            } else {
+                return URL(string: ViteConst.instance.vite.x)!
+            }
         default: return URL(string: ViteConst.instance.vite.x)!
         }
         return URL(string: ViteConst.instance.vite.x)!

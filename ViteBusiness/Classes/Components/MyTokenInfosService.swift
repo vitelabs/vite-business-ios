@@ -15,7 +15,7 @@ import ObjectMapper
 
 extension MyTokenInfosService: Storageable {
     public func getStorageConfig() -> StorageConfig {
-        return StorageConfig(name: "MyTokenInfos", path: .wallet)
+        return StorageConfig(name: "MyTokenInfos", path: .wallet, needViteTestnetSuffix: true)
     }
 }
 

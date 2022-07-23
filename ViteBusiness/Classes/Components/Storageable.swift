@@ -19,8 +19,13 @@ public struct StorageConfig {
     public let path: Path
     public let appending: String?
 
-    init(name: String, path: Path, appending: String? = nil) {
-        self.name = name
+    init(name: String, path: Path, appending: String? = nil, needViteTestnetSuffix: Bool = false) {
+        if needViteTestnetSuffix && AppSettingsService.instance.getViteNetworkType().isTestnet() {
+            self.name = name + "_testnet"
+        } else {
+            self.name = name
+        }
+        
         self.path = path
         self.appending = appending
     }

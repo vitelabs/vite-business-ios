@@ -85,7 +85,6 @@ class NodeSettingsDetailViewController: BaseTableViewController {
                         guard let `self` = self else { return }
                         if result {
                             config.nodes.append(text)
-                            config.current = text
                             AppSettingsService.instance.updateNode(type: self.chainType, config: config)
                         } else {
                             Toast.show(R.string.localizable.nodeSettingsPageNodeInvalidError())
@@ -100,6 +99,24 @@ class NodeSettingsDetailViewController: BaseTableViewController {
                     })
             })
         }.disposed(by: rx.disposeBag)
+    }
+    
+    func updateViteNode(config: AppSettingsService.ChainNodeConfig) {
+        var srcConfig = AppSettingsService.instance.getNodeConfig(type: AppSettingsService.ChainType.vite)
+        let srcViteNetworkType = AppSettingsService.ViteNetworkType.typeFor(node: srcConfig.current)
+        let dstViteNetworkType = AppSettingsService.ViteNetworkType.typeFor(node: config.current)
+        if srcViteNetworkType == dstViteNetworkType {
+            AppSettingsService.instance.updateNode(type: AppSettingsService.ChainType.vite, config: config)
+        } else {
+            Alert.show(title: "注意", message: "当前节点为\(srcViteNetworkType.rawValue),目标节点为\(dstViteNetworkType.rawValue),切换节点后需要重启app才能生效，确认切换吗？", actions: [
+                (.default(title: R.string.localizable.cancel()), nil),
+                (.default(title: "切换"), { _ in
+                    AppSettingsService.instance.updateNode(type: AppSettingsService.ChainType.vite, config: config)
+                    // change ViteNetworkType need exit
+                    exit(0)
+                }),
+                ])
+        }
     }
 }
 
@@ -143,37 +160,35 @@ extension NodeSettingsDetailViewController {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 {
-            var config = AppSettingsService.instance.getNodeConfig(type: self.chainType)
-            config.current = nil
-            AppSettingsService.instance.updateNode(type: self.chainType, config: config)
-        } else {
-            var config = AppSettingsService.instance.getNodeConfig(type: self.chainType)
-            config.current = config.nodes[indexPath.row]
+        var config = AppSettingsService.instance.getNodeConfig(type: self.chainType)
+        config.current = indexPath.section == 0 ? nil : config.nodes[indexPath.row]
+
+        switch self.chainType {
+        case .vite:
+            self.updateViteNode(config: config)
+        case .eth:
             AppSettingsService.instance.updateNode(type: self.chainType, config: config)
         }
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         if indexPath.section == 1 {
-            let deleteAction = UIContextualAction(style: .destructive, title: R.string.localizable.delete()) { (action, sourceView, completionHandler) in
-                
-                var config = AppSettingsService.instance.getNodeConfig(type: self.chainType)
-                if config.nodes[indexPath.row] == config.current {
-                    config.current = nil
+            var config = AppSettingsService.instance.getNodeConfig(type: self.chainType)
+            if config.nodes[indexPath.row] == config.current {
+                return nil
+            } else {
+                let deleteAction = UIContextualAction(style: .destructive, title: R.string.localizable.delete()) { (action, sourceView, completionHandler) in
+                    config.nodes.remove(at: indexPath.row)
+                    AppSettingsService.instance.updateNode(type: self.chainType, config: config)
+                    completionHandler(true)
                 }
-                config.nodes.remove(at: indexPath.row)
-                AppSettingsService.instance.updateNode(type: self.chainType, config: config)
-                completionHandler(true)
+
+                let actionsConfiguration = UISwipeActionsConfiguration(actions: [deleteAction])
+                actionsConfiguration.performsFirstActionWithFullSwipe = false
+                return actionsConfiguration
             }
-
-            let config = UISwipeActionsConfiguration(actions: [deleteAction])
-            config.performsFirstActionWithFullSwipe = false
-            return config
-
         } else {
             return nil
         }
-
     }
 }
