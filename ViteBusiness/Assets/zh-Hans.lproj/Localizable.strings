@@ -372,6 +372,8 @@
 
 /* node settings */
 "node.settings.page.title" = "節點設置";
+"node.settings.page.switch.node.alert.title" = "注意";
+"node.settings.page.switch.node.alert.message" = "当前节点为%1$@，将要切换为%2$@，切换节点后App将自动关闭，需要你重新打开App";
 "node.settings.page.add.button.title" = "添加自定義節點";
 "node.settings.page.add.alert.title" = "請輸入有效的節點地址";
 "node.settings.page.add.alert.tip" = "當前節點為 %@ ，網絡為 Mainnet";

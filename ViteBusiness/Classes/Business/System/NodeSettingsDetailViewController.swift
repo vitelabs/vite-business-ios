@@ -108,9 +108,9 @@ class NodeSettingsDetailViewController: BaseTableViewController {
         if srcViteNetworkType == dstViteNetworkType {
             AppSettingsService.instance.updateNode(type: AppSettingsService.ChainType.vite, config: config)
         } else {
-            Alert.show(title: "注意", message: "当前节点为\(srcViteNetworkType.rawValue),目标节点为\(dstViteNetworkType.rawValue),切换节点后需要重启app才能生效，确认切换吗？", actions: [
+            Alert.show(title: R.string.localizable.nodeSettingsPageSwitchNodeAlertTitle(), message: R.string.localizable.nodeSettingsPageSwitchNodeAlertMessage(srcViteNetworkType.name(), dstViteNetworkType.name()), actions: [
                 (.default(title: R.string.localizable.cancel()), nil),
-                (.default(title: "切换"), { _ in
+                (.default(title: R.string.localizable.confirm()), { _ in
                     AppSettingsService.instance.updateNode(type: AppSettingsService.ChainType.vite, config: config)
                     // change ViteNetworkType need exit
                     exit(0)

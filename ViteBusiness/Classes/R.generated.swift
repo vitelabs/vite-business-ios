@@ -2096,7 +2096,7 @@ public struct R: Rswift.Validatable {
   
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   public struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 1140 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 1142 localization keys.
     public struct localizable {
       /// en translation: 
       /// 
@@ -3450,6 +3450,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let discoverPageHeaderTitleActivity = Rswift.StringResource(key: "discover.page.headerTitle.activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Ecosystem
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let discoverPageVCWebTitleActivity = Rswift.StringResource(key: "discover.page.VCWebTitle.activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Edit Account Name
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4438,6 +4442,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let mnemonicBackupScanAlertTitle = Rswift.StringResource(key: "mnemonic.backup.scan.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Notice
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let nodeSettingsPageSwitchNodeAlertTitle = Rswift.StringResource(key: "node.settings.page.switch.node.alert.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Notice
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5518,6 +5526,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let powSettingsPageAddAlertTip = Rswift.StringResource(key: "pow.settings.page.add.alert.tip", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: The current node is %1$@, and will be switched to %2$@. After switching, the App will be automatically closed, and you need to reopen the App.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let nodeSettingsPageSwitchNodeAlertMessage = Rswift.StringResource(key: "node.settings.page.switch.node.alert.message", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: The current node is %@, network is Mainnet
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6036,8 +6048,8 @@ public struct R: Rswift.Validatable {
       public static let dexTokenDetailPageCellOut = Rswift.StringResource(key: "dex.token.detail.page.cell.out", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Tutorial
       /// 
-      /// Locales: en, ja-JP, fr-FR, id-ID, zh-Hans
-      public static let myPageTutorialCellTitle = Rswift.StringResource(key: "my.page.tutorial.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "id-ID", "zh-Hans"], comment: nil)
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let myPageTutorialCellTitle = Rswift.StringResource(key: "my.page.tutorial.cell.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Type
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -6254,10 +6266,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let discoverPageNewsCellOfficial = Rswift.StringResource(key: "discover.page.news.cell.official", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Vite Events
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let discoverPageVCWebTitleActivity = Rswift.StringResource(key: "discover.page.VCWebTitle.activity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Vite Gateway Collection
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -9025,6 +9033,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("discover.page.headerTitle.activity", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: Ecosystem
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func discoverPageVCWebTitleActivity(_: Void = ()) -> String {
+        return NSLocalizedString("discover.page.VCWebTitle.activity", bundle: R.hostingBundle, comment: "")
+      }
+      
       /// en translation: Edit Account Name
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -10752,6 +10767,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func mnemonicBackupScanAlertTitle(_: Void = ()) -> String {
         return NSLocalizedString("mnemonic.backup.scan.alert.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Notice
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func nodeSettingsPageSwitchNodeAlertTitle(_: Void = ()) -> String {
+        return NSLocalizedString("node.settings.page.switch.node.alert.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Notice
@@ -12644,6 +12666,13 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("pow.settings.page.add.alert.tip", bundle: R.hostingBundle, comment: "")
       }
       
+      /// en translation: The current node is %1$@, and will be switched to %2$@. After switching, the App will be automatically closed, and you need to reopen the App.
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func nodeSettingsPageSwitchNodeAlertMessage(_ value1: String, _ value2: String) -> String {
+        return String(format: NSLocalizedString("node.settings.page.switch.node.alert.message", bundle: R.hostingBundle, comment: ""), locale: R.applicationLocale, value1, value2)
+      }
+      
       /// en translation: The current node is %@, network is Mainnet
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -13549,7 +13578,7 @@ public struct R: Rswift.Validatable {
       
       /// en translation: Tutorial
       /// 
-      /// Locales: en, ja-JP, fr-FR, id-ID, zh-Hans
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func myPageTutorialCellTitle(_: Void = ()) -> String {
         return NSLocalizedString("my.page.tutorial.cell.title", bundle: R.hostingBundle, comment: "")
       }
@@ -13930,13 +13959,6 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func discoverPageNewsCellOfficial(_: Void = ()) -> String {
         return NSLocalizedString("discover.page.news.cell.official", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Vite Events
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func discoverPageVCWebTitleActivity(_: Void = ()) -> String {
-        return NSLocalizedString("discover.page.VCWebTitle.activity", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Vite Gateway Collection

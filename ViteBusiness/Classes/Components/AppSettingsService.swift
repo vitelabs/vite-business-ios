@@ -234,6 +234,15 @@ extension AppSettingsService {
             }
         }
         
+        func name() -> String {
+            switch self {
+            case .mainnet:
+                return "Mainnet"
+            case .testnet:
+                return "Testnet"
+            }
+        }
+        
         static func isTestnet(node: String?) -> Bool {
             return node == "https://buidl.vite.net/gvite"
         }

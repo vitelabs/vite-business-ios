@@ -369,6 +369,8 @@
 
 /* node settings */
 "node.settings.page.title" = "Ajustes del nodo";
+"node.settings.page.switch.node.alert.title" = "Notice";
+"node.settings.page.switch.node.alert.message" = "The current node is %1$@, and will be switched to %2$@. After switching, the App will be automatically closed, and you need to reopen the App.";
 "node.settings.page.add.button.title" = "Agregar un nodo personalizado";
 "node.settings.page.add.alert.title" = "Por favor, introduce una dirección válida para el nodo";
 "node.settings.page.add.alert.tip" = "El nodo actual es %@, conectado a la red principal";

@@ -369,6 +369,8 @@
 
 /* node settings */
 "node.settings.page.title" = "Node Settings";
+"node.settings.page.switch.node.alert.title" = "Notice";
+"node.settings.page.switch.node.alert.message" = "The current node is %1$@, and will be switched to %2$@. After switching, the App will be automatically closed, and you need to reopen the App.";
 "node.settings.page.add.button.title" = "Add Custom Node";
 "node.settings.page.add.alert.title" = "Please enter a valid node address";
 "node.settings.page.add.alert.tip" = "The current node is %@, network is Mainnet";

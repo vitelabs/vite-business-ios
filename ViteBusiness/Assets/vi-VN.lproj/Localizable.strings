@@ -369,6 +369,8 @@
 
 /* node settings */
 "node.settings.page.title" = "Cấu hình Node";
+"node.settings.page.switch.node.alert.title" = "Notice";
+"node.settings.page.switch.node.alert.message" = "The current node is %1$@, and will be switched to %2$@. After switching, the App will be automatically closed, and you need to reopen the App.";
 "node.settings.page.add.button.title" = "Thêm Node Tuỳ chỉnh";
 "node.settings.page.add.alert.title" = "Vui lòng nhập một địa chỉ hợp lệ";
 "node.settings.page.add.alert.tip" = "Node hiện tại là %@, mạng lưới là Mainnet";
