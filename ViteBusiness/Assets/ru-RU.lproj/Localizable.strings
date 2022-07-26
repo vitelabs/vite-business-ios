@@ -12,7 +12,7 @@
 "cancel.button.title" = "Отменить";
 "alter.title" = "ЗАМЕЧАНИЕ";
 
-"discover.page.title" = "Исследовать";
+"discover.page.title" = "Discover";
 "discover.page.game.cell.palyNum" = "%@ игроков играют";
 "discover.page.activity.page.title1" = "Последние события";
 "discover.page.activity.page.title2" = "История";
@@ -20,12 +20,12 @@
 "discover.page.news.cell.time.minute" = "Сейчас";
 "discover.page.news.cell.time.hour" = "%@ч назад";
 "discover.page.news.cell.time.day" = "%@ дн. назад";
-"discover.page.headerTitle.activity" = "Центр Кампании";
-"discover.page.headerTitle.game" = "VITE Игры";
-"discover.page.headerTitle.news" = "Vite Новости";
-"discover.page.VCWebTitle.activity" = "Vite События";
-"discover.page.VCWebTitle.game" = "VITE Игры";
-"discover.page.VCWebTitle.news" = "Vite Новости";
+"discover.page.headerTitle.activity" = "Ecosystem";
+"discover.page.headerTitle.game" = "DApps";
+"discover.page.headerTitle.news" = "News";
+"discover.page.VCWebTitle.activity" = "Ecosystem";
+"discover.page.VCWebTitle.game" = "DApps";
+"discover.page.VCWebTitle.news" = "News";
 "discover.page.game.alter.title" = "Вы посетили страницу, которая покидает Vite App, и вы будете перенаправлены на сторонние dApp. Ваше использование в dApp будет соответствовать условиям Соглашения dApp и Политике конфиденциальности. Компания Vite Labs не имеет никакого контроля над качеством, содержанием, надежностью или безопасность сервиса dApp, и компания Vite Labs не несет ответственности за ее использование.";
 
 //AirDrop
@@ -95,9 +95,9 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Резервная копия мнемонических слов";
-"mnemonic.backup.page.tip1" = "Мы рекомендуем два следующих метода резервного копирования:";
-"mnemonic.backup.page.tip2" = "Запишите мнемонические слова на листе бумаги, а затем сохраните их в надежном месте.";
-"mnemonic.backup.page.tip3" = "Сканируйте QR-код ниже с помощью Vite wallet, установленного на другом устройстве.";
+"mnemonic.backup.page.tip1" = "The following backups are recommend for the security of your assets:";
+"mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below with your Vite app installed on another device.";
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "Английский";
 
@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "Что-то не так с вашей seed фразой, пожалуйста, попробуйте еще раз!";
 "import.page.submit.loading" = "Импорт...";
 "import.page.submit.success" = "Успешный импорт";
-"import.page.alert.exist.title" = "Введенная вами фраза уже имела имя учетной записи '%@' на текущем устройстве, вы уверены, что хотите перезаписать существующую учетную запись";
+"import.page.alert.exist.title" = "The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?";
 "import.page.alert.exist.ok" = "Подтвердить";
 "import.page.alert.exist.cancel" = "Отмена";
 
@@ -188,6 +188,7 @@
 "my.page.invite.cell.title" = "Награды приглашенных";
 "my.page.reward.cell.title" = "Запрос на награду";
 "my.page.forum.cell.title" = "Официальный форум";
+"my.page.tutorial.cell.title" = "Tutorial";
 "my.page.aboutUs.cell.title" = "О нас";
 "my.page.change.wallet.name.alter.title" = "Изменить имя аккаунта";
 "my.page.aboutUs.wechat.alert.title" = "Отсканируйте QR-код, чтобы подписаться на официальный аккаунт Vite WeChat";
@@ -360,7 +361,7 @@
 "system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "Выйти/Сменить аккаунт";
+"system.page.cell.logout.title" = "Logout";
 "system.page.cell.upload.log.title" = "Загрузить журнал";
 "system.page.cell.upload.log.toast.success" = "Журнал загружен";
 "system.page.cell.delete.wallet.title" = "Удалить текущий аккаунт";
@@ -424,6 +425,7 @@
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Get quota now";
+"quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
@@ -569,7 +571,7 @@
 "contacts.edit.page.delete.alert.title" = "Вы уверены, что хотите удалить этот адрес?";
 
 // Address List
-"address.list.page.my.title" = "Мой VITE адрес";
+"address.list.page.my.title" = "My Vite Address";
 "address.list.page.other.title" = "%@ адрес контакта";
 "address.list.page.no.address.tip" = "Ещё нет %@ адреса";
 
@@ -784,7 +786,7 @@
 "grin.detail.slateCopied" = "Slate ID скопирован.";
 "grin.send.illegalAmmount" = "Неверная сумма перевода";
 "grin.detail.gatewayResend" = "Запрос на повторную отправку шлюза Vite";
-"grin.export.mnemonic" = "Экспорт мнемонических слов";
+"grin.export.mnemonic" = "Export Grin Seed Phrase";
 
 // CrossChain Transfer & Receive
 
@@ -1192,6 +1194,9 @@
 "mining.trading.page.header.total.earnings.alert.title" = "Notice";
 "mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
 
+"mining.trading.page.header.fee" = "Trading Fees";
+"mining.trading.page.header.title" = "Mining";
+"mining.trading.page.header.expect" = "24H Expected Mined";
 
 "mining.trading.page.header.fee" = "Trading Fees";
 "mining.trading.page.header.title" = "Mining";
@@ -1303,7 +1308,7 @@
 "spot.page.confirm.tip" = "24 часа не спрашивать снова";
 
 "spot.page.alert.title" = "Важное напоминание";
-"spot.page.alert.message" = "Текущая торговая пара %@, инвестиции в криптовалюту подвержены высоким рискам и колебаниям цен. Пожалуйста, тщательно оцените потенциальные риски и принимайте взвешенные торговые решения.";
+"spot.page.alert.message" = "Note that the selected trading pair %@ is being managed by an Unknown Operator.\nTrade at your own risk.";
 "spot.page.alert.ok" = "Подтвердить";
 
 "spot.page.order.empty" = "Нет заказов";

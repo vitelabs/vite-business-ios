@@ -12,7 +12,7 @@
 "cancel.button.title" = "취소";
 "alter.title" = "공지";
 
-"discover.page.title" = "탐색하기";
+"discover.page.title" = "Discover";
 "discover.page.game.cell.palyNum" = "%@명이 참여중입니다.";
 "discover.page.activity.page.title1" = "최신 이벤트";
 "discover.page.activity.page.title2" = "기록";
@@ -20,12 +20,12 @@
 "discover.page.news.cell.time.minute" = "현재";
 "discover.page.news.cell.time.hour" = "%@시간 전";
 "discover.page.news.cell.time.day" = "%@일 전";
-"discover.page.headerTitle.activity" = "캠페인 센터";
-"discover.page.headerTitle.game" = "Vite 게임";
-"discover.page.headerTitle.news" = "Vite 뉴스";
-"discover.page.VCWebTitle.activity" = "Vite 이벤트";
-"discover.page.VCWebTitle.game" = "Vite 게임";
-"discover.page.VCWebTitle.news" = "Vite 뉴스";
+"discover.page.headerTitle.activity" = "Ecosystem";
+"discover.page.headerTitle.game" = "DApps";
+"discover.page.headerTitle.news" = "News";
+"discover.page.VCWebTitle.activity" = "Ecosystem";
+"discover.page.VCWebTitle.game" = "DApps";
+"discover.page.VCWebTitle.news" = "News";
 "discover.page.game.alter.title" = "Vite 어플이 아닌 다른 페이지를 방문했으며 dApp으로 리디렉션됩니다. 이 dApp에 대한 귀하의 사용은 dApp의 사용자 계약 기간 및 개인 정보 보호 정책을 준수합니다. Vite Labs는 제 3자 dApp의 품질, 콘텐츠, 신뢰성을 보안 또는 감독하거나 통제하지 않으며 Vite Labs는 그 사용에 대해 책임을지지 않습니다.";
 
 //AirDrop
@@ -95,9 +95,9 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "니모닉 단어가 백업되지 않았습니다.";
-"mnemonic.backup.page.tip1" = "다음 두 가지 방법의 백업 방식을 추천합니다:";
-"mnemonic.backup.page.tip2" = "종이에 니모닉 단어를 적어서 안전한 곳에 보관해주세요.";
-"mnemonic.backup.page.tip3" = "다른 기기 장치에 Vite 지갑을 다운 받으신 후, 아래 QR 코드를 스캔해주세요.";
+"mnemonic.backup.page.tip1" = "The following backups are recommend for the security of your assets:";
+"mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below with your Vite app installed on another device.";
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
 
@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "시드 문구가 잘 못 되었습니다. 다시 시도해주세요!";
 "import.page.submit.loading" = "가져오는 중...";
 "import.page.submit.success" = "가져오기 성공";
-"import.page.alert.exist.title" = "입력하신 시드 문구는 현재 기기장치에  '%@'이름의 계정이 존재합니다. 본 계정에 중복으로 입력하는게 맞습니까?";
+"import.page.alert.exist.title" = "The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?";
 "import.page.alert.exist.ok" = "확인";
 "import.page.alert.exist.cancel" = "취소";
 
@@ -188,6 +188,7 @@
 "my.page.invite.cell.title" = "채굴 추천인";
 "my.page.reward.cell.title" = "보상 문의";
 "my.page.forum.cell.title" = "공식 포럼";
+"my.page.tutorial.cell.title" = "Tutorial";
 "my.page.aboutUs.cell.title" = "회사 소개";
 "my.page.change.wallet.name.alter.title" = "계정 이름 수정하기";
 "my.page.aboutUs.wechat.alert.title" = "QR코드를 스캔하고 Vite WeChat 공식 계정을 팔로우하세요";
@@ -360,7 +361,7 @@
 "system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "로그아웃/지갑 변경";
+"system.page.cell.logout.title" = "Logout";
 "system.page.cell.upload.log.title" = "업로드 로그";
 "system.page.cell.upload.log.toast.success" = "업로드된 로그";
 "system.page.cell.delete.wallet.title" = "현재 계정 삭제하기";
@@ -424,6 +425,7 @@
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Get quota now";
+"quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
@@ -569,7 +571,7 @@
 "contacts.edit.page.delete.alert.title" = "이 주소를 삭제할까요?";
 
 // Address List
-"address.list.page.my.title" = "나의 VITE 주소";
+"address.list.page.my.title" = "My Vite Address";
 "address.list.page.other.title" = "%@ 연락처 주소";
 "address.list.page.no.address.tip" = "%@ 주소가 없습니다.";
 
@@ -784,7 +786,7 @@
 "grin.detail.slateCopied" = "슬레이트 ID가 복사되었습니다.";
 "grin.send.illegalAmmount" = "불가능한 전송 금액";
 "grin.detail.gatewayResend" = "Vite 게이트웨이 요청 다시 보내기";
-"grin.export.mnemonic" = "시드 문구 내보내기";
+"grin.export.mnemonic" = "Export Grin Seed Phrase";
 
 // CrossChain Transfer & Receive
 
@@ -1192,6 +1194,9 @@
 "mining.trading.page.header.total.earnings.alert.title" = "Notice";
 "mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
 
+"mining.trading.page.header.fee" = "Trading Fees";
+"mining.trading.page.header.title" = "Mining";
+"mining.trading.page.header.expect" = "24H Expected Mined";
 
 "mining.trading.page.header.fee" = "Trading Fees";
 "mining.trading.page.header.title" = "Mining";
@@ -1303,7 +1308,7 @@
 "spot.page.confirm.tip" = "24시간 후에 다시 요청해주세요.";
 
 "spot.page.alert.title" = "중요 알림";
-"spot.page.alert.message" = "현재 거래쌍은 %@입니다. 암호화폐 투자는 높은 시장 위험과 변동성이 존재합니다. 잠재적인 위험을 처리하는 능력을평가하고 신중한 거래 결정을 내려주세요.";
+"spot.page.alert.message" = "Note that the selected trading pair %@ is being managed by an Unknown Operator.\nTrade at your own risk.";
 "spot.page.alert.ok" = "확인";
 
 "spot.page.order.empty" = "주문 없음";

@@ -12,7 +12,7 @@
 "cancel.button.title" = "Kanselahin";
 "alter.title" = "PAUNAWA";
 
-"discover.page.title" = "Pagtuklas";
+"discover.page.title" = "Discover";
 "discover.page.game.cell.palyNum" = "%@ ang mga manlalaro ay naglalaro";
 "discover.page.activity.page.title1" = "Pinakabagong Kaganapan";
 "discover.page.activity.page.title2" = "Kasaysayan";
@@ -20,12 +20,12 @@
 "discover.page.news.cell.time.minute" = "Ngayon";
 "discover.page.news.cell.time.hour" = "%@h na nakalipas";
 "discover.page.news.cell.time.day" = "%@d na nakalipas";
-"discover.page.headerTitle.activity" = "Center sa Kampanya";
-"discover.page.headerTitle.game" = "Mga Laro ng Vite";
-"discover.page.headerTitle.news" = "Balita sa Vite";
-"discover.page.VCWebTitle.activity" = "Pangyayari sa Vite";
-"discover.page.VCWebTitle.game" = "Mga Laro ng Vite";
-"discover.page.VCWebTitle.news" = "Balita sa Vite";
+"discover.page.headerTitle.activity" = "Ecosystem";
+"discover.page.headerTitle.game" = "DApps";
+"discover.page.headerTitle.news" = "News";
+"discover.page.VCWebTitle.activity" = "Ecosystem";
+"discover.page.VCWebTitle.game" = "DApps";
+"discover.page.VCWebTitle.news" = "News";
 "discover.page.game.alter.title" = "Binisita mo ang isang pahina kung saan umalis sa Vite App, at maire-redirect ka sa isang third party dApp. Ang iyong paggamit sa dApp na ito ay susunod sa Term ng Kasunduan ng Gumagamit at Patakaran sa Privacy ng dApp. Ang Vite Labs ay walang pangangasiwa o kontrol sa kalidad, nilalaman, pagiging maaasahan o seguridad ng third party dApp, o mananagot din sa Vite Labs para sa paggamit nito.";
 
 //AirDrop
@@ -95,9 +95,9 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Ang Mnemonic na Salita ay naka-backup";
-"mnemonic.backup.page.tip1" = "Inirerekumenda namin ang dalawang sumusunod na mga backup na pamamaraan:";
-"mnemonic.backup.page.tip2" = "Isulat ang mga mnemonic na salita sa isang piraso ng papel, at pagkatapos ay itago ito sa isang ligtas na lugar.";
-"mnemonic.backup.page.tip3" = "I-scan ang QR code sa ibaba gamit ang naka-install na Vite wallet sa isa pang aparato.";
+"mnemonic.backup.page.tip1" = "The following backups are recommend for the security of your assets:";
+"mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below with your Vite app installed on another device.";
 "mnemonic.backup.language.zh" = "sa";
 "mnemonic.backup.language.en" = "FIL";
 
@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "May mali sa iyong seed phrase, mangyaring subukang muli!";
 "import.page.submit.loading" = "I-import...";
 "import.page.submit.success" = "Tagumpay ang pag-import";
-"import.page.alert.exist.title" = "Ang seed phrase na na-input mo ay mayroon nang isang pangalan ng account na '%@' sa kasalukuyang aparato, sigurado ka bang nais mong i-overlap ang mayroon nang account";
+"import.page.alert.exist.title" = "The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?";
 "import.page.alert.exist.ok" = "Kumpirmahin";
 "import.page.alert.exist.cancel" = "Kanselahin";
 
@@ -188,6 +188,7 @@
 "my.page.invite.cell.title" = "Mga Referral sa Pagmimina";
 "my.page.reward.cell.title" = "Mga Tanong sa Gantimpala";
 "my.page.forum.cell.title" = "Opisyal na Forum";
+"my.page.tutorial.cell.title" = "Tutorial";
 "my.page.aboutUs.cell.title" = "Tungkol Sa Amin";
 "my.page.change.wallet.name.alter.title" = "I-edit ang Pangalan ng Account";
 "my.page.aboutUs.wechat.alert.title" = "I-scan ang QR code upang masundan ang Opisyal na Account ng Vite WeChat";
@@ -360,7 +361,7 @@
 "system.page.cell.login.pwd" = "Auto-Lock";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "Pag-logout / magpalit ng wallet";
+"system.page.cell.logout.title" = "Logout";
 "system.page.cell.upload.log.title" = "Mag-upload ng Log";
 "system.page.cell.upload.log.toast.success" = "Na-upload ang Log";
 "system.page.cell.delete.wallet.title" = "Tanggalin ang Kasalukuyang Account";
@@ -424,6 +425,7 @@
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Get quota now";
+"quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
@@ -569,7 +571,7 @@
 "contacts.edit.page.delete.alert.title" = "Sigurado ka bang buburahin ang address na ito?";
 
 // Address List
-"address.list.page.my.title" = "Ang VITE Address ko";
+"address.list.page.my.title" = "My Vite Address";
 "address.list.page.other.title" = "%@ contact address";
 "address.list.page.no.address.tip" = "Wala pang %@ ang address";
 
@@ -784,7 +786,7 @@
 "grin.detail.slateCopied" = "Nakopya ang Slate ID.";
 "grin.send.illegalAmmount" = "Ilegal na halaga ng paglipat";
 "grin.detail.gatewayResend" = "Humiling para sa Vite gateway upang Muling Ipadala";
-"grin.export.mnemonic" = "I-export ang Seed Phrase";
+"grin.export.mnemonic" = "Export Grin Seed Phrase";
 
 // CrossChain Transfer & Receive
 
@@ -1192,6 +1194,9 @@
 "mining.trading.page.header.total.earnings.alert.title" = "Notice";
 "mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
 
+"mining.trading.page.header.fee" = "Trading Fees";
+"mining.trading.page.header.title" = "Mining";
+"mining.trading.page.header.expect" = "24H Expected Mined";
 
 "mining.trading.page.header.fee" = "Trading Fees";
 "mining.trading.page.header.title" = "Mining";
@@ -1303,7 +1308,7 @@
 "spot.page.confirm.tip" = "Huwag magtanong muli sa loob ng 24 na oras";
 
 "spot.page.alert.title" = "Mahalagang paalala";
-"spot.page.alert.message" = "Ang kasalukuyang pares ng kalakalan ay %@, ang pamumuhunan sa Cryptocurrency ay napapailalim sa mataas na peligro sa merkado at pagkasumpungin ng presyo. Mangyaring suriin nang mabuti ang iyong kakayahan sa paghawak ng mga potensyal na peligro at gumawa ng mga maingat na pagpapasya sa kalakalan.";
+"spot.page.alert.message" = "Note that the selected trading pair %@ is being managed by an Unknown Operator.\nTrade at your own risk.";
 "spot.page.alert.ok" = "Kumpirmahin";
 
 "spot.page.order.empty" = "Walang order";

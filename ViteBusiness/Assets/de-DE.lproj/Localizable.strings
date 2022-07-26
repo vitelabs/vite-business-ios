@@ -97,7 +97,7 @@
 "mnemonic.backup.page.title" = "Mnemonic Words Backup";
 "mnemonic.backup.page.tip1" = "The following backups are recommend for the security of your assets:";
 "mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
-"mnemonic.backup.page.tip3" = "Scannen Sie den folgenden QR-Code mit der auf einem anderen Gerät installierten Vite-wallet App.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below with your Vite app installed on another device.";
 "mnemonic.backup.language.zh" = "中";
 "mnemonic.backup.language.en" = "EN";
 
@@ -188,6 +188,7 @@
 "my.page.invite.cell.title" = "Mining Referrals";
 "my.page.reward.cell.title" = "Rewards Enquiry";
 "my.page.forum.cell.title" = "Offizielles Forum";
+"my.page.tutorial.cell.title" = "Tutorial";
 "my.page.aboutUs.cell.title" = "Über uns";
 "my.page.change.wallet.name.alter.title" = "Edit Account Name";
 "my.page.aboutUs.wechat.alert.title" = "Scan QR code to follow Vite WeChat Official Account";
@@ -424,6 +425,7 @@
 "quota.pow.tip.float.view.title.1" = "Insufficient quota";
 "quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Get quota now";
+"quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
@@ -1192,6 +1194,9 @@
 "mining.trading.page.header.total.earnings.alert.title" = "Notice";
 "mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
 
+"mining.trading.page.header.fee" = "Trading Fees";
+"mining.trading.page.header.title" = "Mining";
+"mining.trading.page.header.expect" = "24H Expected Mined";
 
 "mining.trading.page.header.fee" = "Trading Fees";
 "mining.trading.page.header.title" = "Mining";

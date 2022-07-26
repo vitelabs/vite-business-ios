@@ -20,12 +20,12 @@
 "discover.page.news.cell.time.minute" = "Ahora";
 "discover.page.news.cell.time.hour" = "Hace %@ horas";
 "discover.page.news.cell.time.day" = "Hace %@ días";
-"discover.page.headerTitle.activity" = "Centro de Campañas";
-"discover.page.headerTitle.game" = "Juegos en Vite";
-"discover.page.headerTitle.news" = "Noticias de Vite";
-"discover.page.VCWebTitle.activity" = "Eventos de Vite";
-"discover.page.VCWebTitle.game" = "Juegos en Vite";
-"discover.page.VCWebTitle.news" = "Noticias de Vite";
+"discover.page.headerTitle.activity" = "Ecosistema";
+"discover.page.headerTitle.game" = "DApps";
+"discover.page.headerTitle.news" = "Noticias";
+"discover.page.VCWebTitle.activity" = "Ecosistema";
+"discover.page.VCWebTitle.game" = "DApps";
+"discover.page.VCWebTitle.news" = "Noticias";
 "discover.page.game.alter.title" = "Has visitado una página que sale de Vite App, y serás redirigido a un dApp de terceros. El uso en esta dApp se ajustará a los términos del acuerdo de usuario y la política de privacidad de aquella dApp. Vite Labs no tiene supervisión ni control sobre la calidad, contenido, la fiabilidad o la seguridad de dApp de terceros, ni será responsable de su uso.";
 
 //AirDrop
@@ -51,7 +51,7 @@
 "Cancel" = "Cancelar";
 "Finish" = "Aceptar";
 "Delete" = "Borrar";
-"Hint" = "Sugerencia";
+"Hint" = "Aviso";
 "Yes" = "Si";
 "No" = "No";
 "Loading" = "Cargando";
@@ -81,7 +81,7 @@
 "create.page.tf.title" = "Nombre de la cuenta";
 "create.page.pw.title" = "Por favor, introduzca una contraseña";
 "create.page.pw.repeate.title" = "Por favor, introduce tu contraseña de nuevo";
-"create.page.invite.code.title" = "Ingresa el código de invitación o escanee el código QR de invitación para disfrutar de un 10% descuento en comisiones de trading y potenciar las recompensas de minado";
+"create.page.invite.code.title" = "Ingresa el código de invitación o escanee el código QR de invitación para disfrutar de un 10% descuento en comisiones de trading y potenciar las recompensas de minería";
 "create.page.invite.code.placeholder" = "Código de invitación (opcional)";
 "create.page.submit.btn.title" = "Crear";
 "create.page.toast.error.invite.code" = "Código de invitación incorrecto";
@@ -95,7 +95,7 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Copia de seguridad de palabras mnemónicas";
-"mnemonic.backup.page.tip1" = "Recomendamos los dos siguientes métodos de copia de seguridad:";
+"mnemonic.backup.page.tip1" = "Las siguientes copias de seguridad se recomiendan para la seguridad de sus activos:";
 "mnemonic.backup.page.tip2" = "Escriba las palabras mnemónicas en un pedazo de papel, luego guárdelas en un lugar seguro.";
 "mnemonic.backup.page.tip3" = "Escanea el código QR de abajo usando la billetera Vite instalada en otro dispositivo.";
 "mnemonic.backup.language.zh" = "Chino";
@@ -142,15 +142,15 @@
 "import.page.submit.invalid.mnemonic" = "Algo salió mal con tu frase semilla, ¡por favor inténtalo de nuevo!";
 "import.page.submit.loading" = "Importando...";
 "import.page.submit.success" = "Importación exitosa";
-"import.page.alert.exist.title" = "La frase semilla que introdujiste ya esta asociada a la cuenta '%@' de este dispositivo, estás seguro que deseas sobrescribir la cuenta existente";
+"import.page.alert.exist.title" = "La frase de semilla que introdujo coincide con una cuenta existente llamada '%@' en este dispositivo. ¿Está seguro que desea sobrescribir esa cuenta?";
 "import.page.alert.exist.ok" = "Confirmar";
 "import.page.alert.exist.cancel" = "Cancelar";
 
 
 /* export mnemonic */
 "export.page.title" = "Exportar frase semilla";
-"export.page.alter.title" = "Por favor, introduzca una contraseña";
-"export.page.alter.tf.placeholder" = "Por favor, introduzca una contraseña";
+"export.page.alter.title" = "Introduce tu contraseña";
+"export.page.alter.tf.placeholder" = "Introduce tu contraseña";
 "export.page.alter.password.error" = "¡Contraseña incorrecta!";
 
 /* login */
@@ -181,13 +181,14 @@
 "manage.wallet.page.changeName.loading" = "Editando";
 "manage.wallet.page.error.type.name" = "El nombre no puede estar vacío";
 
-"my.page.contacts.cell.title" = "Dirección de contacto";
+"my.page.contacts.cell.title" = "Libreta de direcciones";
 "my.page.mnemonic.cell.title" = "Palabras mnemónicas";
 "my.page.system.cell.title" = "Ajustes";
 "my.page.security.cell.title" = "Seguridad";
 "my.page.invite.cell.title" = "Minería por referidos";
 "my.page.reward.cell.title" = "Consulta de recompensas";
 "my.page.forum.cell.title" = "Foro oficial";
+"my.page.tutorial.cell.title" = "Tutorial";
 "my.page.aboutUs.cell.title" = "Sobre Nosotros";
 "my.page.change.wallet.name.alter.title" = "Editar nombre de cuenta";
 "my.page.aboutUs.wechat.alert.title" = "Escanea el código QR para seguir la cuenta oficial de Vite en WeChat";
@@ -195,8 +196,8 @@
 /* change password */
 "change.password.page.title" = "Cambiar contraseña";
 "change.password.page.old.title" = "Introduce tu contraseña anterior";
-"change.password.page.new.1.title" = "Introduzca nueva contraseña";
-"change.password.page.new.2.title" = "Introduzca confirmar la contraseña";
+"change.password.page.new.1.title" = "Nueva contraseña";
+"change.password.page.new.2.title" = "Confirma la contraseña";
 "change.password.page.button.title" = "Enviar";
 "change.password.page.success.toast" = "Modificado correctamente";
 "change.password.page.old.error.toast" = "Su antigua contraseña no es correcta";
@@ -237,7 +238,7 @@
 "vite.transaction.detail.page.type.receive" = "Respuesta";
 "vite.transaction.detail.page.hash.title" = "Hash de transacción";
 "vite.transaction.detail.page.height.title" = "Altura del bloque";
-"vite.transaction.detail.page.note.title" = "Nota";
+"vite.transaction.detail.page.note.title" = "Memo";
 "vite.transaction.detail.page.link.button.title" = "Ver más detalles en Vite Explorer";
 
 /* BalanceInfo */
@@ -252,7 +253,7 @@
 "balance.info.detail.vote" = "Votar";
 "balance.info.detail.pledge" = "Obtener Cuota";
 "balance.info.detail.exchange.vite" = "Convertir VITE";
-"balance.info.detail.pledge.count.content" = "Cuota disponible/Cuota límite";
+"balance.info.detail.pledge.count.content" = "Cuota libre/Cuota total";
 "balance.info.detail.pledge.none.tip" = "0 Cuota/0 Cuota";
 
 "gateway.info.detail.page.title" = "Detalles del Gateway";
@@ -267,7 +268,7 @@
 "token.info.detail.page.name" = "Nombre del Token";
 "token.info.detail.page.id" = "Token ID";
 "token.info.detail.page.brief" = "Introducción";
-"token.info.detail.page.total" = "Emisión total";
+"token.info.detail.page.total" = "Total emitido";
 "token.info.detail.page.type" = "Tipo de token";
 "market.detail.page.token.info.type.value.native" = "Nativo";
 "market.detail.page.token.info.type.value.other" = "Cross-Chain";
@@ -279,20 +280,20 @@
 "token.info.detail.page.social" = "Redes Sociales";
 
 /* Address Manage Page */
-"address.manage.page.title" = "Mi dirección %@";
+"address.manage.page.title" = "Mis direcciones %@";
 "address.manage.default.address.cell.title" = "Dirección predeterminada";
 "address.manage.address.header.title" = "Direcciones";
 "address.manage.address.generate.button.title" = "Agregar dirección";
 "address.manage.address.generate.button.toast" = "¡Añade hasta un máximo de 100 direcciones!";
 "address.manage.address.generate.button.already.toast" = "La dirección ya existe";
 "address.manage.address.generate.button.error.toast" = "Por favor ingrese un número";
-"address.manage.tip.alert.message" = "Un máximo de 100 direcciones pueden ser creadas; Se requiere la recuperación manual de la dirección #1 en la lista direcciones para recuperar todas las demás";
+"address.manage.tip.alert.message" = "Puedes crear un máximo de 100 direcciones. Se requiere la recuperación manual de la primera dirección #1 en la lista direcciones para recuperar todas las demás.";
 "address.manage.alert.title" = "Generar direcciones nuevas";
 "address.manage.alert.placeholder" = "Ingrese un número entre 1 y 100";
 "address.manage.alert.tip" = "Generar en masa un número específico de direcciones";
 "address.manage.tip.alert.ok" = "Entendido";
-"address.manage.default.address.name" = "Sin título";
-"address.manage.change.name.alert.title" = "Editar alias de dirección";
+"address.manage.default.address.name" = "Sin nombre";
+"address.manage.change.name.alert.title" = "Editar nombre de dirección";
 "address.manage.change.name.alert.placeholder" = "Por favor, introduce un nuevo alias";
 
 /* Send Page */
@@ -301,15 +302,15 @@
 "send.page.my.balance.title" = "Saldo";
 "send.page.wallet.balance.title" = "Balance de Billetera";
 "send.page.my.pledge.title" = "Cantidad bloqueada";
-"send.page.my.quota.title" = "Cuota disponible/Cuota límite";
+"send.page.my.quota.title" = "Cuota libre/Cuota total";
 "send.page.my.max.tx.count.title" = "Cantidad máxima de Tx";
 "send.page.add.my.address.button.title" = "Mías";
-"send.page.vite.contacts.button.title" = "Dirección de contacto VITE";
+"send.page.vite.contacts.button.title" = "Libreta de direcciones VITE";
 "send.page.scan.address.button.title" = "Escanear";
 "send.page.to.address.title" = "Dirección del destinatario";
 "send.page.amount.title" = "Cantidad";
 "send.page.all.button.title" = "Todo";
-"send.page.remark.title" = "Nota";
+"send.page.remark.title" = "Memo";
 "send.page.send.button.title" = "Enviar";
 "send.page.amount.toolbar.button.title" = "Siguiente";
 "send.page.toast.address.error" = "Dirección incorrecta, por favor compruebe el formato";
@@ -360,7 +361,7 @@
 "system.page.cell.login.pwd" = "Bloqueo automático";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "Cerrar sesión/cambiar de billetera";
+"system.page.cell.logout.title" = "Cerrar sesión";
 "system.page.cell.upload.log.title" = "Subir registro";
 "system.page.cell.upload.log.toast.success" = "Registro subido";
 "system.page.cell.delete.wallet.title" = "Eliminar cuenta actual";
@@ -369,7 +370,7 @@
 /* node settings */
 "node.settings.page.title" = "Ajustes del nodo";
 "node.settings.page.add.button.title" = "Agregar un nodo personalizado";
-"node.settings.page.add.alert.title" = "Por favor, introduzca una dirección válida para el nodo";
+"node.settings.page.add.alert.title" = "Por favor, introduce una dirección válida para el nodo";
 "node.settings.page.add.alert.tip" = "El nodo actual es %@, conectado a la red principal";
 "node.settings.page.node.invalid.error" = "Nodo inválido";
 "node.settings.page.node.exist.error" = "El nodo ya existe";
@@ -391,14 +392,14 @@
 "aboutUs.page.cell.portal.website" = "Vite.net";
 "aboutUs.page.cell.blog.website" = "Vite.wiki";
 "aboutUs.page.email.title" = "Comentarios y sugerencias";
-"aboutUs.page.email.content" = "\n\n\n\n\nLa sugerencia proviene de la utilización del siguiente entorno:\n1.Sistema del dispositivo: %@\n2.Versión del sistema:%@\n3.Versión de la aplicación: %@\n4. Idioma:%@";
+"aboutUs.page.email.content" = "\n\n\n\n\nLa sugerencia proviene de la utilización del siguiente entorno:\n1. Sistema del dispositivo: %@\n2. Versión del sistema: %@\n3. Versión de la aplicación: %@\n4. Idioma: %@";
 
 /* toast error */
 "toast.error.login" = "Error de acceso";
 
 /* quota manage */
 "quota.manage.page.title" = "Obtener cuota";
-"quota.manage.page.input.address.title" = "Beneficiario de la cuota";
+"quota.manage.page.input.address.title" = "Beneficiario de cuota";
 "quota.manage.page.quota.money.title" = "Cantidad bloqueada";
 "quota.manage.page.quota.quota.title" = "Cuota";
 "quota.manage.page.quota.money.placeholder" = "Por favor ingrese un monto, mínimo 134 VITE";
@@ -424,7 +425,6 @@
 "quota.pow.tip.float.view.title.1" = "Cuota insuficiente";
 "quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Obtener cuota ahora";
-
 "quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.title.2" = "Obtener cuota";
@@ -440,7 +440,7 @@
 
 /* Peldge History */
 "peldge.message" = "Actualmente la aplicación de Vite sólo soporta comprobar la lista de staking, por favor vaya a la billetera Web si necesita retirar los token en stake que estén con la fecha de vencimiento cumplida.";
-"peldge.deadline" = "Tiempo disponible para desbloquear";
+"peldge.deadline" = "Fecha disponible para desbloqueo";
 "peldge.title" = "Registros de bloqueos";
 "peldge.address.title" = "Beneficiario";
 "peldge.cancel.peldge.button.title" = "Desbloquear";
@@ -461,8 +461,8 @@
 
 /* Vote List*/
 "vote" = "Votar";
-"vote.list.title" = "Nodos Candidados";
-"vote.list.search" = "Buscar por nombre o dirección de los nodos candidatos";
+"vote.list.title" = "Lista de SBP";
+"vote.list.search" = "Buscar por nombre o dirección de los SBP";
 "vote.list.alert.already.voted" = "Has votado por %@, por favor asegúrate de que esta acción sobrescribirá el resultado de votación actual";
 "vote.list.confirm.revote" = "Confirmar";
 "vote.list.count" = "Votos";
@@ -502,16 +502,16 @@
 "vite.error.rpc.error.code.refrence.same.snapshoot.block" = "Las transacciones han sido enviadas con demasiada frecuencia, por favor inténtalo de nuevo más tarde";
 "vite.error.rpc.error.code.contract.method.not.exist" = "El método no existe en el contrato incorporado, por favor inténtalo de nuevo más tarde (-35006)";
 "vite.error.rpc.error.code.no.transaction.before" = "No puedes hacer transferencias hasta que recibas una transacción primero.";
-"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "La instantánea de altura de bloque es ilegal, por favor inténtalo de nuevo más tarde";
+"vite.error.rpc.error.code.refrence.snapshoot.block.illegal" = "La altura de bloque de la instantánea es ilegal, por favor inténtalo de nuevo más tarde";
 "vite.error.rpc.error.code.verify.failure" = "Falló la verificación del sistema. Inténtalo de nuevo más tarde (%@)";
 
 "eth.error.rpc.error.code.not.enough.balance" = "Saldo insuficiente";
 "eth.error.rpc.error.code.not.enough.fee" = "Comisión insuficiente";
 
 /* Tip String */
-"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es Quota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">En Vite, los usuarios no compran el gas necesario para una transacción pagando una comisión, sino que adquieren el recurso informático a través de un modelo basado en cuotas. La cuota requerida para realizar una transacción = una cuota básica (solicitud) + cuota (por datos de texto adjuntos). La cuota requerida para aceptar una transacción = una cuota básica (respuesta). Este protocolo de configuración de recursos basado en quota, permite a los usuarios obtenerlos de dos maneras: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a. Bloqueando VITE para obtener cuota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b. Ejecutar PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unidad de Cuotas: UTPS, Unidad de transacciones por segundo.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es el bloqueo?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">En Vite, el usuario puede bloquear VITE para obtener una cierta cantidad de cuotas. El valor mínimo para bloquear es 134 VITE, y no hay límite máximo. Además en Vite también se soporta compartir este beneficio, siendo que una dirección A bloquee una parte VITE y asigne la cuota obtenida a otra dirección B beneficiaría. Cuando los usuarios soliciten un bloqueo, su VITE será enviado a la dirección del contrato inteligente en lugar del otro usuario, y sólo el usuario que solicita el bloqueo tiene acceso a administrar la cantidad a desbloquear.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Prueba de Trabajo (PoW, en sus siglas en inglés), es un protocolo para confirmar que has realizado una cierta cantidad de trabajo. Esta medida es una medida económica para disuadir ataques DDoS y otros tipos de abusos de servicios. Requiere que el solicitador realize una cierta cantidad de cómputo tomando cierto tiempo en el servidor. En Vite, los usuarios pueden obtener una cuota gratuita ejecutando este PoW, y pudiendo enviar transacciones sin tomar ninguna acción usando la cuota obtenida.</p>";
-"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">About Voting</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Puedes unirte y votar por cualquier SBP, un total de 25 SBPs (Productor de bloques de instantáneas) serán escogidos por cada ronda de votación, cada 75s. Sus votos equivalen al saldo disponible en la dirección que vota. Su voto se mantiene igual en las siguientes rondas a menos que retire su voto o lo cambie para otro nodo. Serán escogidos aleatoriamente 23 SBP de los 25 mejores candidatos, más 2 SBP de los candidatos entre el puesto 26º y 100º. Siendo elegidos como SBPs 25 nodos en total. </p>";
-"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">El candidato %@ por el que habías votado, ha dejado de hacer campaña por ser un SBP. Puedes votar de nuevo por otro o cancelar tus votos. Si no lo haces, tu voto original se recuperará después de que %@ vuelva a registrarse.</p>";
+"pop.page.tip.quota" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es la Cuota?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">En Vite, los usuarios no compran el gas necesario para una transacción pagando una comisión, sino que adquieren el recurso informático a través de un modelo basado en cuotas. La cuota requerida para realizar una transacción = una cuota básica (solicitud) + cuota (por datos de texto adjuntos). La cuota requerida para aceptar una transacción = una cuota básica (respuesta). Este protocolo de configuración de recursos basado en cuotas, permite a los usuarios obtenerlos de dos maneras: </p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">a. Bloqueando VITE para obtener cuota</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">b. Ejecutar PoW</p><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Unidad de Cuotas: UTPS, Unidad de transacciones por segundo.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es el bloqueo?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">En Vite, el usuario puede bloquear VITE para obtener una cierta cantidad de cuotas. El valor mínimo para bloquear es 134 VITE, y no hay límite máximo. Además en Vite también es posible compartir este beneficio, siendo que una dirección A bloquee VITE y asigne la cuota obtenida a otra dirección B beneficiaría. Cuando los usuarios soliciten un bloqueo, su VITE será enviado a la dirección del contrato inteligente en lugar del otro usuario, y sólo el usuario que solicita el bloqueo tiene acceso a administrar la cantidad a desbloquear.</p><h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">¿Qué es PoW?</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Prueba de Trabajo (PoW, en sus siglas en inglés), es un protocolo para confirmar que has realizado una cierta cantidad de trabajo. Esta medida es una medida económica para disuadir ataques DDoS y otros tipos de abusos de servicios. Requiere que el solicitador realize una cierta cantidad de cómputo tomando cierto tiempo en el servidor. En Vite, los usuarios pueden obtener una cuota gratuita ejecutando este PoW, y pudiendo enviar transacciones sin tomar ninguna acción usando la cuota obtenida.</p>";
+"pop.page.tip.vote" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Sobre las Votaciones</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Puedes unirte y votar por cualquier SBP, un total de 25 SBPs (Productor de bloques de instantáneas) serán escogidos por cada ronda de votación, cada 75s. Los votos equivalen al saldo disponible en la dirección que realiza la votación. Su voto se mantiene igual en las siguientes rondas a menos que retire su voto o lo cambie para otro nodo. Serán escogidos aleatoriamente 23 SBP de los 25 mejores, más 2 SBP ubicados entre el puesto 26º y 100º. Siendo elegidos 25 SBP en total para obtención de recompensas. </p>";
+"pop.page.tip.vote.loser" = "<p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">El SBP %@ por el que habías votado, ha dejado de hacer campaña por ser un SBP. Puedes votar de nuevo por otro o cancelar tus votos. Si no lo haces, tu voto original se recuperará después de que %@ vuelva a registrarse.</p>";
 "pop.page.tip.ethViteExchange" = "<h1 style=\"font-PingFangSC-Medium;font-size:12;color:#24272B\">Entendiendo la conversión de VITE</h1><p style=\"font-PingFangSC-Regular;font-size:11;color:#3E4A59\">Puede convertir tus VITE ERC20 en VITE nativo de la red principal (mainnet) a través de la conversión de VITE. Durante la conversión, tus VITE ERC20 serán transferidos a la dirección de agujero negro Ethereum: 0x11111111111111111111111111111111111111111111, y recibirás la misma cantidad de VITE en tu dirección de Vite una vez haya finalizado la transacción a la dirección del agujero negro Ethereum. Durante la conversión, la comisión de transacción a la dirección del agujero negro Ethereum proviene de su dirección ETH actual. Después de realizar la conversión, por favor espere al menos 30 confirmaciones en la red Ethereum, puede encontrar el historial de transacciones en el historial de conversiones.</p>";
 
 // ViteURI
@@ -519,7 +519,7 @@
 
 // eth
 "eth.send.page.my.address.title" = "Dirección ETH";
-"eth.send.page.eth.contacts.button.title" = "Dirección de contacto ETH";
+"eth.send.page.eth.contacts.button.title" = "Libreta de direcciones ETH";
 "eth.receive.page.my.address.title" = "Mis direcciones ETH";
 "eth.page.gasFee.title" = "Tarifa de gas";
 "eth.page.gasFee.slow.title" = "Lento";
@@ -538,7 +538,7 @@
 "eth.transaction.detail.gas.limit" = "Límite del gas";
 "eth.transaction.detail.hash" = "Hash de transacción";
 "eth.transaction.detail.block" = "Bloque";
-"eth.transaction.detail.note" = "Nota";
+"eth.transaction.detail.note" = "Memo";
 "eth.transaction.detail.go.button.title" = "Ver más detalles en Etherscan";
 
 //token
@@ -550,9 +550,9 @@
 "token.list.page.ignore.lab.title" = "%d nuevo(s) activo(s)";
 "token.list.page.ignore.alter.title" = "Los activos ignorados no serán mostrados de nuevo, ¿estás seguro de ignorar los activos de abajo?";
 // Contacts Home
-"contacts.home.page.title" = "Direcciones de contacto";
+"contacts.home.page.title" = "Libreta de direcciones";
 "contacts.home.page.no.contact.tip" = "Añade tu primera dirección";
-"contacts.home.page.single.no.contact.tip" = "Aún no hay %@ dirección";
+"contacts.home.page.single.no.contact.tip" = "Aún no hay direcciones %@";
 "contacts.home.page.filter.all" = "Todo";
 "contacts.home.page.add.button.title" = "Agregar";
 
@@ -570,8 +570,8 @@
 
 // Address List
 "address.list.page.my.title" = "Mis direcciones VITE";
-"address.list.page.other.title" = "%@ direcciones de contacto";
-"address.list.page.no.address.tip" = "Aún no hay %@ dirección";
+"address.list.page.other.title" = "Libreta de direcciones %@";
+"address.list.page.no.address.tip" = "Aún no hay direcciones %@";
 
 /* WorkFlow */
 "workflow.confirm.page.biometryAuthFailed.title" = "No se puede identificar";
@@ -698,7 +698,7 @@
 "grin.finalized.alertDesc" = "Su transacción GRIN ha comenzado a ser transmitida";
 "grin.sent.next" = "Siguiente";
 "grin.sent.suggest.useVite.title" = "Aviso";
-"grin.sent.suggest.useVite.desc" = "Si desea enviar GRIN a un usuario de la billeteraVite, se recomienda enviar a través de la dirección VITE porque es más seguro y barato.";
+"grin.sent.suggest.useVite.desc" = "Si desea enviar GRIN a un usuario de la billetera Vite, se recomienda enviar a través de la dirección VITE porque es más seguro y barato.";
 "grin.sent.switch" = "Dirección VITE";
 "grin.sent.stillUseHttp" = "Dirección HTTP";
 "grin.sent.http.success" = "Has enviado con éxito la solicitud de transferencia de GRIN";
@@ -724,7 +724,7 @@
 "grin.switchAddress" = "Cambiar dirección";
 "grin.http.address" = "Dirección HTTP";
 "grin.vite.address" = "Dirección VITE";
-"grin.sendPageViteContactsButtonTitle" = "Dirección de contacto GRIN";
+"grin.sendPageViteContactsButtonTitle" = "Libreta de direcciones GRIN";
 "grin.canceled" = "Cancelado";
 "grin.makeSureToShare" = "Por favor, asegúrese de compartir el archivo de transacción con el remitente";
 "grin.txbyfile.shareSentFileDesc" = "Por favor, asegúrese de compartir el archivo de transacción con el destinatario y solicitar un archivo de confirmación.";
@@ -784,7 +784,7 @@
 "grin.detail.slateCopied" = "Slate ID copiado.";
 "grin.send.illegalAmmount" = "Monto de transferencia ilegal";
 "grin.detail.gatewayResend" = "Solicitar al gateway Vite para reenviar";
-"grin.export.mnemonic" = "Exportar frase semilla";
+"grin.export.mnemonic" = "Exportar frase semilla GRIN";
 
 // CrossChain Transfer & Receive
 
@@ -819,7 +819,7 @@
 "crosschain.tokenDetail.id" = "Token ID";
 "crosschain.tokenDetail.name" = "Nombre del Token";
 "crosschain.tokenDetail.address" = "Dirección de forja de monedas";
-"crosschain.tokenDetail.amount" = "Emisión total";
+"crosschain.tokenDetail.amount" = "Total emitido";
 "crosschain.tokenDetail.digit" = "Decimales";
 "crosschain.tokenDetail.unit" = "";
 "crosschain.tokenDetail.issuance" = "Abrir nueva emisión";
@@ -882,12 +882,12 @@
 /* ViteConnect */
 "bifrost.connect.tip.in.wallet.home" = "ViteConnect conectado";
 "bifrost.alert.tip.title" = "Aviso";
-"bifrost.alert.approve.session.message" = "Por favor, confirma el siguiente enlace\n%@";
+"bifrost.alert.approve.session.message" = "Corrobora la conexión al sitio \n%@";
 "bifrost.alert.approve.session.another.address.message" = "La dirección escaneada no es consistente con la de la plataforma web. ¿Continuar con la dirección de la aplicación?\n(%@)";
 "bifrost.alert.approve.session.another.address.ok" = "Confirmar para iniciar sesión";
 "bifrost.alert.approve.session.another.address.cancel" = "Atrás";
 
-"bifrost.alert.switch.address.message" = "ViteConnect está conectado, al cambiar de dirección se desconectará de la red. Asegúrese de cambiar de dirección";
+"bifrost.alert.switch.address.message" = "ViteConnect está conectado, al cambiar de dirección se desconectará de la red. Confirmar el cambio de dirección";
 
 "bifrost.alert.quit.title" = "¿Estas seguro de desconectar ViteConnect?";
 
@@ -898,7 +898,7 @@
 "bifrost.home.page.free.auto.sign.title" = "Firmar automáticamente";
 "bifrost.home.page.free.auto.sign.confirm.title" = "Contraseña";
 
-"bifrost.home.page.busy.header" = "Está haciendo cambios en ViteX & billetera Web";
+"bifrost.home.page.busy.header" = "Está haciendo cambios en ViteX y/o billetera web/móvil";
 "bifrost.home.page.busy.content" = "Por favor confirme la información de la transacción abajo";
 "bifrost.toast.operation.success" = "Operación exitosa";
 
@@ -922,7 +922,7 @@
 "bifrost.operation.cancel.vote" = "Cancelar voto";
 "bifrost.operation.extract.reward" = "Reclamar recompensas";
 "bifrost.operation.pledge" = "Obtener Cuota";
-"bifrost.operation.cancel.pledge" = "Recuperar bloqueo para cuota";
+"bifrost.operation.cancel.pledge" = "Cancelar bloqueo por cuota";
 "bifrost.operation.coin" = "Emisión de Token";
 "bifrost.operation.cancel.coin" = "Cancelar bloqueo de emisión";
 "bifrost.operation.transfer" = "Enviar";
@@ -932,7 +932,7 @@
 "bifrost.operation.vx.order" = "Colocar orden en ViteX";
 "bifrost.operation.vx.cancel.order" = "Cancelar orden en ViteX";
 
-"bifrost.operation.function.title" = "Invocar contrato";
+"bifrost.operation.function.title" = "Contrato invocado";
 "bifrost.operation.title.contract.address" = "Dirección del contrato";
 "bifrost.operation.title.amount" = "Cantidad";
 "bifrost.operation.title.fee" = "Comisión";
@@ -981,7 +981,7 @@
 "buildin.transfer.cross.chain.item2.title" = "Dirección de recepción";
 
 "buildin.vote.function.title" = "Votar";
-"buildin.vote.item0.title" = "Candidatos SBP";
+"buildin.vote.item0.title" = "Lista de SBP";
 "buildin.vote.item1.title" = "Votos";
 
 "buildin.coin.issuance.function.title" = "Emisión de Token";
@@ -1039,11 +1039,11 @@
 "buildin.dex.recover.trading.pair.item0.title" = "Nombre";
 "buildin.dex.recover.trading.pair.item1.title" = "Dirección actual";
 
-"buildin.dex.staking.as.mining.function.title" = "Staking como minado";
+"buildin.dex.staking.as.mining.function.title" = "Staking como minería";
 "buildin.dex.staking.as.mining.item0.title" = "Dirección actual";
 "buildin.dex.staking.as.mining.item1.title" = "Cantidad";
 
-"buildin.dex.cancel.staking.as.mining.function.title" = "Cancelar Staking como minado";
+"buildin.dex.cancel.staking.as.mining.function.title" = "Cancelar Staking como minería";
 "buildin.dex.cancel.staking.as.mining.item0.title" = "Dirección actual";
 "buildin.dex.cancel.staking.as.mining.item1.title" = "Cantidad";
 
@@ -1080,7 +1080,7 @@
 "fund.title.toVitex" = "Depositar al Exchange";
 "fund.walletAddress" = "Mi Dirección";
 "fund.walletFound" = "Balance de Billetera";
-"fund.quotaInfo" = "Cuota disponible/Cuota límite";
+"fund.quotaInfo" = "Cuota libre/Cuota total";
 "fund.deposit.amount" = "Transferir monto";
 "fund.deposit.all" = "Todo";
 "fund.quotaSpend" = "Cuota";
@@ -1113,19 +1113,19 @@
 "market.about" = "Primeros pasos con ViteX";
 "market.name" = "Nombre";
 "market.price" = "Último precio";
-"market.percent" = "Cambiar";
+"market.percent" = "Cambio (%)";
 "market.operator" = "Operador";
-"market.switch" = "Cambiar";
+"market.switch" = "Mercados";
 
 // market detail
-"market.detail.page.segment.order.book.title" = "Libros de órdenes";
+"market.detail.page.segment.order.book.title" = "Libro de órdenes";
 "market.detail.page.segment.last.trades.title" = "Últimas transacciones";
 "market.detail.page.segment.token.info.title" = "Token";
 "market.detail.page.segment.operator.into.title" = "Operador";
 
 "market.detail.page.info.high.title" = "Máximo";
 "market.detail.page.info.low.title" = "Mínimo";
-"market.detail.page.info.vol.title" = "24H";
+"market.detail.page.info.vol.title" = "Vol. 24H";
 
 "market.detail.page.kline.type.min1.title" = "1m";
 "market.detail.page.kline.type.min30.title" = "30m";
@@ -1176,22 +1176,25 @@
 
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
-"trading.home.page.segment.mining" = "Minado";
-"trading.home.page.segment.bonus" = "Dividendo";
+"trading.home.page.segment.mining" = "Minería";
+"trading.home.page.segment.bonus" = "Dividendos";
 
 // Mining Home
 "mining.page.segment.trading" = "Trading";
 "mining.page.segment.staking" = "Staking";
-"mining.page.segment.invite" = "Referral";
-"mining.page.segment.making" = "Market-Making";
+"mining.page.segment.invite" = "Referidos";
+"mining.page.segment.making" = "Creación de mercado";
 
-"mining.page.header.total.real.time" = "Live Mining Dashboard";
-"mining.page.list.title" = "Mining History";
+"mining.page.header.total.real.time" = "Tablero de minería en vivo";
+"mining.page.list.title" = "Historial de minería";
 
-"mining.trading.page.header.total.earnings" = "Total Income (VX)";
-"mining.trading.page.header.total.earnings.alert.title" = "Notice";
-"mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
+"mining.trading.page.header.total.earnings" = "Ingresos totales (VX)";
+"mining.trading.page.header.total.earnings.alert.title" = "Aviso";
+"mining.trading.page.header.total.earnings.alert.message" = "Las comisiones de trading actuales mostradas en esta página contienen sólo el 0.2% de las comisiones base de las transacciones en ViteX, por favor tenga en cuenta que las comisiones del operador se deberán considerar al calcular el coste de la minería";
 
+"mining.trading.page.header.fee" = "Comisiones de trading";
+"mining.trading.page.header.title" = "Minería";
+"mining.trading.page.header.expect" = "Volumen de minería esperando 24H";
 
 "mining.trading.page.header.fee" = "Trading Fees";
 "mining.trading.page.header.title" = "Mining";
@@ -1303,7 +1306,7 @@
 "spot.page.confirm.tip" = "No volver a preguntar en 24 horas";
 
 "spot.page.alert.title" = "Recordatorio importante";
-"spot.page.alert.message" = "El par de comercio actual es %@. La inversión en criptomonedas está sujeta a un alto riesgo de mercado y a la volatilidad de los precios. Por favor, evalúe cuidadosamente su capacidad de manejar riesgos potenciales y tome decisiones comerciales prudentes.";
+"spot.page.alert.message" = "Ten en cuenta que el par de trading seleccionado %@ está siendo administrado por un Operador Desconocido.\nTradea bajo tu propio riesgo.";
 "spot.page.alert.ok" = "Confirmar";
 
 "spot.page.order.empty" = "Sin órdenes";
@@ -1351,15 +1354,15 @@
 "dex.home.page.segment.dex" = "Trading";
 
 "dex.home.page.header.btc.valuation.title" = "Valor (BTC)";
-"dex.home.page.header.button.transfer.title" = "Transferencia";
-"dex.home.page.header.button.deposit.title" = "Depósito";
+"dex.home.page.header.button.transfer.title" = "Transferir";
+"dex.home.page.header.button.deposit.title" = "Depositar";
 "dex.home.page.header.button.withdraw.title" = "Retirar";
 "dex.home.page.header.button.hide.small.title" = "Ocultar saldos pequeños";
 
 "dex.token.detail.page.title" = "Saldo";
 "dex.token.detail.page.header.total" = "Total";
 "dex.token.detail.page.header.available" = "Disponible";
-"dex.token.detail.page.header.lock.place.order" = "En orden";
+"dex.token.detail.page.header.lock.place.order" = "En órdenes";
 
 "dex.token.detail.page.header.lock.vite.pledge" = "Bloqueado para cuota";
 "dex.token.detail.page.header.lock.vite.sbp" = "Bloqueado para SBP";
@@ -1372,13 +1375,13 @@
 
 "dex.token.detail.page.list.wallet.heater.title" = "Historial";
 "dex.token.detail.page.list.dex.heater.title" = "Historial de transferencias";
-"dex.token.detail.page.cell.in" = "Transferencia-Entrada";
-"dex.token.detail.page.cell.out" = "Transferencia-Salida";
+"dex.token.detail.page.cell.in" = "Transferencia recibida";
+"dex.token.detail.page.cell.out" = "Transferencia enviada";
 
 "dex.token.detail.page.button.deposit" = "Depositar";
 "dex.token.detail.page.button.withdraw" = "Retirar";
 "dex.token.detail.page.button.transfer" = "Transferir";
 "dex.token.detail.page.button.send" = "Enviar";
-"dex.token.detail.page.button.trading" = "Comercio";
+"dex.token.detail.page.button.trading" = "Comerciar";
 
 "dex.token.market.selector.title" = "Seleccionar par de Trading";

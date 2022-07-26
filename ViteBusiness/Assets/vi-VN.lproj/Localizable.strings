@@ -12,7 +12,7 @@
 "cancel.button.title" = "Hủy";
 "alter.title" = "THÔNG BÁO";
 
-"discover.page.title" = "Khám phá";
+"discover.page.title" = "Discover";
 "discover.page.game.cell.palyNum" = "%@ người đang chơi";
 "discover.page.activity.page.title1" = "Sự kiện Mới nhất";
 "discover.page.activity.page.title2" = "Lịch sử";
@@ -20,12 +20,12 @@
 "discover.page.news.cell.time.minute" = "Bây giờ";
 "discover.page.news.cell.time.hour" = "%@h trước";
 "discover.page.news.cell.time.day" = "%@ngày trước";
-"discover.page.headerTitle.activity" = "Trung tâm Chiến dịch";
-"discover.page.headerTitle.game" = "Trò chơi Vite";
-"discover.page.headerTitle.news" = "Tin tức Vite";
-"discover.page.VCWebTitle.activity" = "Sự kiện Vite";
-"discover.page.VCWebTitle.game" = "Trò chơi Vite";
-"discover.page.VCWebTitle.news" = "Tin tức Vite";
+"discover.page.headerTitle.activity" = "Ecosystem";
+"discover.page.headerTitle.game" = "DApps";
+"discover.page.headerTitle.news" = "News";
+"discover.page.VCWebTitle.activity" = "Ecosystem";
+"discover.page.VCWebTitle.game" = "DApps";
+"discover.page.VCWebTitle.news" = "News";
 "discover.page.game.alter.title" = "Bạn đã truy cập một trang rời khỏi Ứng dụng Vite và bạn sẽ được chuyển hướng đến dApp của bên thứ ba. Việc bạn sử dụng trên dApp này sẽ tuân theo Điều khoản của Thỏa thuận Người dùng và Chính sách Bảo mật của dApp. Vite Labs không có quyền giám sát hoặc kiểm soát chất lượng, nội dung, độ tin cậy hoặc bảo mật của dApp bên thứ ba, và Vite Labs cũng không chịu trách nhiệm pháp lý về việc sử dụng ứng dụng của bên thứ ba.";
 
 //AirDrop
@@ -95,9 +95,9 @@
 
 /* mnemonic */
 "mnemonic.backup.page.title" = "Cụm từ khôi phục ví Mnemonic";
-"mnemonic.backup.page.tip1" = "Chúng tôi đề xuất hai phương pháp sao lưu sau:";
-"mnemonic.backup.page.tip2" = "Viết cụm từ khôi phục ví vào một tờ giấy, sau đó giữ ở một nơi an toàn.";
-"mnemonic.backup.page.tip3" = "Quét mã QR bên dưới bằng cách sử dụng ví Vite được cài đặt trên một thiết bị khác.";
+"mnemonic.backup.page.tip1" = "The following backups are recommend for the security of your assets:";
+"mnemonic.backup.page.tip2" = "Write down your seed phrase on a piece of paper and keep it in a safe place.";
+"mnemonic.backup.page.tip3" = "Scan the QR code below with your Vite app installed on another device.";
 "mnemonic.backup.language.zh" = "Tiếng Trung";
 "mnemonic.backup.language.en" = "Tiếng Anh";
 
@@ -142,7 +142,7 @@
 "import.page.submit.invalid.mnemonic" = "Có lỗi với cụm từ khôi phục ví, vui lòng thử lại!";
 "import.page.submit.loading" = "Đang nhập...";
 "import.page.submit.success" = "Nhập thành công";
-"import.page.alert.exist.title" = "Cụm từ khôi phục ví bạn vừa nhập đã có tài khoản tên '%@' trên thiết bị này, bạn chắc chắn muốn ghi đè lên tài khoản đã tồn tại";
+"import.page.alert.exist.title" = "The seed phrase you entered matches an existing account named '%@' on this device. Are you sure you want to overwrite that account?";
 "import.page.alert.exist.ok" = "Xác nhận";
 "import.page.alert.exist.cancel" = "Hủy";
 
@@ -188,6 +188,7 @@
 "my.page.invite.cell.title" = "Khai thác Giới thiệu";
 "my.page.reward.cell.title" = "Yêu cầu Phần thưởng";
 "my.page.forum.cell.title" = "Diễn đàn Chính thức";
+"my.page.tutorial.cell.title" = "Tutorial";
 "my.page.aboutUs.cell.title" = "Giới thiệu về chúng tôi";
 "my.page.change.wallet.name.alter.title" = "Sửa tên tài khoản";
 "my.page.aboutUs.wechat.alert.title" = "Quét mã QR để theo dõi Tài khoản Wechat chính thức của Vite";
@@ -360,7 +361,7 @@
 "system.page.cell.login.pwd" = "Tự đông khoá";
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
-"system.page.cell.logout.title" = "Đăng xuất/Đổi ví";
+"system.page.cell.logout.title" = "Logout";
 "system.page.cell.upload.log.title" = "Tải lên Log";
 "system.page.cell.upload.log.toast.success" = "Đã tải lên Log";
 "system.page.cell.delete.wallet.title" = "Xoá Tài khoản hiện tại";
@@ -431,6 +432,7 @@
 "quota.pow.tip.float.view.title.1" = "Không đủ quota";
 "quota.pow.tip.float.view.message.1" = "You have used up all your free Quota for today. Please lock VITE.";
 "quota.pow.tip.float.view.pledge.1" = "Nhận quota bây giờ";
+"quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
 "quota.pow.tip.float.view.buy.1" = "Buy VITE";
 
@@ -576,7 +578,7 @@
 "contacts.edit.page.delete.alert.title" = "Bạn chắc chắn muốn xóa địa chỉ này?";
 
 // Address List
-"address.list.page.my.title" = "Địa chỉ VITE của tôi";
+"address.list.page.my.title" = "My Vite Address";
 "address.list.page.other.title" = "%@ địa chỉ danh bạ";
 "address.list.page.no.address.tip" = "Số địa chỉ %@";
 
@@ -791,7 +793,7 @@
 "grin.detail.slateCopied" = "Đã sao chép Slate ID.";
 "grin.send.illegalAmmount" = "Số lượng chuyển không hợp lệ";
 "grin.detail.gatewayResend" = "Yêu cầu gateway Vite gửi lại";
-"grin.export.mnemonic" = "Xuất Cụm từ khôi phục ví";
+"grin.export.mnemonic" = "Export Grin Seed Phrase";
 
 // CrossChain Transfer & Receive
 
@@ -1199,6 +1201,9 @@
 "mining.trading.page.header.total.earnings.alert.title" = "Notice";
 "mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
 
+"mining.trading.page.header.fee" = "Trading Fees";
+"mining.trading.page.header.title" = "Mining";
+"mining.trading.page.header.expect" = "24H Expected Mined";
 
 "mining.trading.page.header.fee" = "Trading Fees";
 "mining.trading.page.header.title" = "Mining";
@@ -1310,7 +1315,7 @@
 "spot.page.confirm.tip" = "Không hỏi lại sau 24 giờ";
 
 "spot.page.alert.title" = "Nhắc nhở quan trọng";
-"spot.page.alert.message" = "Cặp giao dịch hiện tại là %@, đầu tư tiền mã hoá có rủi ro thị trường và biến động giá cao. Vui lòng đánh giá cẩn thận khả năng xử lý rủi ro tiềm ẩn của bạn và đưa ra quyết định giao dịch thận trọng.";
+"spot.page.alert.message" = "Note that the selected trading pair %@ is being managed by an Unknown Operator.\nTrade at your own risk.";
 "spot.page.alert.ok" = "Xác nhận";
 
 "spot.page.order.empty" = "Không lệnh";
