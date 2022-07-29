@@ -90,7 +90,9 @@ class TokenListSearchViewController: UIViewController {
                      return sectionModels
                 }
                 for item in data {
-                    sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
+                    if item.count > 0 {
+                        sectionModels.append(SectionModel(model: item[0].coinType.rawValue, items: item))
+                    }
                 }
              return sectionModels.filter({ [weak self] (sectionModel) -> Bool in
                 guard let `self` = self else { return false }
