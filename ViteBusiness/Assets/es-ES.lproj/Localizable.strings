@@ -362,7 +362,7 @@
 "system.page.cell.login.faceId" = "Face ID";
 "system.page.cell.login.touchId" = "Touch ID";
 "system.page.cell.logout.title" = "Cerrar sesión";
-"system.page.cell.upload.log.title" = "Subir registro";
+"system.page.cell.upload.log.title" = "Obtener Logs";
 "system.page.cell.upload.log.toast.success" = "Registro subido";
 "system.page.cell.delete.wallet.title" = "Eliminar cuenta actual";
 "system.page.cell.delete.wallet.alert.title" = "Después de eliminar tu cuenta, sólo podrás recuperarla nuevamente con las palabras mnemónica, ¿confirma eliminar esta cuenta?";
