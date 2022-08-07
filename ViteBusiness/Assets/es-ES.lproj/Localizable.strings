@@ -234,7 +234,7 @@
 "vite.transaction.detail.page.state.call.failed" = "Llamada de contrato fallida";
 "vite.transaction.detail.page.state.call.wait" = "Esperando respuesta de contrato inteligente";
 "vite.transaction.detail.page.type.title" = "Tipo de transacción";
-"vite.transaction.detail.page.type.send" = "Solicitar";
+"vite.transaction.detail.page.type.send" = "Solicitud";
 "vite.transaction.detail.page.type.receive" = "Respuesta";
 "vite.transaction.detail.page.hash.title" = "Hash de transacción";
 "vite.transaction.detail.page.height.title" = "Altura del bloque";
