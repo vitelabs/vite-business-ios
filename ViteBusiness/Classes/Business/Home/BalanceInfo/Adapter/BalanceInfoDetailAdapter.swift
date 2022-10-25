@@ -36,12 +36,6 @@ extension TokenInfo {
             } else {
                 return BalanceInfoDetailViteTokenAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
             }
-        case .eth:
-            if isViteERC20 {
-                return BalanceInfoDetailEthErc20ViteAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
-            } else {
-                return BalanceInfoDetailEthChainAdapter(tokenInfo: self, headerView: headerView, tableView: tableView)
-            }
         case .unsupport:
             fatalError()
         }

@@ -32,10 +32,6 @@ class HostManager {
         let data = JSON(json)["data"]
 
         do {
-            if let ethNode = data["ETH_NODE"]["hostNameList"].array?.first?.string,
-                let _ = URL.init(string:ethNode) {
-                ViteConst.Env.premainnet.eth.nodeHttp = ethNode
-            }
             if let walletApi = data["WALLETAPI"]["hostNameList"].array?.first?.string,
                 let _ = URL.init(string:walletApi) {
                 ViteConst.Env.premainnet.vite.nodeHttp = walletApi
@@ -72,11 +68,6 @@ class HostManager {
         if let viteGateWay = data["GATEWAY"]["hostNameList"].array?.first?.string,
             let _ = URL.init(string:viteGateWay) {
             ViteConst.Env.premainnet.vite.gateway = viteGateWay
-        }
-
-        if let ethExplorer = data["ETH_EXPLORER"]["hostNameList"].array?.first?.string,
-            let _ = URL.init(string:ethExplorer) {
-            ViteConst.Env.premainnet.eth.explorer = ethExplorer
         }
 
         if let mVitex = data["MVITEX"]["hostNameList"].array?.first?.string,

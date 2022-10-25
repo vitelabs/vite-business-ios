@@ -121,8 +121,6 @@ public final class MyTokenInfosService: NSObject {
                 switch tokenInfo.coinType {
                 case .vite:
                     viteTokenInfos.add(tokenInfo)
-                case .eth:
-                    ethTokenInfos.add(tokenInfo)
                 case .unsupport:
                     break
                 }
@@ -134,8 +132,6 @@ public final class MyTokenInfosService: NSObject {
                 switch tokenInfo.coinType {
                 case .vite:
                     viteTokenInfos.add(tokenInfo)
-                case .eth:
-                    ethTokenInfos.add(tokenInfo)
                 case .unsupport:
                     break
                 }

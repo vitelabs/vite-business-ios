@@ -9,7 +9,6 @@ import UIKit
 import BigInt
 import ViteWallet
 import PromiseKit
-import web3swift
 import RxSwift
 import RxCocoa
 
@@ -65,9 +64,7 @@ class GatewayWithdrawViewController: BaseViewController {
     let abstractView = WalletAbstractView()
 
     lazy var addressView: AddressTextViewView =  AddressTextViewView().then {
-        if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType != .eth {
-            $0.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
-        }
+        $0.addButton.setImage(R.image.icon_button_address_scan(), for: .normal)
     }
     
     let topGapslabelView = UIView.placeholderView(height: 10)
@@ -198,23 +195,13 @@ class GatewayWithdrawViewController: BaseViewController {
     func bind() {
         addressView.addButton.rx.tap.bind { [weak self] in
             guard let `self` = self else { return }
-            if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType == .eth {
-                FloatButtonsView(targetView: self.addressView.addButton, delegate: self, titles:
-                    [R.string.localizable.crosschainWithdrawEthMyAddress(),
-                     R.string.localizable.ethSendPageEthContactsButtonTitle(),
-                     R.string.localizable.sendPageScanAddressButtonTitle()]).show()
-
-            } else {
-                self.scanAddress()
-            }
+            self.scanAddress()
             }.disposed(by: rx.disposeBag)
 
         labelView.addButton.rx.tap.bind { [weak self] in
             let scanViewController = ScanViewController()
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self?.labelView.textView.text = uri.address
-                } else if case .success(let uri) = ETHURI.parser(string: result) {
                     self?.labelView.textView.text = uri.address
                 } else {
                     self?.labelView.textView.text = result
@@ -500,8 +487,6 @@ class GatewayWithdrawViewController: BaseViewController {
         _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
             if case .success(let uri) = ViteURI.parser(string: result) {
                 self?.addressView.textView.text = uri.address
-            } else if case .success(let uri) = ETHURI.parser(string: result) {
-                self?.addressView.textView.text = uri.address
             } else {
                 self?.addressView.textView.text = result
             }
@@ -510,24 +495,6 @@ class GatewayWithdrawViewController: BaseViewController {
         UIViewController.current?.navigationController?.pushViewController(scanViewController, animated: true)
     }
 
-}
-
-
-extension GatewayWithdrawViewController: FloatButtonsViewDelegate {
-    func didClick(at index: Int, targetView: UIView) {
-        if self.gateWayInfoService.tokenInfo.gatewayInfo?.mappedToken.coinType == .eth {
-            if index == 0 {
-                addressView.textView.text = ETHWalletManager.instance.account?.address
-            } else if index == 1 {
-                let viewModel = AddressListViewModel.createAddressListViewModel(for: CoinType.eth)
-                let vc = AddressListViewController(viewModel: viewModel)
-                vc.selectAddressDrive.drive(addressView.textView.rx.text).disposed(by: rx.disposeBag)
-                UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
-            } else if index == 2 {
-                scanAddress()
-            }
-        }
-    }
 }
 
 extension GatewayWithdrawViewController: UITextFieldDelegate {

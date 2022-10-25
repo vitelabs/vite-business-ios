@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import web3swift
 import BigInt
 import PromiseKit
 import ViteWallet
@@ -159,9 +158,7 @@ class GatewayDepositInfoViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
 
         useViteWalletButton.rx.tap.bind { [unowned self] in
-            let vc = CrossChainDepositViewController.init(gatewayInfoService: self.gatewayInfoService, depositInfo: self.depositInfo.value)
-
-            UIViewController.current?.navigationController?.pushViewController(vc, animated: true)
+            
         }.disposed(by: rx.disposeBag)
 
         // 需要查看index所有为0的时候的逻辑！！！！！！！！！！❌❌❌❌❌❌❌❌
@@ -212,7 +209,7 @@ class GatewayDepositInfoViewController: BaseViewController {
             
             self.descriptionLabel1.text = R.string.localizable.crosschainDepositMinComfirm(String(info.confirmationCount))
             
-            self.useViteWalletButton.isHidden = self.gatewayInfoService.currentMappedToken.coinType != .eth
+            self.useViteWalletButton.isHidden = true
             
             
             if let labelName = info.labelName, let _ = info.label {

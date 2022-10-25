@@ -81,7 +81,6 @@ extension AppSettingsService {
         public var viteNetworkType: ViteNetworkType = .mainnet
         public var chainNodeConfigs: [ChainNodeConfig] = [
             ChainNodeConfig(type: .vite, current: nil),
-            ChainNodeConfig(type: .eth, current: nil),
             ]
         public var powConfig = PowConfig(current: nil)
         public var guide = Guide()
@@ -116,7 +115,6 @@ extension AppSettingsService {
 extension AppSettingsService {
     public enum ChainType: String {
         case vite = "VITE"
-        case eth = "ETHEREUM"
         
         func check(node: String, result: @escaping (Bool) -> ()) {
             guard let url = URL(string: node) else {
@@ -130,8 +128,6 @@ extension AppSettingsService {
                 }.catch { _ in
                     result(false)
                 }
-            case .eth:
-                ETHWalletManager.check(node: url, result: result)
             }
         }
     }
@@ -182,8 +178,6 @@ extension AppSettingsService {
         switch type {
         case .vite:
             return config.current ?? ViteConst.instance.vite.nodeHttp
-        case .eth:
-            return config.current ?? ViteConst.instance.eth.nodeHttp
         }
     }
     

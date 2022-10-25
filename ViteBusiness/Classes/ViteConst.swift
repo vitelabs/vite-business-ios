@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import web3swift
 
 public struct ViteConst {
     public static let instance = ViteConst()
@@ -21,10 +20,6 @@ public struct ViteConst {
 
     public var vite: Vite {
         return currentEnv.vite
-    }
-
-    public var eth: Eth {
-        return currentEnv.eth
     }
 
     public var crossChain: CrossChain {
@@ -88,13 +83,6 @@ public extension ViteConst {
 
     }
 
-    struct Eth {
-        public var nodeHttp: String
-        public var chainType: web3swift.Networks
-        public var explorer: String
-        public var api: String
-    }
-
     struct CrossChain {
         public struct ETH {
             public var gateway: String
@@ -118,11 +106,10 @@ public extension ViteConst {
             case premainnet
         }
 
-        init(type: EnvType,cos:Cos,vite:Vite,eth:Eth, crossChain: CrossChain,market: Market ) {
+        init(type: EnvType,cos:Cos,vite:Vite, crossChain: CrossChain,market: Market ) {
             self.type = type
             self.cos = cos
             self.vite = vite
-            self.eth = eth
             self.crossChain = crossChain
             self.market = market
         }
@@ -130,7 +117,6 @@ public extension ViteConst {
         public var type: EnvType
         public var cos: Cos
         public var vite: Vite
-        public var eth: Eth
         public var crossChain: CrossChain
         public var market: Market
 
@@ -150,10 +136,6 @@ public extension ViteConst {
                            pushReportConfig: "https://wallet.vite.net",
                            pushReportBussness: "https://api.vite.net",
                            snapshotChainHeightPerDay: 60 * 60 * 24),
-                eth: Eth(nodeHttp: "https://node.vite.net/eth/v3/caae2231051e46a1941f422df1fbcc94",
-                         chainType: .Mainnet,
-                         explorer: "https://etherscan.io",
-                         api: "https://node.vite.net/etherscan"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                 tokenId: "tti_4d3a69b12962332e8df52701")),
                  market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexWS: "wss://vitex.vite.net/websocket")
@@ -174,10 +156,6 @@ public extension ViteConst {
                            pushReportConfig: "http://150.109.40.169:8086/test",
                            pushReportBussness: "http://150.109.40.169:8079",
                            snapshotChainHeightPerDay: 200),
-                eth: Eth(nodeHttp: "https://ropsten.infura.io/v3/44210a42716641f6a7c729313322929e",
-                         chainType: .Ropsten,
-                         explorer: "https://ropsten.etherscan.io",
-                         api: "https://node.vite.net/beta/etherscan"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                            tokenId: "tti_4d3a69b12962332e8df52701")),
                  market: Market.init(baseWebUrl: "https://vite-wallet-test2.netlify.com/mobiledex", vitexWS: "wss://vitex.vite.net/test/websocket")
@@ -199,10 +177,6 @@ public extension ViteConst {
                            pushReportConfig: "https://wallet.vite.net",
                            pushReportBussness: "https://api.vite.net",
                            snapshotChainHeightPerDay: 60 * 60 * 24),
-                eth: Eth(nodeHttp: "https://node.vite.net/eth/v3/caae2231051e46a1941f422df1fbcc94",
-                         chainType: .Mainnet,
-                         explorer: "https://etherscan.io",
-                         api: "https://node.vite.net/etherscan"),
                 crossChain: CrossChain(eth: CrossChain.ETH(gateway: "http://132.232.60.116:8083",
                                                 tokenId: "tti_4d3a69b12962332e8df52701")),
                  market: Market.init(baseWebUrl: "https://x.vite.net/mobiledex", vitexWS: "wss://vitex.vite.net/websocket")

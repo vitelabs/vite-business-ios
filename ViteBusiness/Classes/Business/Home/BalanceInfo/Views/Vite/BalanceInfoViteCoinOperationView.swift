@@ -47,11 +47,6 @@ class BalanceInfoViteCoinOperationView: UIView {
             let sendViewController = VoteHomeViewController()
             UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             }.disposed(by: rx.disposeBag)
-
-//        buyCoinButton.button.rx.tap.bind {
-//            Statistics.log(eventId: "instant_purchase")
-//        UIViewController.current?.navigationController?.pushViewController(ExchangeViewController(), animated: true)
-//        }.disposed(by: rx.disposeBag)
     }
 
     required init?(coder aDecoder: NSCoder) {

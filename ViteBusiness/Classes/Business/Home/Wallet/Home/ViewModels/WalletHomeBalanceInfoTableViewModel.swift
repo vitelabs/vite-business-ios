@@ -34,10 +34,6 @@ extension BalanceInfo: WalletHomeBalanceInfo {
     }
 }
 
-extension ETHBalanceInfo: WalletHomeBalanceInfo {
-    var total: Amount { balance }
-}
-
 final class WalletHomeBalanceInfoTableViewModel {
 
     var  balanceInfosDriver: Driver<[WalletHomeBalanceInfoViewModel]>
@@ -49,17 +45,14 @@ final class WalletHomeBalanceInfoTableViewModel {
         balanceInfosDriver = Driver.combineLatest(
             isHidePriceDriver,
             ExchangeRateManager.instance.rateMapDriver,
-            ViteBalanceInfoManager.instance.balanceInfosDriver,
-            ETHBalanceInfoManager.instance.balanceInfosDriver)
+            ViteBalanceInfoManager.instance.balanceInfosDriver)
             .map({ (arg) -> [WalletHomeBalanceInfoViewModel] in
-                let (isHidePrice, _, viteMap, ethMap) = arg
+                let (isHidePrice, _, viteMap) = arg
                 return MyTokenInfosService.instance.tokenInfos
                     .map({ (tokenInfo) -> WalletHomeBalanceInfo in
                         switch tokenInfo.coinType {
                         case .vite:
                             return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Amount(), unconfirmedBalance: Amount(), unconfirmedCount: 0)
-                        case .eth:
-                            return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Amount())
                         case .unsupport:
                             fatalError()
                         }
@@ -90,11 +83,11 @@ final class WalletHomeBalanceInfoTableViewModel {
     }
 
     func registerFetchAll() {
-        ETHBalanceInfoManager.instance.registerFetch(tokenCodes: MyTokenInfosService.instance.tokenInfos.map { $0.tokenCode })
+        
     }
 
     func unregisterFetchAll() {
-        ETHBalanceInfoManager.instance.unregisterFetch(tokenCodes: MyTokenInfosService.instance.tokenInfos.map { $0.tokenCode })
+        
     }
 }
 

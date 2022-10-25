@@ -35,8 +35,6 @@ extension TokenInfo {
         switch coinType {
         case .vite:
             return ReceiveViteViewModel(tokenInfo: self)
-        case .eth:
-            return ReceiveEthViewModel(tokenInfo: self)
         default:
             fatalError()
         }

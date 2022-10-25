@@ -13,7 +13,6 @@ import RxDataSources
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import web3swift
 
 import Then
 
@@ -28,8 +27,6 @@ class WalletHomeScanHandler {
         _ = scanViewController.rx.result.bind { [weak scanViewController, self] result in
             if case .success(let uri) = ViteURI.parser(string: result), !uri.address.isDexAddress {
                 self.handleScanResult(with: uri, scanViewController: scanViewController)
-            } else if case .success(let uri) = ETHURI.parser(string: result) {
-                self.handleScanResultForETH(with: uri, scanViewController: scanViewController)
             } else if let url = URL.init(string: result), (result.hasPrefix("http://") || result.hasPrefix("https://")) {
                 self.handleScanResult(with: url, scanViewController: scanViewController)
             } else if case .success(let uri) = BifrostURI.parser(string: result) {
@@ -66,31 +63,6 @@ class WalletHomeScanHandler {
                 }
 
                 let sendViewController = SendViewController(tokenInfo: tokenInfo, address: uri.address, amount: uri.amount != nil ? amount : nil, data: uri.data)
-                UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
-            case .failure(let error):
-                scanViewController?.showToast(string: error.viteErrorMessage)
-            }
-        }
-    }
-
-    func handleScanResultForETH(with uri: ETHURI, scanViewController: ScanViewController?) {
-        scanViewController?.view.displayLoading(text: "")
-        TokenInfoCacheService.instance.tokenInfo(forEthContractAddress: uri.contractAddress ?? "") {[weak scanViewController] (result) in
-            scanViewController?.view.hideLoading()
-            switch result {
-            case .success(let tokenInfo):
-
-                if !tokenInfo.isContains {
-                    MyTokenInfosService.instance.append(tokenInfo: tokenInfo)
-                }
-
-                var balance: Amount? = nil
-                if let amount = uri.amount,
-                    let b = Amount(amount) {
-                    balance = b
-                }
-
-                let sendViewController = EthSendTokenController(tokenInfo, toAddress: EthereumAddress(uri.address)!, amount: balance)
                 UIViewController.current?.navigationController?.pushViewController(sendViewController, animated: true)
             case .failure(let error):
                 scanViewController?.showToast(string: error.viteErrorMessage)

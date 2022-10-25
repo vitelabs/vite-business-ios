@@ -16,7 +16,7 @@ class TokenListAddressView: UILabel {
         self.font = UIFont.systemFont(ofSize: 12, weight: .semibold)
         self.lineBreakMode = .byTruncatingMiddle
         self.textColor = UIColor(netHex: 0xFFFFFF,alpha:0.7)
-        self.text = ETHWalletManager.instance.account?.address
+        self.text = ""
     }
 
     required init?(coder aDecoder: NSCoder) {

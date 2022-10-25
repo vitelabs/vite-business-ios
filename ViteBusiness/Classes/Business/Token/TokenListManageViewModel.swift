@@ -60,8 +60,6 @@ final class TokenListManageViewModel {
         for item in localData {
             if item.coinType == .vite {
                 localViteToken.append(item)
-            }else if item.coinType == .eth {
-                localEthToken.append(item)
             }
         }
 

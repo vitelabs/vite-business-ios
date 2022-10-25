@@ -142,8 +142,6 @@ extension NodeSettingsDetailViewController {
             switch self.chainType {
             case .vite:
                 cell.valueLabel.text = ViteConst.instance.vite.nodeHttp
-            case .eth:
-                cell.valueLabel.text = ViteConst.instance.eth.nodeHttp
             }
             cell.flagView.isHidden = config.current != nil
         } else {
@@ -166,8 +164,6 @@ extension NodeSettingsDetailViewController {
         switch self.chainType {
         case .vite:
             self.updateViteNode(config: config)
-        case .eth:
-            AppSettingsService.instance.updateNode(type: self.chainType, config: config)
         }
     }
     

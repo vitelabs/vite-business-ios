@@ -14,7 +14,6 @@ import RxDataSources
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import web3swift
 
 import Then
 
@@ -227,7 +226,7 @@ class WalletHomeViewController: BaseViewController {
                     TokenInfoCacheService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
                     switch viewModel.tokenInfo.coinType {
-                    case .eth, .vite:
+                    case .vite:
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     case .unsupport:
                         fatalError()

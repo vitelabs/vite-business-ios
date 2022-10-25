@@ -250,8 +250,6 @@ extension HDWalletManager {
         self.language = language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-
-        pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -262,8 +260,6 @@ extension HDWalletManager {
         self.language = language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-
-        pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -273,9 +269,6 @@ extension HDWalletManager {
         self.language = wallet.language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-
-        pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
-
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
     }
@@ -286,9 +279,6 @@ extension HDWalletManager {
         self.language = wallet.language
         self.encryptedKey = encryptKey
         pri_updateWallet(wallet)
-
-        pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
-
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
 
         return true
@@ -300,8 +290,6 @@ extension HDWalletManager {
         language = nil
         encryptedKey = nil
         walletBehaviorRelay.accept(nil)
-
-        pri_LogoutOtherWallet()
         plog(level: .info, log: "wallet logout", tag: .wallet)
     }
 
@@ -310,7 +298,6 @@ extension HDWalletManager {
         language = nil
         encryptedKey = nil
         walletBehaviorRelay.accept(nil)
-        pri_LogoutOtherWallet()
         storage.deleteCurrentWallet()
         plog(level: .info, log: "wallet delete", tag: .wallet)
     }
@@ -345,17 +332,6 @@ extension HDWalletManager {
         guard let wallet = storage.updateCurrentWallet(addressIndex: addressIndex,
                                                        addressCount: addressCount) else { return }
         walletBehaviorRelay.accept(wallet)
-    }
-
-    fileprivate func pri_LoginOtherWallet(mnemonic: String, encryptKey: String, language: MnemonicCodeBook) {
-        // make sure all manager init complete
-        DispatchQueue.main.async {
-            ETHWalletManager.instance.register(mnemonic: mnemonic, language: language, password: encryptKey)
-        }
-    }
-
-    fileprivate func pri_LogoutOtherWallet() {
-        ETHWalletManager.instance.unregister()
     }
 }
 

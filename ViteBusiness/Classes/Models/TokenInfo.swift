@@ -10,7 +10,6 @@ import ViteWallet
 
 public enum CoinType: String {
     case vite = "VITE"
-    case eth = "ETH"
     case unsupport = "unsupport"
 
     var name: String {
@@ -21,14 +20,12 @@ public enum CoinType: String {
         switch self {
         case .vite:
             return "Vite"
-        case .eth:
-            return "Ethereum"
         case .unsupport:
             return "unsupport"
         }
     }
 
-    static var allTypes: [CoinType] = [.vite, .eth]
+    static var allTypes: [CoinType] = [.vite]
 
 
     var backgroundGradientColors: [UIColor] {
@@ -41,11 +38,6 @@ public enum CoinType: String {
                 UIColor(netHex: 0x00C3FF),
                 UIColor(netHex: 0x00ECFF),
             ]
-        case .eth:
-            return [
-                UIColor(netHex: 0x429321),
-                UIColor(netHex: 0xB4EC51),
-            ]
         case .unsupport:
             return [UIColor.white]
         }
@@ -55,8 +47,6 @@ public enum CoinType: String {
         switch self {
         case .vite:
             return UIColor(netHex: 0x007AFF)
-        case .eth:
-            return UIColor(netHex: 0x01D764)
         case .unsupport:
             return UIColor.white
         }
@@ -66,8 +56,6 @@ public enum CoinType: String {
         switch self {
         case .vite:
             return UIColor(netHex: 0x007AFF, alpha: 0.67)
-        case .eth:
-            return UIColor(netHex: 0x01D764)
         case .unsupport:
             return UIColor.white
         }
@@ -77,8 +65,6 @@ public enum CoinType: String {
         switch self {
         case .vite:
             return UIColor(netHex: 0xF2F8FF)
-        case .eth:
-            return UIColor(netHex: 0xF8FFF2)
         case .unsupport:
             return UIColor.white
         }
@@ -88,8 +74,6 @@ public enum CoinType: String {
         switch self {
         case .vite:
             return UIColor(netHex: 0xF2F8FF)
-        case .eth:
-            return UIColor(netHex: 0xF1FFE6)
         case .unsupport:
             return UIColor.white
         }
@@ -128,12 +112,6 @@ public struct TokenInfo: Mappable {
                 return "Vite Coin"
             } else {
                 return "Vite Token"
-            }
-        case .eth:
-            if isEtherCoin {
-                return "Ethereum Coin"
-            } else {
-                return "ERC20 Token"
             }
         case .unsupport:
             return "unsupport"
@@ -196,8 +174,6 @@ extension TokenInfo: Equatable {
 
     var isViteCoin: Bool { return tokenCode == TokenInfo.BuildIn.vite.value.tokenCode }
     var isVxToken: Bool { return tokenCode == TokenInfo.BuildIn.vx.value.tokenCode }
-    var isEtherCoin: Bool { return tokenCode == TokenInfo.BuildIn.eth.value.tokenCode }
-    var isViteERC20: Bool { return tokenCode == TokenInfo.BuildIn.eth_vite.value.tokenCode }
 
     static var viteERC20ContractAddress: String {
         #if DEBUG || TEST
@@ -210,8 +186,6 @@ extension TokenInfo: Equatable {
     func getCoinHeaderDisplay() -> String? {
         if self.coinType == .vite {
             return R.string.localizable.tokenListPageSectionViteHeader()
-        }else if self.coinType == .eth {
-            return R.string.localizable.tokenListPageSectionEthHeader()
         }
         return ""
     }
@@ -225,30 +199,12 @@ extension TokenInfo {
 
         return Token(id: id, name: name, symbol: symbol, decimals: decimals, index: index)
     }
-
-    func toETHToken() -> ETHToken? {
-        guard coinType == .eth else {
-            return nil
-        }
-
-        return ETHToken(contractAddress: id, name: name, symbol: symbol, decimals: decimals)
-    }
-
-    var ethChainGasLimit: Int {
-        if isEtherCoin {
-            return AppConfigService.instance.ethCoinGasLimit
-        } else {
-            return AppConfigService.instance.erc20GasLimit(contractAddress: ethContractAddress)
-        }
-    }
 }
 
 // UI Style
 extension TokenInfo {
     var chainIcon: UIImage? {
-        if case .eth = coinType, !isEtherCoin {
-            return R.image.icon_logo_chain_eth()
-        } else if case .vite = coinType, !isViteCoin {
+        if case .vite = coinType, !isViteCoin {
             return R.image.icon_logo_chain_vite()
         }else {
             return nil
@@ -458,14 +414,6 @@ public struct MappedTokenInfo: Mappable {
         self.standard = standard
         self.mappedTokenExtras = mappedTokenExtras
     }
-
-    var ethChainGasLimit: Int {
-        if tokenCode == TokenInfo.BuildIn.eth.value.tokenCode {
-            return AppConfigService.instance.ethCoinGasLimit
-        } else {
-            return AppConfigService.instance.erc20GasLimit(contractAddress: id)
-        }
-    }
     
     var mappedTokenExtraInfo: MappedTokenExtraInfo {
         return MappedTokenExtraInfo(tokenCode: tokenCode,
@@ -548,14 +496,6 @@ public struct MappedTokenExtraInfo: Mappable {
         
         self.url = url
         self.standard = standard
-    }
-
-    var ethChainGasLimit: Int {
-        if tokenCode == TokenInfo.BuildIn.eth.value.tokenCode {
-            return AppConfigService.instance.ethCoinGasLimit
-        } else {
-            return AppConfigService.instance.erc20GasLimit(contractAddress: id)
-        }
     }
     
     var chainName: String {

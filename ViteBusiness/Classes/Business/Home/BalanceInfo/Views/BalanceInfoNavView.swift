@@ -109,12 +109,6 @@ extension TokenInfo {
         switch coinType {
         case .vite:
             return URL(string: "\(ViteConst.instance.vite.explorer)/token/\(viteTokenId)")
-        case .eth:
-            if isEtherCoin {
-                return nil
-            } else {
-                return URL(string: "\(ViteConst.instance.eth.explorer)/address/\(ethContractAddress)")
-            }
         case .unsupport:
             return nil
         }

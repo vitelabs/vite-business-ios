@@ -11,7 +11,6 @@ import NSObject_Rx
 import Vite_HDWalletKit
 import ViteWallet
 import BigInt
-import web3swift
 
 public class ViteBusinessLanucher: NSObject {
 
@@ -56,8 +55,6 @@ public class ViteBusinessLanucher: NSObject {
         TokenListService.instance.fetchTokenListServerData()
         AutoGatheringManager.instance.start()
         ViteBalanceInfoManager.instance.start()
-        ETHBalanceInfoManager.instance.start()
-        ETHUnconfirmedManager.instance.start()
         FetchQuotaManager.instance.start()
         AddressManageService.instance.start()
         AppContentService.instance.start()
@@ -86,7 +83,6 @@ public class ViteBusinessLanucher: NSObject {
         Provider.default.update(server: ViteWallet.RPCServer(url: URL(string: AppSettingsService.instance.getNode(type: .vite))!))
         Provider.pow.update(server: ViteWallet.RPCServer(url: URL(string: AppSettingsService.instance.getPowURL())!))
         #endif
-        ETHWalletManager.instance.setProviderURL(URL(string: AppSettingsService.instance.getNode(type: .eth))!, net: ViteConst.instance.eth.chainType)
     }
 
     func handleWebWalletBridgeConfig()  {

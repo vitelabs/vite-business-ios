@@ -13,14 +13,13 @@ import NSObject_Rx
 import RxDataSources
 import ActionSheetPicker_3_0
 import ViteWallet
-import web3swift
 
 class ContactsEditViewController: BaseViewController {
 
     let contact: Contact?
     var type: BehaviorRelay<CoinType>
 
-    let allTypes: [CoinType] = [.vite, .eth]
+    let allTypes: [CoinType] = [.vite]
 
     init(contact: Contact) {
         self.contact = contact
@@ -120,11 +119,6 @@ class ContactsEditViewController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
-            case .eth:
-                guard let address = EthereumAddress(self.addressView.textView.text), address.isValid else {
-                    Toast.show(R.string.localizable.sendPageToastAddressError())
-                    return
-                }
             default:
                      fatalError()
             }
@@ -147,9 +141,6 @@ class ContactsEditViewController: BaseViewController {
             _ = scanViewController.rx.result.bind {[weak self, scanViewController] result in
                 guard let `self` = self else { return }
                 if case .success(let uri) = ViteURI.parser(string: result) {
-                    self.addressView.textView.text = uri.address
-                    scanViewController.navigationController?.popViewController(animated: true)
-                } else if case .success(let uri) = ETHURI.parser(string: result) {
                     self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {

@@ -31,15 +31,6 @@ class AddressListViewModel {
                     return AddressViewModel(name: name, number: number, nameImage: nil, type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: account.address)
                 })
             }), title: R.string.localizable.sendPageMyAddressTitle(coinType.rawValue), emptyTip: "")
-        case .eth:
-            return AddressListViewModel(driver: ETHWalletManager.instance.accountsDriver.map({ (accounts) -> [AddressViewModel] in
-                var number: Int = 0
-                return accounts.map({ (account) -> AddressViewModel in
-                    let name = AddressManageService.instance.name(for: account.address)
-                    number += 1
-                    return AddressViewModel(name: name, number: number, nameImage: nil, type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: account.address)
-                })
-            }), title: R.string.localizable.sendPageMyAddressTitle(coinType.rawValue), emptyTip: "")
         case .unsupport:
             fatalError()
         }

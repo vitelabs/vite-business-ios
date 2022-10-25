@@ -49,7 +49,7 @@ public struct Route {
     public static func gotoTokenHomeVC(with tokenInfo: TokenInfo)  {
        let balanceInfoDetailViewController : UIViewController
         switch tokenInfo.coinType {
-        case .eth, .vite:
+        case .vite:
             balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: tokenInfo)
         case .unsupport:
             fatalError()

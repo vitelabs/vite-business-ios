@@ -82,10 +82,6 @@ extension TokenInfo {
     var statisticsId: String {
         if isViteCoin {
             return "\(coinType.rawValue.lowercased())_vite"
-        } else if isEtherCoin {
-            return "\(coinType.rawValue.lowercased())_eth"
-        } else if isViteERC20 {
-            return "\(coinType.rawValue.lowercased())_vite"
         } else if coinType == .vite && symbol == "VX" {
             return "\(coinType.rawValue.lowercased())_vx"
         } else {

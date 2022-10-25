@@ -110,10 +110,6 @@ extension TokenInfoCacheService {
         return keyMap["\(CoinType.vite.name)_\(viteTokenId.lowercased())"]
     }
 
-    public func tokenInfo(forEthContractAddress address: String) -> TokenInfo? {
-        return keyMap["\(CoinType.eth.name)_\(address.lowercased())"]
-    }
-
     // MARK: promise
     public func tokenInfos(for tokenCodes: [TokenCode]) -> Promise<[TokenInfo]> {
         var uncachedTokenCodes = [TokenCode]()
@@ -218,24 +214,6 @@ extension TokenInfoCacheService {
         }
     }
 
-    public func tokenInfo(forEthContractAddress address: String) -> Promise<TokenInfo> {
-        if let tokenInfo = tokenInfo(forEthContractAddress: address) {
-            return Promise.value(tokenInfo)
-        } else {
-            return Promise<TokenInfo> { seal in
-                ExchangeProvider.instance.getTokenInfo(chain: "ETH", id: address, completion: { ret in
-                    switch ret {
-                    case .success(let tokenInfo):
-                        self.updateTokenInfos([tokenInfo])
-                        seal.fulfill(tokenInfo)
-                    case .failure(let error):
-                        seal.reject(error)
-                    }
-                })
-            }
-        }
-    }
-
     // MARK: async
     public func tokenInfo(for tokenCode: TokenCode, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
         tokenInfo(for: tokenCode).promiseTo(completion: completion)
@@ -247,10 +225,6 @@ extension TokenInfoCacheService {
 
     public func tokenInfo(forViteTokenId viteTokenId: ViteTokenId, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
         tokenInfo(forViteTokenId: viteTokenId).promiseTo(completion: completion)
-    }
-
-    public func tokenInfo(forEthContractAddress address: String, completion: @escaping (Alamofire.Result<TokenInfo>) -> Void) {
-        tokenInfo(forEthContractAddress: address).promiseTo(completion: completion)
     }
 }
 
