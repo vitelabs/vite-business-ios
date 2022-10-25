@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'haoshenyang' => 'shenyang@vite.org' }
   s.source           = { :git => 'https://github.com/vitelabs/vite-business-ios.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '11.0'
+  s.ios.deployment_target = '12.0'
   s.static_framework = true
   s.vendored_frameworks = 'ViteBusiness/Frameworks/**/*.{framework}'
   s.source_files = 'ViteBusiness/Classes/**/*.{h,m,swift,c}'
@@ -64,12 +64,10 @@ Pod::Spec.new do |s|
   s.dependency 'FSPagerView'
   s.dependency 'URLNavigator'
   s.dependency 'web3swift'
-  s.dependency 'Charts', '3.5.0'
+  s.dependency 'Charts', '4.1.0'
   #request
   s.dependency 'SwiftyJSON'
 
-  #statistics
-  s.dependency 'BaiduMobStat'
 
   #UI Control
   s.dependency 'ActionSheetPicker-3.0'

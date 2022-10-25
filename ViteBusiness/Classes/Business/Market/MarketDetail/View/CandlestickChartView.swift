@@ -46,7 +46,7 @@ class CandlestickChartView: UIView {
 
     let combinedChartView = CombinedChartView().then {
 
-        $0.chartDescription?.enabled = false
+        $0.chartDescription.enabled = false
         $0.pinchZoomEnabled = true
         $0.drawGridBackgroundEnabled = true
         $0.doubleTapToZoomEnabled = false
@@ -83,7 +83,7 @@ class CandlestickChartView: UIView {
     }
 
     let barChartView = BarChartView().then {
-        $0.chartDescription?.enabled = false
+        $0.chartDescription.enabled = false
         $0.pinchZoomEnabled = true
         $0.drawGridBackgroundEnabled = true
         $0.doubleTapToZoomEnabled = false
