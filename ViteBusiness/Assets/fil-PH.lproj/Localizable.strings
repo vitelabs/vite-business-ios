@@ -1181,7 +1181,7 @@
 // Trading Home
 "trading.home.page.segment.spot" = "Spot";
 "trading.home.page.segment.mining" = "Pagmimina";
-"trading.home.page.segment.bonus" = "Dividend";
+"trading.home.page.segment.bonus" = "Reward";
 
 // Mining Home
 "mining.page.segment.trading" = "Trading";
@@ -1192,7 +1192,7 @@
 "mining.page.header.total.real.time" = "Live Mining Dashboard";
 "mining.page.list.title" = "Mining History";
 
-"mining.trading.page.header.total.earnings" = "Total Income (VX)";
+"mining.trading.page.header.total.earnings" = "Total Reward (VX)";
 "mining.trading.page.header.total.earnings.alert.title" = "Notice";
 "mining.trading.page.header.total.earnings.alert.message" = "Current trading fees displayed on this page contains only the 0.2% ViteX base transaction fees, please note that operator fees shall be taken into consideration when calculating mining cost";
 
@@ -1243,7 +1243,7 @@
 "mining.order.page.header.total.earnings" = "Total Income (VX)";
 "mining.order.page.header.estimate" = "24H Expected Mined";
 
-"dividends.page.title" = "Dividend";
+"dividends.page.title" = "Reward";
 "dividends.page.total.title" = "Dividend Pool (BTC)";
 "dividends.page.my.title" = "My Dividend (BTC)";
 "dividends.page.lock.title" = "My Staking";

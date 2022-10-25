@@ -1241,7 +1241,7 @@
 "mining.order.page.header.total.earnings" = "Total Income (VX)";
 "mining.order.page.header.estimate" = "24H Expected Mined";
 
-"dividends.page.title" = "Dividend";
+"dividends.page.title" = "Reward";
 "dividends.page.total.title" = "Dividend Pool (BTC)";
 "dividends.page.my.title" = "My Dividend (BTC)";
 "dividends.page.lock.title" = "My Staking";
