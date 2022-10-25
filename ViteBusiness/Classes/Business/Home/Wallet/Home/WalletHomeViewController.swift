@@ -227,7 +227,7 @@ class WalletHomeViewController: BaseViewController {
                     TokenInfoCacheService.instance.updateTokenInfoIfNeeded(for: viewModel.tokenInfo.tokenCode)
                     let balanceInfoDetailViewController : UIViewController
                     switch viewModel.tokenInfo.coinType {
-                    case .eth, .vite,.bnb:
+                    case .eth, .vite:
                         balanceInfoDetailViewController = BalanceInfoDetailViewController(tokenInfo: viewModel.tokenInfo)
                     case .unsupport:
                         fatalError()

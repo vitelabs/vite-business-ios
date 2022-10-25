@@ -37,8 +37,6 @@ extension TokenInfo {
             return ReceiveViteViewModel(tokenInfo: self)
         case .eth:
             return ReceiveEthViewModel(tokenInfo: self)
-        case .bnb:
-            return ReceiveBnbViewModel(tokenInfo: self)
         default:
             fatalError()
         }

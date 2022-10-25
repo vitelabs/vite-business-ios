@@ -115,12 +115,6 @@ extension TokenInfo {
             } else {
                 return URL(string: "\(ViteConst.instance.eth.explorer)/address/\(ethContractAddress)")
             }
-        case .bnb:
-            if isEtherCoin {
-                return nil
-            } else {
-                return URL(string: "\(ViteConst.instance.eth.explorer)/address/\(ethContractAddress)")
-            }
         case .unsupport:
             return nil
         }

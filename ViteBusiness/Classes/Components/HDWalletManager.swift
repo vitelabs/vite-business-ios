@@ -56,11 +56,6 @@ public final class HDWalletManager {
     public var accountsBehaviorRelay = BehaviorRelay(value: [Wallet.Account]())
     public var accountBehaviorRelay: BehaviorRelay<Wallet.Account?> = BehaviorRelay(value: nil)
 
-    // BNB
-    public lazy var bnbAddressDriver: Driver<String?> = self.bnbAddressBehaviorRelay.asDriver()
-    private var bnbAddressBehaviorRelay: BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    public var bnbAddress: String? { return self.bnbAddressBehaviorRelay.value }
-
     fileprivate let storage = HDWalletStorage()
     fileprivate(set) var mnemonic: String?
     fileprivate(set) var language: MnemonicCodeBook?
@@ -257,7 +252,6 @@ extension HDWalletManager {
         pri_updateWallet(wallet)
 
         pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
-        pri_LoginBnbWallet(mnemonic: mnemonic)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -270,7 +264,6 @@ extension HDWalletManager {
         pri_updateWallet(wallet)
 
         pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: language)
-        pri_LoginBnbWallet(mnemonic: mnemonic)
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
     }
 
@@ -282,7 +275,6 @@ extension HDWalletManager {
         pri_updateWallet(wallet)
 
         pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
-        pri_LoginBnbWallet(mnemonic: mnemonic)
 
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
         return true
@@ -296,7 +288,6 @@ extension HDWalletManager {
         pri_updateWallet(wallet)
 
         pri_LoginOtherWallet(mnemonic: mnemonic, encryptKey: encryptKey, language: wallet.language)
-        pri_LoginBnbWallet(mnemonic: mnemonic)
 
         plog(level: .info, log: "\(wallet.name) wallet login", tag: .wallet)
 
@@ -311,7 +302,6 @@ extension HDWalletManager {
         walletBehaviorRelay.accept(nil)
 
         pri_LogoutOtherWallet()
-        pri_LogoutBnbWallet()
         plog(level: .info, log: "wallet logout", tag: .wallet)
     }
 
@@ -367,18 +357,6 @@ extension HDWalletManager {
     fileprivate func pri_LogoutOtherWallet() {
         ETHWalletManager.instance.unregister()
     }
-
-    // bnb
-    fileprivate func pri_LoginBnbWallet(mnemonic: String) {
-        //login bnb
-        BnbWallet.shared.loginWallet(mnemonic)
-        self.bnbAddressBehaviorRelay.accept(BnbWallet.shared.fromAddress)
-    }
-
-    fileprivate func pri_LogoutBnbWallet() {
-        BnbWallet.shared.logoutWallet()
-    }
-
 }
 
 // MARK: - DEBUG function

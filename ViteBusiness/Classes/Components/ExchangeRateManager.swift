@@ -226,13 +226,6 @@ extension ExchangeRateManager {
         return self.rateMap.priceString(for: TokenInfo.BuildIn.eth.value, balance: balance)
     }
 
-    func calculateBalanceWithBnbRate(_ balance: Amount) -> String? {
-        if self.rateMap[TokenInfo.BuildIn.bnb.value.tokenCode] == nil{
-            return nil
-        }
-        return self.rateMap.priceString(for: TokenInfo.BuildIn.bnb.value, balance: balance)
-    }
-
     func calculateBtcBalanceWithPrice(_ price: BigDecimal) -> String {
         let currency = AppSettingsService.instance.appSettings.currency
         if let dic = rateMap[TokenInfo.BuildIn.vite_btc_000.value.tokenCode] as? [String: String],

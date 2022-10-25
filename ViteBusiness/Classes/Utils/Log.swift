@@ -22,7 +22,6 @@ public enum Tag: String {
     case discover
     case exchange
     case grin
-    case bnb
     case bifrost
     case market
 }

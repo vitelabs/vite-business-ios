@@ -20,7 +20,7 @@ class ContactsEditViewController: BaseViewController {
     let contact: Contact?
     var type: BehaviorRelay<CoinType>
 
-    let allTypes: [CoinType] = [.vite, .eth, .bnb]
+    let allTypes: [CoinType] = [.vite, .eth]
 
     init(contact: Contact) {
         self.contact = contact
@@ -125,12 +125,6 @@ class ContactsEditViewController: BaseViewController {
                     Toast.show(R.string.localizable.sendPageToastAddressError())
                     return
                 }
-            case .bnb:
-                guard let toAddress = self.addressView.textView.text,
-                    toAddress.checkBnbAddressIsValid() else {
-                        Toast.show(R.string.localizable.sendPageToastAddressError())
-                        return
-                }
             default:
                      fatalError()
             }
@@ -156,9 +150,6 @@ class ContactsEditViewController: BaseViewController {
                     self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else if case .success(let uri) = ETHURI.parser(string: result) {
-                    self.addressView.textView.text = uri.address
-                    scanViewController.navigationController?.popViewController(animated: true)
-                } else if case .success(let uri) = BnbURI.parser(string: result) {
                     self.addressView.textView.text = uri.address
                     scanViewController.navigationController?.popViewController(animated: true)
                 } else {

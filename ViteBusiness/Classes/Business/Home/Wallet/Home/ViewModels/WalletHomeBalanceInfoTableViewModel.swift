@@ -50,10 +50,9 @@ final class WalletHomeBalanceInfoTableViewModel {
             isHidePriceDriver,
             ExchangeRateManager.instance.rateMapDriver,
             ViteBalanceInfoManager.instance.balanceInfosDriver,
-            ETHBalanceInfoManager.instance.balanceInfosDriver,
-            BnbWallet.shared.commonBalanceInfoDriver)
+            ETHBalanceInfoManager.instance.balanceInfosDriver)
             .map({ (arg) -> [WalletHomeBalanceInfoViewModel] in
-                let (isHidePrice, _, viteMap, ethMap, bnbMap) = arg
+                let (isHidePrice, _, viteMap, ethMap) = arg
                 return MyTokenInfosService.instance.tokenInfos
                     .map({ (tokenInfo) -> WalletHomeBalanceInfo in
                         switch tokenInfo.coinType {
@@ -61,8 +60,6 @@ final class WalletHomeBalanceInfoTableViewModel {
                             return viteMap[tokenInfo.viteTokenId] ?? BalanceInfo(token: tokenInfo.toViteToken()!, balance: Amount(), unconfirmedBalance: Amount(), unconfirmedCount: 0)
                         case .eth:
                             return ethMap[tokenInfo.tokenCode] ?? ETHBalanceInfo(tokenCode: tokenInfo.tokenCode, balance: Amount())
-                        case .bnb:
-                            return BnbWallet.shared.commonBalanceInfo(for: tokenInfo.tokenCode)
                         case .unsupport:
                             fatalError()
                         }

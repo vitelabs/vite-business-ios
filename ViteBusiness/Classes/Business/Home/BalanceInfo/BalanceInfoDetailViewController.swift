@@ -172,22 +172,6 @@ class BalanceInfoDetailViewController: BaseViewController {
     }
 }
 
-//TODO...
-
-//extension BalanceInfoDetailViewController {
-//    var allowJumpTokenDetailPage: Bool {
-//        switch tokenInfo.coinType {
-//        case .vite:
-//            return true
-//        case .eth:
-//            return !tokenInfo.isEtherCoin
-//        case .grin:
-//            return false
-//        case .bnb:
-//            return false
-//        }
-//    }
-//}
 extension BalanceInfoDetailViewController: ViewControllerDataStatusable {
 
     public func networkErrorView(error: Error, retry: @escaping () -> Void) -> UIView {

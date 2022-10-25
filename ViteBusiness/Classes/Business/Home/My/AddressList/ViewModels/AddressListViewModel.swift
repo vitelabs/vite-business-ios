@@ -40,7 +40,7 @@ class AddressListViewModel {
                     return AddressViewModel(name: name, number: number, nameImage: nil, type: coinType.name, typeTextColor:  coinType.mainColor, typeBgColor:  coinType.shadowColor, address: account.address)
                 })
             }), title: R.string.localizable.sendPageMyAddressTitle(coinType.rawValue), emptyTip: "")
-        case .bnb, .unsupport:
+        case .unsupport:
             fatalError()
         }
     }

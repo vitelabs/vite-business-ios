@@ -44,8 +44,6 @@ extension TokenInfo {
             }
         case .unsupport:
             fatalError()
-        case .bnb:
-            return BalanceInfoDetailBnbAdapter(tokenInfo: self, headerView: headerView, tableView: tableView,vc: vc)
         }
     }
 }

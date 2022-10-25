@@ -103,6 +103,6 @@ Pod::Spec.new do |s|
   s.dependency 'Firebase/Core'
 
   s.dependency 'ViteWallet'
-  s.dependency 'BinanceChain'
+  s.dependency 'SwiftProtobuf'
 
 end

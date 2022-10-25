@@ -65,7 +65,6 @@ public extension ViteConst {
         public let viteCoin: String
         public let etherCoin: String
         public let viteERC20: String
-        public let bnbCoin: String
     }
 
     struct Cos {
