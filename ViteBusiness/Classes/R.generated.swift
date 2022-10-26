@@ -3402,14 +3402,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let tabTitleDiscover = Rswift.StringResource(key: "tab.title.discover", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Dividend Details
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let dividendsPageLockHeaderTitle = Rswift.StringResource(key: "dividends.page.lock.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: Dividend Pool (BTC)
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let dividendsPageTotalTitle = Rswift.StringResource(key: "dividends.page.total.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Do not ask again in 24 hours
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4258,10 +4250,6 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let fundWalletAddress = Rswift.StringResource(key: "fund.walletAddress", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
-      /// en translation: My Dividend (BTC)
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static let dividendsPageMyTitle = Rswift.StringResource(key: "dividends.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: My ETH Address
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -4274,6 +4262,10 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let receivePageMineTitle = Rswift.StringResource(key: "Receive.page.mine.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: My Reward (BTC)
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let dividendsPageMyTitle = Rswift.StringResource(key: "dividends.page.my.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: My Staking
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -5082,6 +5074,14 @@ public struct R: Rswift.Validatable {
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static let tradingHomePageSegmentBonus = Rswift.StringResource(key: "trading.home.page.segment.bonus", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Reward Details
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let dividendsPageLockHeaderTitle = Rswift.StringResource(key: "dividends.page.lock.header.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
+      /// en translation: Reward Pool (BTC)
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static let dividendsPageTotalTitle = Rswift.StringResource(key: "dividends.page.total.title", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja-JP", "fr-FR", "fil-PH", "de-DE", "id-ID", "es-ES", "tr-TR", "ko-KR", "zh-Hans", "vi-VN", "ru-RU"], comment: nil)
       /// en translation: Rewards Enquiry
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -8949,20 +8949,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("tab.title.discover", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: Dividend Details
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func dividendsPageLockHeaderTitle(_: Void = ()) -> String {
-        return NSLocalizedString("dividends.page.lock.header.title", bundle: R.hostingBundle, comment: "")
-      }
-      
-      /// en translation: Dividend Pool (BTC)
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func dividendsPageTotalTitle(_: Void = ()) -> String {
-        return NSLocalizedString("dividends.page.total.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: Do not ask again in 24 hours
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -10447,13 +10433,6 @@ public struct R: Rswift.Validatable {
         return NSLocalizedString("fund.walletAddress", bundle: R.hostingBundle, comment: "")
       }
       
-      /// en translation: My Dividend (BTC)
-      /// 
-      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
-      public static func dividendsPageMyTitle(_: Void = ()) -> String {
-        return NSLocalizedString("dividends.page.my.title", bundle: R.hostingBundle, comment: "")
-      }
-      
       /// en translation: My ETH Address
       /// 
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
@@ -10473,6 +10452,13 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func receivePageMineTitle(_: Void = ()) -> String {
         return NSLocalizedString("Receive.page.mine.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: My Reward (BTC)
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func dividendsPageMyTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.my.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: My Staking
@@ -11887,6 +11873,20 @@ public struct R: Rswift.Validatable {
       /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
       public static func tradingHomePageSegmentBonus(_: Void = ()) -> String {
         return NSLocalizedString("trading.home.page.segment.bonus", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Reward Details
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func dividendsPageLockHeaderTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.lock.header.title", bundle: R.hostingBundle, comment: "")
+      }
+      
+      /// en translation: Reward Pool (BTC)
+      /// 
+      /// Locales: en, ja-JP, fr-FR, fil-PH, de-DE, id-ID, es-ES, tr-TR, ko-KR, zh-Hans, vi-VN, ru-RU
+      public static func dividendsPageTotalTitle(_: Void = ()) -> String {
+        return NSLocalizedString("dividends.page.total.title", bundle: R.hostingBundle, comment: "")
       }
       
       /// en translation: Rewards Enquiry

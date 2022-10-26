@@ -1243,8 +1243,8 @@
 "mining.order.page.header.estimate" = "24H Expected Mined";
 
 "dividends.page.title" = "Reward";
-"dividends.page.total.title" = "Dividend Pool (BTC)";
-"dividends.page.my.title" = "My Dividend (BTC)";
+"dividends.page.total.title" = "Reward Pool (BTC)";
+"dividends.page.my.title" = "My Reward (BTC)";
 "dividends.page.lock.title" = "My Staking";
 "dividends.page.lock.amount" = "Staking Amount";
 "dividends.page.unlocking.amount" = "Unstaking Amount";
@@ -1252,7 +1252,7 @@
 "dividends.page.lock.detail.button.title" = "Unstaking Status";
 "dividends.page.lock.lock.button.title" = "Stake";
 "dividends.page.lock.unlock.button.title" = "Unstake";
-"dividends.page.lock.header.title" = "Dividend Details";
+"dividends.page.lock.header.title" = "Reward Details";
 "dividends.page.lock.cell.total" = "Total: ≈";
 
 "dividends.page.lock.confirm.title" = "Stake VX";
