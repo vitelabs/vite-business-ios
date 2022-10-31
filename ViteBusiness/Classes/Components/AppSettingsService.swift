@@ -186,6 +186,7 @@ extension AppSettingsService {
         var index: Int?
         for (i, config) in appSettings.chainNodeConfigs.enumerated() where config.type == type {
             index = i
+            break;
         }
         guard let i = index else { return }
         appSettings.chainNodeConfigs[i] = config
