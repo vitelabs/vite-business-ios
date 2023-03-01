@@ -98,9 +98,9 @@ Pod::Spec.new do |s|
   s.dependency 'SwiftLint'
 
   #crash
-  s.dependency 'Firebase/Crashlytics'
-  s.dependency 'Firebase/Analytics'
-  s.dependency 'Firebase/Core'
+#  s.dependency 'Firebase/Crashlytics'
+#  s.dependency 'Firebase/Analytics'
+#  s.dependency 'Firebase/Core'
 
   s.dependency 'ViteWallet'
   s.dependency 'SwiftProtobuf'

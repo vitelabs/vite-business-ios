@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftyJSON
-import FirebaseAnalytics
+//import FirebaseAnalytics
 
 public class Statistics: NSObject {
 
@@ -48,20 +48,20 @@ public class Statistics: NSObject {
         if DebugService.instance.config.reportEventInDebug {
             if attributes.isEmpty {
                 stat.logEvent(eventId, eventLabel: eventId)
-                Analytics.logEvent(eventId, parameters: [:])
+//                Analytics.logEvent(eventId, parameters: [:])
             } else {
                 stat.logEvent(eventId, eventLabel: eventId, attributes: attributes)
-                Analytics.logEvent(eventId, parameters: attributes)
+//                Analytics.logEvent(eventId, parameters: attributes)
             }
         }
 
         #else
         if attributes.isEmpty {
             stat.logEvent(eventId, eventLabel: eventId)
-            Analytics.logEvent(eventId, parameters: [:])
+//            Analytics.logEvent(eventId, parameters: [:])
         } else {
             stat.logEvent(eventId, eventLabel: eventId, attributes: attributes)
-            Analytics.logEvent(eventId, parameters: attributes)
+//            Analytics.logEvent(eventId, parameters: attributes)
         }
         #endif
 
@@ -78,18 +78,18 @@ public class Statistics: NSObject {
         if DebugService.instance.config.reportEventInDebug {
             stat.pageviewStart(withName: name)
             stat.logEvent(name, eventLabel: name)
-            Analytics.logEvent(AnalyticsEventViewItem,
-                               parameters: [AnalyticsParameterItemID:name,
-                                            AnalyticsParameterItemName: name,
-                                            AnalyticsParameterItemCategory:name])
+//            Analytics.logEvent(AnalyticsEventViewItem,
+//                               parameters: [AnalyticsParameterItemID:name,
+//                                            AnalyticsParameterItemName: name,
+//                                            AnalyticsParameterItemCategory:name])
         }
         #else
         stat.pageviewStart(withName: name)
         stat.logEvent(name, eventLabel: name)
-        Analytics.logEvent(AnalyticsEventViewItem,
-                           parameters: [AnalyticsParameterItemID:name,
-                                        AnalyticsParameterItemName: name,
-                                        AnalyticsParameterItemCategory:name])
+//        Analytics.logEvent(AnalyticsEventViewItem,
+//                           parameters: [AnalyticsParameterItemID:name,
+//                                        AnalyticsParameterItemName: name,
+//                                        AnalyticsParameterItemCategory:name])
         #endif
     }
 
