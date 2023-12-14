@@ -25,7 +25,6 @@ Pod::Spec.new do |s|
 
   s.dependency 'R.swift'
   s.dependency 'SnapKit'
-  s.dependency 'RxCocoa'
   s.dependency 'XCGLogger'
   s.dependency 'CryptoSwift'
   s.dependency 'ObjectMapper'
@@ -82,16 +81,16 @@ Pod::Spec.new do |s|
   s.dependency 'Eureka', '~> 5.3.0'
 
   #RX
-  s.dependency 'RxSwift', '~> 4.0'
-  s.dependency 'RxCocoa'
-  s.dependency 'RxDataSources', '~> 3.0'
-  s.dependency 'NSObject+Rx'
-  s.dependency 'RxOptional'
-  s.dependency 'RxGesture'
+  s.dependency 'RxSwift', '~> 6.0'
+  s.dependency 'RxCocoa', '~> 6.0'
+  s.dependency 'RxDataSources', '~> 5.0'
+  s.dependency 'NSObject+Rx', '~> 5.2.2'
+  s.dependency 'RxOptional', '~> 5.0'
+  s.dependency 'RxGesture', '~> 4.0.4'
   s.dependency 'Then'
-  s.dependency 'Action'
-  s.dependency 'ReusableKit', '~> 2.1.0'
-  s.dependency 'ReactorKit'
+  s.dependency 'Action', '~> 4.0'
+  s.dependency 'ReusableKit', '~> 4.0'
+  s.dependency 'ReactorKit', '~> 3.2.0'
 
 
   #code review

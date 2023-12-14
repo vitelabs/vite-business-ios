@@ -127,7 +127,7 @@ class GetPowFloatView: VisualEffectAnimationView {
     var progress = 0
     override func show(animations: (() -> Void)? = nil, completion: (() -> Void)? = nil) {
         super.show(animations: animations, completion: completion)
-        Observable<Int>.interval(0.6, scheduler: MainScheduler.instance).bind { [weak self] _ in
+        Observable<Int>.interval(.milliseconds(600), scheduler: MainScheduler.instance).bind { [weak self] _ in
             guard let `self` = self else { return }
             guard self.progress < 100 else { return }
             self.progress = min(self.progress + 1, 99)

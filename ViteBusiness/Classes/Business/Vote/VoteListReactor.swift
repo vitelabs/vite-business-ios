@@ -15,13 +15,13 @@ import APIKit
 
 final class VoteListReactor {
 
-    let search = Variable<String?>("")
-    let vote = Variable<String>("")
+    let search = BehaviorRelay<String?>(value: "")
+    let vote = BehaviorRelay<String>(value: "")
     let fetchManually = PublishSubject<Void>()
 
-    var fetchCandidateError = Variable<Error?>(nil)
+    var fetchCandidateError = BehaviorRelay<Error?>(value: nil)
     var voteSuccess = PublishSubject<Void>()
-    var lastVoteInfo = Variable<(VoteStatus, VoteInfo?)>((.voteInvalid, nil))
+    var lastVoteInfo = BehaviorRelay<(VoteStatus, VoteInfo?)>(value: (.voteInvalid, nil))
 
     let account = DisposeBag()
 
@@ -40,22 +40,22 @@ final class VoteListReactor {
                             observer.onCompleted()
                         }
                         .catch { [weak self] (error) in
-                            self?.fetchCandidateError.value = error
+                            self?.fetchCandidateError.accept(error)
                             observer.onCompleted()
                     }
                     return Disposables.create()
                 }),
 
-                Observable<Int>.interval(30, scheduler: MainScheduler.instance)
+                Observable<Int>.interval(.seconds(30), scheduler: MainScheduler.instance)
                 .flatMap { [weak self] _ in
                     Observable<[Candidate]?>.create({ (observer) -> Disposable in
                         ViteNode.vote.info.getCandidateList(gid: ViteWalletConst.ConsensusGroup.snapshot.id)
                             .done { [weak self] (candidates) in
-                                self?.fetchCandidateError.value = nil
+                                self?.fetchCandidateError.accept(nil)
                                 observer.onNext(candidates)
                             }
                             .catch { [weak self] (error) in
-                                self?.fetchCandidateError.value = error
+                                self?.fetchCandidateError.accept(error)
                         }
                         return Disposables.create()
                     })
@@ -69,7 +69,7 @@ final class VoteListReactor {
             }
             .distinctUntilChanged({ $0.0 == $1.0 && $0.1?.nodeName == $1.1?.nodeName })
 
-        statusChanged.bind { self.lastVoteInfo.value = $0 }.disposed(by: account)
+        statusChanged.bind { self.lastVoteInfo.accept($0) }.disposed(by: account)
 
         let fetchWhenStatusChange = statusChanged
             .flatMapLatest({ (_, _)  in
@@ -95,7 +95,7 @@ final class VoteListReactor {
                             observer.onCompleted()
                         }
                         .catch { (error) in
-                            self?.fetchCandidateError.value = error
+                            self?.fetchCandidateError.accept(error)
                             observer.onCompleted()
                     }
                     return Disposables.create()

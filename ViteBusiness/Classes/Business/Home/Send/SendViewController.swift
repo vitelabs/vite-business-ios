@@ -232,9 +232,10 @@ class SendViewController: BaseViewController {
             self.amountView.calcPrice()
         }.disposed(by: rx.disposeBag)
 
-        Driver.combineLatest(addressView.textView.rx.text.asDriver(),
+        let combinedDriver: Driver<(String?, String?)> = Driver.combineLatest(addressView.textView.rx.text.asDriver(),
                              noteView.textField.rx.text.asDriver())
-            .throttle(1)
+        combinedDriver
+            .throttle(.seconds(1))
             .distinctUntilChanged({ (arg0, arg1) -> Bool in  return arg0.0 == arg1.0 && arg0.1 == arg1.1 })
             .drive(onNext: { [weak self] (address, text) in
                 guard let `self` = self else { return }

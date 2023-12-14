@@ -241,7 +241,7 @@ class GatewayWithdrawViewController: BaseViewController {
 
 
         amountView.textField.rx.text
-            .debounce(0.5, scheduler: MainScheduler.instance).bind { [weak self] text in
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance).bind { [weak self] text in
                 guard let `self` = self else { return }
 
                 guard let viteAddress = HDWalletManager.instance.account?.address else {

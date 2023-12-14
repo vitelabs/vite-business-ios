@@ -131,7 +131,7 @@ extension AboutUsViewController {
         }
 
         getSnapshotChainHeight()
-        Observable<Int>.interval(3, scheduler: MainScheduler.instance).bind { [weak self] _ in self?.getSnapshotChainHeight() }.disposed(by: rx.disposeBag)
+        Observable<Int>.interval(.seconds(3), scheduler: MainScheduler.instance).bind { [weak self] _ in self?.getSnapshotChainHeight() }.disposed(by: rx.disposeBag)
     }
 
     func getSnapshotChainHeight() {

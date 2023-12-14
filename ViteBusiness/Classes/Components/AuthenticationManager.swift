@@ -34,6 +34,8 @@ enum BiometryAuthenticationType: CustomStringConvertible {
                 return .touchID
             case .faceID:
                 return .faceID
+            case .opticID:
+                return .none
             }
         } else {
             return authContext.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) ? .touchID : .none
