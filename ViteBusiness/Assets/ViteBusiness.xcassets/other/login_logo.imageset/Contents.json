@@ -1,6 +1,7 @@
 {
   "images" : [
     {
+      "filename" : "new logo 500 画板 1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -10,12 +11,11 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "login_logo@3x.png",
       "scale" : "3x"
     }
   ],
   "info" : {
-    "version" : 1,
-    "author" : "xcode"
+    "author" : "xcode",
+    "version" : 1
   }
 }

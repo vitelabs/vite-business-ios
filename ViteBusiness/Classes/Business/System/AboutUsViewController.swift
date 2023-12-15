@@ -74,7 +74,7 @@ extension AboutUsViewController {
             make.top.equalTo(headerView).offset(30)
             make.centerX.equalTo(headerView)
             make.width.equalTo(82)
-            make.height.equalTo(116)
+            make.height.equalTo(82)
         }
         self.tableView.tableHeaderView = headerView
         self.tableView.alwaysBounceVertical = false

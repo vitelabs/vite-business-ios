@@ -90,6 +90,7 @@ extension CreateAccountHomeViewController {
         logoImgView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(self.view).offset(30)
             make.top.equalTo(self.view).offset(100)
+            make.size.equalTo(CGSizeMake(68, 68))
         }
         self.view.addSubview(sloganImgView)
         sloganImgView.snp.makeConstraints { (make) -> Void in
