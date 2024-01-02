@@ -61,11 +61,14 @@ class HomeViewController: UITabBarController {
         }
 
 
-        #if DAPP
-            var subViewControlles: [UIViewController] = [walletNav, dexAssetNav, DebugHomeViewController.createNavVC()]
-        #else
-            var subViewControlles: [UIViewController] = [walletNav, marketNav, tradingNav, dexAssetNav]
-        #endif
+#if DAPP
+        var subViewControlles: [UIViewController] = [walletNav, dexAssetNav, DebugHomeViewController.createNavVC()]
+#else
+        var subViewControlles: [UIViewController] = [walletNav, marketNav, tradingNav, dexAssetNav]
+        if AppConfigService.instance.isOnlineVersion == false {
+            subViewControlles = [walletNav, marketNav, dexAssetNav]
+        }
+#endif
 
         for (viewController, index) in ViteBusinessLanucher.instance.subVCInfo {
             if subViewControlles.count <= index {

@@ -39,6 +39,7 @@ public class AppConfigService {
 
     private init() {
 
+        lastBuildNumber = AppSettingsService.instance.appSettings.lastBuildNumber
         if let (config, hash): (AppConfig, String) = readMappableAndHash() {
             appConfigHash = hash
             configBehaviorRelay = BehaviorRelay(value: config)
@@ -63,11 +64,18 @@ public class AppConfigService {
                 //plog(level: .debug, log: "get config hash finished", tag: .getConfig)
                 guard let string = jsonString else { return }
                 guard let configHash = ConfigHash(JSONString: string) else { return }
-                self.lastBuildNumber = configHash.lastBuildNumber
+                let old = self.lastBuildNumber ?? 0
+                let new = configHash.lastBuildNumber ?? 0
+                let cur = Bundle.main.buildNumberInt
+                self.lastBuildNumber = new
+                AppSettingsService.instance.updateLastBuildNumber(self.lastBuildNumber ?? 0)
                 self.pDelay = configHash.pDelay ?? self.pDelay
                 self.getPowTimesPreDay = configHash.getPowTimesPreDay ?? self.getPowTimesPreDay
                 self.getAppSettingsConfig(hash: configHash.appConfig)
                 LocalizationService.sharedInstance.updateLocalizableIfNeeded(localizationHash: configHash.localization)
+                if new > 0 && old < cur && new >= cur {
+                    NotificationCenter.default.post(name: .tabChanged, object: nil)
+                }
             case .failure(let error):
                 plog(level: .warning, log: error.viteErrorMessage, tag: .getConfig)
                 GCD.delay(2, task: { self.getConfigHash() })

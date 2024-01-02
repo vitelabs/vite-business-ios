@@ -48,6 +48,14 @@ public class AppSettingsService {
             appSettingsBehaviorRelay = BehaviorRelay(value: appSettings)
         }
     }
+    
+    func updateLastBuildNumber(_ lastBuildNumber: Int) {
+        guard lastBuildNumber != appSettingsBehaviorRelay.value.lastBuildNumber else { return }
+        var appSettings: AppSettings = appSettingsBehaviorRelay.value
+        appSettings.lastBuildNumber = lastBuildNumber
+        appSettingsBehaviorRelay.accept(appSettings)
+        save(mappable: appSettings)
+    }
 
     func updateCurrency(_ currency: CurrencyCode) {
         guard currency != appSettingsBehaviorRelay.value.currency else { return }
@@ -76,6 +84,7 @@ public class AppSettingsService {
 
 extension AppSettingsService {
     public struct AppSettings: Mappable {
+        public var lastBuildNumber: Int = 0
         public var currency: CurrencyCode = .USD
         public var dexHideSmall: Bool = false
         public var viteNetworkType: ViteNetworkType = .mainnet
@@ -87,6 +96,7 @@ extension AppSettingsService {
 
         public init?(map: Map) { }
         public mutating func mapping(map: Map) {
+            lastBuildNumber <- map["lastBuildNumber"]
             currency <- map["currency"]
             dexHideSmall <- map["dexHideSmall"]
             viteNetworkType <- map["viteNetworkType"]

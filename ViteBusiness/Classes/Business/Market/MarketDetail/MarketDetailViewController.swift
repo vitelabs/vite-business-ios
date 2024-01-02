@@ -81,6 +81,10 @@ class MarketDetailViewController: BaseViewController {
             let bottomH: CGFloat = BottomView.height
             let bottomSafeH: CGFloat = UIApplication.shared.keyWindow!.safeAreaInsets.bottom
             var H: CGFloat = kScreenH - statusBarH - navH - bottomH - bottomSafeH
+            if AppConfigService.instance.isOnlineVersion == false {
+                H = kScreenH - statusBarH - navH - bottomSafeH
+            }
+            
             return CGRect(x: 0, y: statusBarH + navH, width: kScreenW, height: H)
         }()
 
@@ -126,24 +130,33 @@ class MarketDetailViewController: BaseViewController {
 
         view.addSubview(navView)
         view.addSubview(contentView)
-        view.addSubview(bottomView)
-
+        
         navView.snp.remakeConstraints { (m) in
             m.top.equalToSuperview()
             m.left.equalTo(view)
             m.right.equalTo(view)
         }
 
-        contentView.snp.makeConstraints { (m) in
-            m.top.equalTo(navView.snp.bottom).offset(0)
-            m.left.right.equalToSuperview()
-        }
-
-        bottomView.snp.makeConstraints { (m) in
-            m.top.equalTo(contentView.snp.bottom)
-            m.left.right.equalToSuperview()
-            m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
-            m.height.equalTo(BottomView.height)
+        if AppConfigService.instance.isOnlineVersion {
+            view.addSubview(bottomView)
+            
+            contentView.snp.makeConstraints { (m) in
+                m.top.equalTo(navView.snp.bottom).offset(0)
+                m.left.right.equalToSuperview()
+            }
+            
+            bottomView.snp.makeConstraints { (m) in
+                m.top.equalTo(contentView.snp.bottom)
+                m.left.right.equalToSuperview()
+                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+                m.height.equalTo(BottomView.height)
+            }
+        } else {
+            contentView.snp.makeConstraints { (m) in
+                m.top.equalTo(navView.snp.bottom).offset(0)
+                m.left.right.equalToSuperview()
+                m.bottom.equalTo(view.safeAreaLayoutGuideSnpBottom)
+            }
         }
     }
 

@@ -251,6 +251,20 @@ public class ViteBusinessLanucher: NSObject {
                 guard let `self` = self else { return }
                 self.goHomePage()
             }.disposed(by: rx.disposeBag)
+        
+        let n = NotificationCenter.default.rx.notification(.tabChanged)
+        n.subscribe {[weak self] (_) in
+            guard let `self` = self else { return }
+            if HDWalletManager.instance.canUnLock {
+                if !HDWalletManager.instance.isRequireAuthentication,
+                    let wallet = KeychainService.instance.currentWallet,
+                    wallet.uuid == HDWalletManager.instance.wallet?.uuid,
+                    HDWalletManager.instance.loginCurrent(encryptKey: wallet.encryptKey) {
+                    self.goHomePage()
+                    return
+                }
+            }
+        }.disposed(by: rx.disposeBag)
     }
 
     func handleRootVC() {

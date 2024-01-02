@@ -12,7 +12,8 @@ extension Notification.Name {
     // Need to update UI
     public static let languageChanged = NSNotification.Name(rawValue: "Vite_APPLanguageChanged")
     public static let languageChangedInSetting = NSNotification.Name(rawValue: "Vite_APPLanguageChangedInSetting")
-
+    public static let tabChanged = NSNotification.Name(rawValue: "Vite_tabChanged")
+    
     public static let goTradingPage = NSNotification.Name(rawValue: "Vite_GoTradingPage")
 
     // account
