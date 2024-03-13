@@ -48,8 +48,8 @@ class DexAssetsHomeHeaderViewCell: BaseTableViewCell {
     let transferButton = UIButton().then {
         $0.setTitle(R.string.localizable.dexHomePageHeaderButtonTransferTitle(), for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.setBackgroundImage(R.image.icon_trading_segment_selected_fram()?.resizable, for: .normal)
         $0.setBackgroundImage(R.image.icon_trading_segment_selected_fram()?.highlighted.resizable, for: .highlighted)
     }
@@ -57,8 +57,8 @@ class DexAssetsHomeHeaderViewCell: BaseTableViewCell {
     let depositButton = UIButton().then {
         $0.setTitle(R.string.localizable.dexHomePageHeaderButtonDepositTitle(), for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.setBackgroundImage(R.image.icon_trading_segment_selected_fram()?.resizable, for: .normal)
         $0.setBackgroundImage(R.image.icon_trading_segment_selected_fram()?.highlighted.resizable, for: .highlighted)
     }
@@ -66,8 +66,8 @@ class DexAssetsHomeHeaderViewCell: BaseTableViewCell {
     let withdrawButton = UIButton().then {
         $0.setTitle(R.string.localizable.dexHomePageHeaderButtonWithdrawTitle(), for: .normal)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .regular)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.setBackgroundImage(R.image.icon_trading_segment_selected_fram()?.resizable, for: .normal)
         $0.setBackgroundImage(R.image.icon_trading_segment_selected_fram()?.highlighted.resizable, for: .highlighted)
     }

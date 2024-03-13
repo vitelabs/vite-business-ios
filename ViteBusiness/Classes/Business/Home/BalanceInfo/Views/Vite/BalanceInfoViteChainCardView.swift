@@ -13,7 +13,9 @@ import ViteWallet
 
 class BalanceInfoViteChainCardView: UIView {
 
-    let colorBackgroundView = UIView()
+    let colorBackgroundView = UIView().then {
+        $0.layer.cornerRadius = 15
+    }
 
     let addressButton = UIButton().then {
         $0.setBackgroundImage(nil, for: .normal)
@@ -291,7 +293,7 @@ class BalanceInfoViteChainCardView: UIView {
         }
 
         let vLine = UIView().then {
-            $0.backgroundColor = UIColor(netHex: 0xffffff, alpha: 0.26)
+            $0.backgroundColor = UIColor(netHex: 0xffffff)
         }
 
         colorBackgroundView.addSubview(buttonView)

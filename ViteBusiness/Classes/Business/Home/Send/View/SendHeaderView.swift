@@ -77,7 +77,7 @@ class SendHeaderView: UIView {
         contentView.layer.masksToBounds = true
         contentView.layer.cornerRadius = 2
 
-        let line = UIView().then { $0.backgroundColor = UIColor(netHex: 0x759BFA) }
+        let line = UIView().then { $0.backgroundColor = UIColor(netHex: 0x00FF95) }
 
         contentView.addSubview(stackView)
         contentView.addSubview(line)

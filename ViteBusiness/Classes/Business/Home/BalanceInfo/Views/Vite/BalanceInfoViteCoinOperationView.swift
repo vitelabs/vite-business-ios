@@ -16,9 +16,9 @@ class BalanceInfoViteCoinOperationView: UIView {
         return CGSize(width: 0, height: 44)
     }
 
-    let voteButton = OperationButton(icon: R.image.icon_balance_detail_vote(), title: R.string.localizable.balanceInfoDetailVote())
+    let voteButton = OperationButton(icon: R.image.icon_balance_detail_vote()?.tintColor(UIColor(netHex: 0x00BEFF)), title: R.string.localizable.balanceInfoDetailVote())
 
-     let buyCoinButton = OperationButton(icon: R.image.exchange_button_icon(), title:  R.string.localizable.exchangeTitley())
+     let buyCoinButton = OperationButton(icon: R.image.exchange_button_icon()?.tintColor(UIColor(netHex: 0x00BEFF)), title:  R.string.localizable.exchangeTitley())
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -84,12 +84,12 @@ class OperationButton: UIView {
         let imageView = UIImageView()
 
         let vLine = UIView().then {
-            $0.backgroundColor = UIColor(netHex: 0xe5e5ea)
+            $0.backgroundColor = UIColor(netHex: 0x00BEFF)
         }
 
         let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-            $0.textColor = UIColor(netHex: 0x007AFF)
+            $0.textColor = UIColor(netHex: 0x00BEFF)
             $0.numberOfLines = 2
             $0.textAlignment = .center
         }

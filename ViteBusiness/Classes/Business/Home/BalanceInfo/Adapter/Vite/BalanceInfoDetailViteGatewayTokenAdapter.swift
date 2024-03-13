@@ -48,11 +48,11 @@ class BalanceInfoDetailGatewayTokenAdapter: BalanceInfoDetailAdapter {
     fileprivate func getOperationView() -> UIView {
         let tokenInfo = self.tokenInfo
 
-        let o0 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_deposit(), title: R.string.localizable.crosschainDeposit()) { [weak self] in
+        let o0 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_deposit()?.tintColor(UIColor(netHex: 0x00BEFF)), title: R.string.localizable.crosschainDeposit()) { [weak self] in
             self?.showStatement(isWithDraw: false)
         }
 
-        let o1 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_withdraw(), title: R.string.localizable.crosschainWithdraw()) { [weak self] in
+        let o1 = BalanceInfoOperation.init(icon: R.image.crosschain_operat_withdraw()?.tintColor(UIColor(netHex: 0x00BEFF)), title: R.string.localizable.crosschainWithdraw()) { [weak self] in
             self?.showStatement(isWithDraw: true)
         }
         let operationView = BalanceInfoViteGatewayOperationView.init(firstOperation: o0, secondOperation: o1)

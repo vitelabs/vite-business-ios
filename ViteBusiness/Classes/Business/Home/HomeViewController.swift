@@ -31,24 +31,31 @@ class HomeViewController: UITabBarController {
         let dexAssetVC = DexAssetsHomeViewController().then {
             $0.automaticallyShowDismissButton = false
         }
+        
+        
+        let selectedAttributes = [NSAttributedString.Key.foregroundColor: UIColor(netHex: 0x00BEFF)]
 
 
         let walletNav = BaseNavigationController(rootViewController: walletVC).then {
             $0.tabBarItem.title = R.string.localizable.tabTitleWallet()
             $0.tabBarItem.image = R.image.icon_tabbar_wallet()?.withRenderingMode(.alwaysOriginal)
             $0.tabBarItem.selectedImage = R.image.icon_tabbar_wallet_select()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.setTitleTextAttributes(selectedAttributes, for: .selected)
+            
         }
 
         let dexAssetNav = BaseNavigationController(rootViewController: dexAssetVC).then {
             $0.tabBarItem.title = R.string.localizable.tabTitleDex()
             $0.tabBarItem.image = R.image.icon_tabbar_dex()?.withRenderingMode(.alwaysOriginal)
             $0.tabBarItem.selectedImage = R.image.icon_tabbar_dex_select()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.setTitleTextAttributes(selectedAttributes, for: .selected)
         }
 
         let marketNav = BaseNavigationController(rootViewController: marketVC).then {
             $0.tabBarItem.title = R.string.localizable.tabTitleMarket()
             $0.tabBarItem.image = ViteBusiness.R.image.icon_tabbar_market()?.withRenderingMode(.alwaysOriginal)
             $0.tabBarItem.selectedImage = ViteBusiness.R.image.icon_tabbar_market_select()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.setTitleTextAttributes(selectedAttributes, for: .selected)
             $0.tabBarItem.tag = 1002
             $0.interactivePopGestureRecognizer?.isEnabled = false
         }
@@ -57,6 +64,7 @@ class HomeViewController: UITabBarController {
             $0.tabBarItem.title = R.string.localizable.tabTitleTrading()
             $0.tabBarItem.image = R.image.icon_tabbar_trading()?.withRenderingMode(.alwaysOriginal)
             $0.tabBarItem.selectedImage = R.image.icon_tabbar_trading_select()?.withRenderingMode(.alwaysOriginal)
+            $0.tabBarItem.setTitleTextAttributes(selectedAttributes, for: .selected)
             $0.tabBarItem.tag = 1001
         }
 

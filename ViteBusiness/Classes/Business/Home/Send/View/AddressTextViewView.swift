@@ -32,8 +32,8 @@ class AddressTextViewView: SendAddressViewType {
         addSubview(placeholderLab)
         addSubview(addButton)
 
-        addButton.setImage(R.image.icon_button_address_add(), for: .normal)
-        addButton.setImage(R.image.icon_button_address_add()?.highlighted, for: .highlighted)
+        addButton.setImage(R.image.icon_button_address_add()?.tintColor(UIColor(netHex: 0x00BEFF)), for: .normal)
+        addButton.setImage(R.image.icon_button_address_add()?.tintColor(UIColor(netHex: 0x00BEFF)).highlighted, for: .highlighted)
 
         titleLabel.snp.makeConstraints { (m) in
             m.top.equalTo(self)

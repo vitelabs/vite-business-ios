@@ -44,6 +44,8 @@ class ReceiveViewController: BaseViewController {
 
     // View
     lazy var scrollView = ScrollableView(insets: UIEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)).then {
+        $0.layer.cornerRadius = 15
+        $0.clipsToBounds = true
         if #available(iOS 11.0, *) {
             $0.contentInsetAdjustmentBehavior = .never
         } else {
@@ -58,13 +60,15 @@ class ReceiveViewController: BaseViewController {
     func setupView() {
         navigationBarStyle = .clear
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: R.image.icon_nav_share_black(), landscapeImagePhone: nil, style: .plain, target: self, action: #selector(onShare))
-        view.backgroundColor = UIColor.gradientColor(style: .top2bottom, frame: view.frame, colors: tokenInfo.coinBackgroundGradientColors)
+        view.backgroundColor = UIColor.gradientColor(style: .leftBottom2rightTop, frame: view.frame, colors: tokenInfo.coinBackgroundGradientColors)
 
         let whiteView = UIImageView(image: R.image.background_button_white()?.resizable).then {
             $0.layer.shadowColor = UIColor(netHex: 0x000000).cgColor
             $0.layer.shadowOpacity = 0.1
             $0.layer.shadowOffset = CGSize(width: 0, height: 5)
             $0.layer.shadowRadius = 20
+            $0.layer.cornerRadius = 15
+            $0.clipsToBounds = true
         }
 
         view.addSubview(whiteView)

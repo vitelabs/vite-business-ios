@@ -32,11 +32,8 @@ public enum CoinType: String {
         switch self {
         case .vite:
             return [
-                UIColor(netHex: 0x0B30E4),
-                UIColor(netHex: 0x0D6CEF),
-                UIColor(netHex: 0x0998F3),
-                UIColor(netHex: 0x00C3FF),
-                UIColor(netHex: 0x00ECFF),
+                UIColor(netHex: 0x00BEFF),
+                UIColor(netHex: 0x00FF95),
             ]
         case .unsupport:
             return [UIColor.white]
@@ -46,7 +43,7 @@ public enum CoinType: String {
     var mainColor: UIColor {
         switch self {
         case .vite:
-            return UIColor(netHex: 0x007AFF)
+            return UIColor(netHex: 0x00FF95)
         case .unsupport:
             return UIColor.white
         }
@@ -55,7 +52,7 @@ public enum CoinType: String {
     var strokeColor: UIColor {
         switch self {
         case .vite:
-            return UIColor(netHex: 0x007AFF, alpha: 0.67)
+            return UIColor(netHex: 0x00FF95, alpha: 0.67)
         case .unsupport:
             return UIColor.white
         }

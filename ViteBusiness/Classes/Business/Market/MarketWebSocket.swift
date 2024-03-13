@@ -205,14 +205,14 @@ extension MarketWebSocket: WebSocketDelegate, WebSocketPongDelegate {
 
     func websocketDidConnect(socket: WebSocketClient) {
         self.isConnectedBehaviorRelay.accept(true)
-        plog(level: .info, log: "websocketDidConnect,clientId:\(clientId)", tag: .market)
+        plog(level: .info, log: "websocketDidConnect,clientId:\(self.clientId)", tag: .market)
         self.ping()
         self.sub()
     }
 
     func websocketDidDisconnect(socket: WebSocketClient, error: Error?) {
         self.isConnectedBehaviorRelay.accept(false)
-        plog(level: .info, log: "websocketDidDisconnect, clientId:\(clientId), error: \(String(describing: error?.localizedDescription))", tag: .market)
+        plog(level: .info, log: "websocketDidDisconnect, clientId:\(self.clientId), error: \(String(describing: error?.localizedDescription))", tag: .market)
         GCD.delay(1) {
             self.socket.connect()
         }

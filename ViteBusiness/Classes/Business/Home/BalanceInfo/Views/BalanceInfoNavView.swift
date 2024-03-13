@@ -122,7 +122,7 @@ class GateWayNameButton: UIView {
     let label = UILabel().then {
         $0.text = "Gateway"
         $0.font = UIFont.systemFont(ofSize: 11)
-        $0.textColor = UIColor.init(netHex: 0x007AFF)
+        $0.textColor = UIColor.init(netHex: 0x00BEFF)
     }
 
     let button  = UIButton()

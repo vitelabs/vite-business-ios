@@ -112,7 +112,7 @@ class SendViewController: BaseViewController {
         }
 
         let sendButton = UIButton(style: .blue, title: R.string.localizable.sendPageSendButtonTitle())
-
+        
         view.addSubview(scrollView)
         view.addSubview(navView)
         view.addSubview(sendButton)

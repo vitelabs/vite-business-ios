@@ -41,9 +41,11 @@ extension UIButton {
             layer.cornerRadius = 2
         case .blue:
             setTitleColor(UIColor.white, for: .normal)
-            setBackgroundImage(R.image.background_button_blue()?.resizable, for: .normal)
-            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0x006FEA)).resizable, for: .highlighted)
-            setBackgroundImage(R.image.background_button_blue()?.tintColor(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
+            setBackgroundImage(UIImage.color(UIColor(netHex: 0x00BEFF)).resizable, for: .normal)
+            setBackgroundImage(UIImage.color(UIColor(netHex: 0x00BEFF)).highlighted.resizable, for: .highlighted)
+            setBackgroundImage(UIImage.color(UIColor(netHex: 0xEFF0F4)).resizable, for: .disabled)
+            clipsToBounds = true
+            layer.cornerRadius = 15
         case .blueWithShadow:
             setTitleColor(UIColor.white, for: .normal)
             setBackgroundImage(R.image.background_button_blue()?.resizable, for: .normal)

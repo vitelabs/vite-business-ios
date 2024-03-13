@@ -14,20 +14,20 @@ class WalletHomeNavView: UIImageView {
 
     fileprivate let nameLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        $0.textColor = UIColor(netHex: 0x3E4A59)
+        $0.textColor = UIColor.white
         $0.numberOfLines = 1
         $0.textAlignment = .center
     }
 
     fileprivate let btcLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
-        $0.textColor = UIColor(netHex: 0x3E4A59)
+        $0.textColor = UIColor.white
         $0.numberOfLines = 1
     }
 
     fileprivate let priceLabel = UILabel().then {
         $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-        $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+        $0.textColor = UIColor.white
         $0.numberOfLines = 1
     }
 
@@ -39,15 +39,20 @@ class WalletHomeNavView: UIImageView {
         $0.pp.setBadge(height: 4.0)
         $0.pp.base.badgeView.backgroundColor = UIColor(netHex: 0xFF0008)
     }
-
+    
     let scanButton = UIButton().then {
-        $0.setImage(R.image.icon_nav_scan_black(), for: .normal)
-        $0.setImage(R.image.icon_nav_scan_black()?.highlighted, for: .highlighted)
+        $0.setImage(R.image.icon_nav_scan_black()?.tintColor(UIColor.white), for: .normal)
+        $0.setImage(R.image.icon_nav_scan_black()?.tintColor(UIColor.white).highlighted, for: .highlighted)
     }
 
     let hideButton = UIButton().then {
-        $0.setImage(R.image.icon_price_show_button(), for: .normal)
-        $0.setImage(R.image.icon_price_show_button()?.highlighted, for: .highlighted)
+        $0.setImage(R.image.icon_price_show_button()?.tintColor(UIColor.white), for: .normal)
+        $0.setImage(R.image.icon_price_show_button()?.tintColor(UIColor.white).highlighted, for: .highlighted)
+    }
+    
+    fileprivate let bgImageView = UIImageView().then {
+        $0.contentMode = .scaleToFill
+        $0.image = R.image.icon_wallet_home_nav_bg()
     }
 
     override init(frame: CGRect) {
@@ -55,15 +60,13 @@ class WalletHomeNavView: UIImageView {
 
         let titleLabel = UILabel().then {
             $0.font = UIFont.systemFont(ofSize: 14, weight: .regular)
-            $0.textColor = UIColor(netHex: 0x3E4A59, alpha: 0.7)
+            $0.textColor = UIColor.white
             $0.numberOfLines = 1
             $0.text = R.string.localizable.walletHomeBtcTitle()
         }
-
-        contentMode = .scaleToFill
-        image = R.image.icon_wallet_home_nav_bg()
         isUserInteractionEnabled = true
 
+        addSubview(bgImageView)
         addSubview(titleLabel)
         addSubview(hideButton)
         addSubview(btcLabel)
@@ -74,6 +77,9 @@ class WalletHomeNavView: UIImageView {
         addSubview(scanButton)
 
 
+        bgImageView.snp.makeConstraints { (m) in
+            m.left.right.top.equalToSuperview()
+        }
         titleLabel.snp.makeConstraints { (m) in
             m.left.equalToSuperview().offset(24)
             m.top.equalTo(myButton.snp.bottom).offset(16)
@@ -135,11 +141,11 @@ class WalletHomeNavView: UIImageView {
 
         viewModel.isHidePriceDriver.drive(onNext: { [weak self] (isHide) in
             if isHide {
-                self?.hideButton.setImage(R.image.icon_price_hide_button(), for: .normal)
-                self?.hideButton.setImage(R.image.icon_price_hide_button()?.highlighted, for: .highlighted)
+                self?.hideButton.setImage(R.image.icon_price_hide_button()?.tintColor(UIColor.white), for: .normal)
+                self?.hideButton.setImage(R.image.icon_price_hide_button()?.tintColor(UIColor.white).highlighted, for: .highlighted)
             } else {
-                self?.hideButton.setImage(R.image.icon_price_show_button(), for: .normal)
-                self?.hideButton.setImage(R.image.icon_price_show_button()?.highlighted, for: .highlighted)
+                self?.hideButton.setImage(R.image.icon_price_show_button()?.tintColor(UIColor.white), for: .normal)
+                self?.hideButton.setImage(R.image.icon_price_show_button()?.tintColor(UIColor.white).highlighted, for: .highlighted)
             }
         }).disposed(by: rx.disposeBag)
     }

@@ -22,11 +22,11 @@ class BalanceInfoViteChainQuotaView: UIView {
 
     let quotaButton = UIButton().then {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
-        $0.setImage(R.image.icon_balance_quota_arrows(), for: .normal)
-        $0.setImage(R.image.icon_balance_quota_arrows()?.highlighted, for: .highlighted)
+        $0.setImage(R.image.icon_balance_quota_arrows()?.tintColor(UIColor(netHex: 0x00BEFF)), for: .normal)
+        $0.setImage(R.image.icon_balance_quota_arrows()?.tintColor(UIColor(netHex: 0x00BEFF)).highlighted, for: .highlighted)
         $0.setTitle(R.string.localizable.balanceInfoDetailPledge(), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.transform = CGAffineTransform(scaleX: -1, y: 1)
         $0.titleLabel?.transform = CGAffineTransform(scaleX: -1, y: 1)
         $0.imageView?.transform = CGAffineTransform(scaleX: -1, y: 1)
@@ -66,7 +66,7 @@ class BalanceInfoViteChainQuotaView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         layer.masksToBounds = true
-        layer.cornerRadius = 2
+        layer.cornerRadius = 10
 
         addSubview(quotaLabel)
         addSubview(quotaButton)
@@ -129,10 +129,10 @@ class BalanceInfoViteChainQuotaView: UIView {
     func updateQuota(currect: Double, max: Double) {
 
         DispatchQueue.main.async {
-            self.backgroundColor = UIColor.gradientColor(style: .left2right,
+            self.backgroundColor = UIColor.gradientColor(style: .top2bottom,
                                                          frame: self.frame,
-                                                         colors: [UIColor(netHex: 0xE3F0FF),
-                                                                  UIColor(netHex: 0xF2F8FF)])
+                                                         colors: [UIColor(netHex: 0xC1EFFF, alpha: 0),
+                                                                  UIColor(netHex: 0xC3F0FF)])
         }
 
         if max.isZero {

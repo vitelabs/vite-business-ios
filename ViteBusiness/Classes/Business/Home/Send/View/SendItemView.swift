@@ -72,8 +72,8 @@ class SendItemView: UIView {
             return UIButton().then {
                 switch self {
                 case .tip(let clicked):
-                    $0.setImage(R.image.icon_button_tip(), for: .normal)
-                    $0.setImage(R.image.icon_button_tip()?.highlighted, for: .highlighted)
+                    $0.setImage(R.image.icon_button_tip()?.tintColor(UIColor(netHex: 0x00BEFF)), for: .normal)
+                    $0.setImage(R.image.icon_button_tip()?.tintColor(UIColor(netHex: 0x00BEFF)).highlighted, for: .highlighted)
                     $0.rx.tap.bind { clicked() }.disposed(by: $0.rx.disposeBag)
                 case .custom(let image, let clicked):
                     $0.setImage(image, for: .normal)
