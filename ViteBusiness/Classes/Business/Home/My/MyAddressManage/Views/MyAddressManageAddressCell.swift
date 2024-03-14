@@ -20,8 +20,8 @@ class MyAddressManageAddressCell: BaseTableViewCell {
 
     fileprivate let nameButton = UIButton().then {
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 14, weight: .semibold)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.titleLabel?.lineBreakMode = .byTruncatingTail
     }
 
@@ -126,7 +126,7 @@ class MyAddressManageAddressCell: BaseTableViewCell {
         let attributes = [NSAttributedString.Key.paragraphStyle: style]
         addressLabel.attributedText = NSAttributedString(string: viewModel.address, attributes: attributes)
 
-        flagImageView.image = viewModel.isSelected ? R.image.icon_cell_select() : R.image.icon_cell_unselect()
+        flagImageView.image = viewModel.isSelected ? R.image.icon_cell_select()?.gradientTintColor(UIColor(netHex: 0x00BEFF)) : R.image.icon_cell_unselect()
         copyButton.rx.tap.bind { viewModel.copy() }.disposed(by: disposeBag)
 
         nameButton.rx.tap.bind { [weak self] in

@@ -46,9 +46,9 @@ class MyAddressManageViewController: BaseTableViewController {
     lazy var headerView = MyAddressManageHeaderView(showAddressesTips: self.tableViewModel.showAddressesTips)
     let generateButton = UIButton().then {
         $0.setTitle(R.string.localizable.addressManageAddressGenerateButtonTitle(), for: .normal)
-        $0.setImage(R.image.icon_button_add(), for: .normal)
-        $0.setImage(R.image.icon_button_add(), for: .highlighted)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
+        $0.setImage(R.image.icon_button_add()?.tintColor(UIColor(netHex: 0x00BEFF)), for: .normal)
+        $0.setImage(R.image.icon_button_add()?.tintColor(UIColor(netHex: 0x00BEFF)), for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
         $0.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         $0.setBackgroundImage(R.image.background_add_button_white()?.resizable, for: .normal)
         $0.setBackgroundImage(R.image.background_add_button_white()?.tintColor(UIColor(netHex: 0xefefef)).resizable, for: .highlighted)

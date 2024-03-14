@@ -23,7 +23,7 @@ class CrossChainStatementViewController: BaseViewController {
     let topLabel1 = ActiveLabel()
     let topLabel2 = ActiveLabel()
     let bottomLabel = ActiveLabel()
-    let agreeButton = UIButton.init(style: .blueWithShadow,title: R.string.localizable.grinSentNext())
+    let agreeButton = UIButton.init(style: .blue, title: R.string.localizable.grinSentNext())
 
     init(tokenInfo: TokenInfo) {
         self.tokenInfo = tokenInfo

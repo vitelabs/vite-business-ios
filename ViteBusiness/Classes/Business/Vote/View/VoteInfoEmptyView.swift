@@ -10,7 +10,7 @@ class VoteInfoBgView: UIView {
     lazy var bgImg: UIImageView = {
         let bgImg = UIImageView()
         bgImg.isUserInteractionEnabled = true
-        bgImg.image = R.image.vote_info_bg()
+        bgImg.image = R.image.vote_info_bg()?.gradientTintColor(UIColor(netHex: 0x00BEFF))
         return bgImg
     }()
 
@@ -31,7 +31,7 @@ class VoteInfoBgView: UIView {
     lazy var iconImg: UIImageView = {
         let iconImg = UIImageView()
         iconImg.isUserInteractionEnabled = true
-        iconImg.image = R.image.vote_info_icon()
+        iconImg.image = R.image.vote_info_icon()?.gradientTintColor(UIColor(netHex: 0xffffff))
         return iconImg
     }()
 
