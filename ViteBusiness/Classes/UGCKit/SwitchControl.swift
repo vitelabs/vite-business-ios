@@ -13,9 +13,9 @@ extension UIView {
         let switchControl = SwitchControl(frame: CGRect(x: 0, y: 0, width: 37, height: 20))
         switchControl.on = true
         switchControl.thumbTintColor = .white
-        switchControl.activeColor = UIColor.init(netHex: 0x007AFF)
+        switchControl.activeColor = UIColor.init(netHex: 0x00BEFF)
         switchControl.inactiveColor = UIColor.init(netHex: 0xE5E5EA)
-        switchControl.onTintColor =   UIColor.init(netHex: 0x007AFF)
+        switchControl.onTintColor =   UIColor.init(netHex: 0x00BEFF)
         switchControl.borderColor = UIColor.clear
         switchControl.shadowColor = UIColor.init(netHex: 0x000000, alpha:0.5)
         return switchControl

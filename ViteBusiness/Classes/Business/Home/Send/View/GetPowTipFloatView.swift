@@ -36,8 +36,8 @@ class GetPowTipFloatView: VisualEffectAnimationView {
     let pledgeButton = UIButton(style: .blue, title: R.string.localizable.quotaPowTipFloatViewPledge2())
     let notNowButton = UIButton().then {
         $0.setTitle(R.string.localizable.quotaPowTipFloatViewNotNow2(), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
     
@@ -45,8 +45,8 @@ class GetPowTipFloatView: VisualEffectAnimationView {
 
     let buyButton = UIButton().then {
         $0.setTitle(R.string.localizable.quotaPowTipFloatViewBuy1(), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
 

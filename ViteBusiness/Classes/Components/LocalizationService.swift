@@ -12,6 +12,7 @@ extension UIViewController {
     func showChangeLanguageList(isSettingPage: Bool = false) {
         let alertController = UIAlertController.init(title: nil, message: nil, preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: R.string.localizable.cancel(), style: .cancel, handler: nil)
+        cancelAction.setValue(UIColor(netHex: 0x00BEFF), forKey: "titleTextColor")
         alertController.addAction(cancelAction)
         let languages  = ViteLanguage.allLanguages
         for language in languages {

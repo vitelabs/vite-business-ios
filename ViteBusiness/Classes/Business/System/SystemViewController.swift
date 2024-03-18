@@ -63,7 +63,7 @@ class SystemViewController: FormViewController {
     }
 
     lazy var deleteBtn: UIButton = {
-        let deleteBtn = UIButton(style: .lightBlue)
+        let deleteBtn = UIButton(style: .blue)
         deleteBtn.setTitle(R.string.localizable.systemPageCellDeleteWalletTitle(), for: .normal)
         deleteBtn.addTarget(self, action: #selector(deleteBtnAction), for: .touchUpInside)
         return deleteBtn

@@ -42,13 +42,13 @@ class MyHomeListHeaderView: UIView {
     }
 
     lazy var contactsBtn: UIButton = {
-        let contactsBtn = UIButton.topImage(R.image.icon_contacts(), bottomTitle: R.string.localizable.myPageContactsCellTitle())
+        let contactsBtn = UIButton.topImage(R.image.icon_contacts()?.tintColor(UIColor(netHex: 0x00BEFF)), bottomTitle: R.string.localizable.myPageContactsCellTitle())
         contactsBtn.addTarget(self, action: #selector(contactsBtnAction), for: .touchUpInside)
         return contactsBtn
     }()
 
     lazy var mnemonicBtn: UIButton = {
-        let mnemonicBtn = UIButton.topImage(R.image.icon_mnemonic(), bottomTitle: R.string.localizable.myPageMnemonicCellTitle())
+        let mnemonicBtn = UIButton.topImage(R.image.icon_mnemonic()?.tintColor(UIColor(netHex: 0x00BEFF)), bottomTitle: R.string.localizable.myPageMnemonicCellTitle())
         mnemonicBtn.addTarget(self, action: #selector(mnemonicBtnAction), for: .touchUpInside)
         return mnemonicBtn
     }()

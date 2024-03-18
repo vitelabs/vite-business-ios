@@ -30,13 +30,13 @@ class GetPowFloatView: VisualEffectAnimationView {
 
     fileprivate let progressView = DACircularProgressView().then {
         $0.trackTintColor = UIColor(netHex: 0xefefef)
-        $0.progressTintColor = UIColor(netHex: 0x007AFF)
+        $0.progressTintColor = UIColor(netHex: 0x00BEFF)
         $0.thicknessRatio = 0.1
         $0.roundedCorners = 1
     }
 
     fileprivate let progressLabel = UILabel().then {
-        $0.textColor = UIColor(netHex: 0x007AFF)
+        $0.textColor = UIColor(netHex: 0x00BEFF)
         $0.font = UIFont.systemFont(ofSize: 24, weight: .semibold)
         $0.text = "0%"
     }
@@ -51,8 +51,8 @@ class GetPowFloatView: VisualEffectAnimationView {
 
     let cancelButton = UIButton().then {
         $0.setTitle(R.string.localizable.cancel(), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
 

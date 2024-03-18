@@ -241,7 +241,7 @@ extension AlertControl {
 private class AlertCompletionView: UIView {
 
     let imageView = UIImageView().then {
-        $0.image = R.image.success()
+        $0.image = R.image.success()?.tintColor(UIColor(netHex: 0x00BEFF))
     }
 
     let titleLabel = UILabel().then {

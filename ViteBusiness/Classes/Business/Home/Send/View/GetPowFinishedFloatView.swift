@@ -48,8 +48,8 @@ class GetPowFinishedFloatView: VisualEffectAnimationView {
 
     let pledgeButton = UIButton().then {
         $0.setTitle(R.string.localizable.quotaPowFinishedFloatViewPledgeButtonTitle(), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF), for: .normal)
-        $0.setTitleColor(UIColor(netHex: 0x007AFF).highlighted, for: .highlighted)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF), for: .normal)
+        $0.setTitleColor(UIColor(netHex: 0x00BEFF).highlighted, for: .highlighted)
         $0.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
     }
 

@@ -31,7 +31,7 @@ class MyHomeViewController: BaseTableViewController {
     }()
 
     lazy var logoutBtn: UIButton = {
-        let logoutBtn = UIButton(style: .lightBlue)
+        let logoutBtn = UIButton(style: .blue)
         logoutBtn.setTitle(R.string.localizable.systemPageCellLogoutTitle(), for: .normal)
         logoutBtn.addTarget(self, action: #selector(logoutBtnAction), for: .touchUpInside)
         return logoutBtn
